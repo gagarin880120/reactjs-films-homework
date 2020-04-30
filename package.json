@@ -1,0 +1,32 @@
+{
+  "name": "reactjs-films-homework",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gagarin880120/reactjs-films-homework.git"
+  },
+  "author": "Andrei Mandryk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gagarin880120/reactjs-films-homework/issues"
+  },
+  "homepage": "https://github.com/gagarin880120/reactjs-films-homework#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "express": "^4.17.1",
+    "html-webpack-plugin": "^4.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-hot-middleware": "^2.25.0"
+  }
+}
