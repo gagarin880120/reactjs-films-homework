@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: ['./src/index.js'],
+  entry: ['./src/index.jsx'],
   module: {
     rules: [
       {
@@ -10,11 +10,12 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['@babel/preset-env', '@babel/preset-react']
-        }
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+        },
       },
-    ]
+    ],
   },
+  resolve: { extensions: ['.js', '.jsx'] },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Films',
