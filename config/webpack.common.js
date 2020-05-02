@@ -10,7 +10,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['@babel/preset-env','@babel/preset-react']
+          presets: ['@babel/preset-env', '@babel/preset-react']
         }
       },
     ]
@@ -18,11 +18,11 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Films',
-      template: './src/index.html'
+      template: './src/index.html',
     }),
   ],
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: './js/[name].[hash].js',
+    path: path.resolve(__dirname, '../build'),
   },
 };
