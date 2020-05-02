@@ -4,7 +4,7 @@ import Signature from './components/Signature/Signature';
 
 ReactDOM.render(
   <Signature name="Andrei Mandryk" />,
-  document.getElementById('root'),
+  document.getElementById('root') || document.createElement('div'),
 );
 
 export default function moduleHotAccept(mod) {

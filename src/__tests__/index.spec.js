@@ -1,4 +1,4 @@
-import moduleHotAccept from '../index.js';
+import moduleHotAccept from '../index';
 
 
 it('should only call hot.accept() if hot is defined', () => {
