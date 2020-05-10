@@ -1,19 +1,15 @@
-import moduleHotAccept from '../index';
+import React from "react";
+import ReactDOM from "react-dom";
+import Signature from "../components/Signature/Signature";
 
+jest.mock("react-dom", () => ({ render: jest.fn() }));
 
-it('should only call hot.accept() if hot is defined', () => {
-  const accept = jest.fn();
-  const mockModule = { hot: { accept } };
-  moduleHotAccept(mockModule);
-  expect(accept).toHaveBeenCalled();
-});
-
-it('should not throw if module is undefined', () => {
-  expect(moduleHotAccept).not.toThrow();
-});
-
-it('should not throw if module.hot is undefined', () => {
-  expect(
-    () => moduleHotAccept({ notHot: -273 }),
-  ).not.toThrow();
+describe("Application root", () => {
+  it("should render without crashing", () => {
+    const div = document.createElement("div");
+    div.id = "root";
+    document.body.appendChild(div);
+    require('../index.jsx');
+    expect(ReactDOM.render).toHaveBeenCalledWith(<Signature name="Andrei Mandryk" />, div);
+  });
 });
