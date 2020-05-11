@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieInfo component should render without crashing 1`] = `
+<div
+  className="wrapper"
+>
+  <h2
+    className="movieTitle"
+  >
+    The Jungle Book
+  </h2>
+  <div
+    className="genreDurationContainer"
+  >
+    <span
+      className="genre"
+    >
+      Adventure Drama Family Fantasy
+    </span>
+    <span
+      className="duration"
+    >
+      1h 46m
+    </span>
+  </div>
+  <div
+    className="rating"
+  >
+    <span
+      className="ratingStars"
+    >
+      ★★★★★
+    </span>
+    <span
+      className="ratingText"
+    >
+      4.8
+    </span>
+  </div>
+</div>
+`;

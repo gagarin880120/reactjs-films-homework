@@ -1,10 +1,10 @@
 import ShallowRenderer from 'react-test-renderer/shallow';
 import React from 'react';
-import Signature from '../Signature';
+import MovieInfo from '../MovieInfo';
 
-test('Signature component should render without crashing', () => {
+test('MovieInfo component should render without crashing', () => {
   const renderer = new ShallowRenderer();
-  renderer.render(<Signature name="Andrei Mandryk" />);
+  renderer.render(<MovieInfo />);
   const result = renderer.getRenderOutput();
   expect(result).toMatchSnapshot();
 });
