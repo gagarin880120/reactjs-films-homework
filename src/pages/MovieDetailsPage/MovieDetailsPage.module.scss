@@ -1,8 +1,12 @@
-.wrapper {
-  background-image: linear-gradient(120.96deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.5) 100%), url('../../assets/images/cover-image.jpg');
+body {
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%), url('../../assets/images/cover-image.jpg');
   background-size: cover cover;
+}
+
+.wrapper {
   padding: 0 5%;
   font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
 }
 
 .header {
@@ -12,8 +16,10 @@
 }
 
 .title {
-  font-size: 32px;
-  color: #fff;
+  font-size: 30px;
   text-transform: uppercase;
 }
 
+.main {
+  margin-top: 35%;
+}

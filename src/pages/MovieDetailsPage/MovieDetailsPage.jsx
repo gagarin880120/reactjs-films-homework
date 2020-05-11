@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchField from '../../components/SearchField/SearchField';
+import MovieInfo from '../../components/MovieInfo/MovieInfo';
 import styles from './MovieDetailsPage.module.scss';
 
 export default function MovieDetailsPage() {
@@ -13,7 +14,9 @@ export default function MovieDetailsPage() {
           <SearchField />
         </div>
       </header>
-
+      <main className={styles.main}>
+        <MovieInfo />
+      </main>
     </div>
   )
 }
