@@ -10,6 +10,30 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/,
+        use: [
+               {
+                 loader: "file-loader",
+                 options: {
+                  context: path.resolve(__dirname, 'src'),
+                  name: '[path][name].[ext]'
+                },
+               }
+             ]
+      },
+      {
+        test: /\.(woff|woff2|ttf|otf|eot)$/,
+        use: [
+               {
+                 loader: "file-loader",
+                 options: {
+                  context: path.resolve(__dirname, 'src'),
+                  name: '[path][name].[ext]'
+                },
+               }
+             ]
+      }
     ],
   },
   resolve: { extensions: ['.js', '.jsx'] },
