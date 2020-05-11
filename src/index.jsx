@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Signature from './components/Signature/Signature';
+import App from './App';
 
 ReactDOM.render(
-  <Signature name="Andrei Mandryk" />,
+  <App />,
   document.getElementById('root'),
 );
