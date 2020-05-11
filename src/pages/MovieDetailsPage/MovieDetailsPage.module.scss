@@ -22,4 +22,10 @@ body {
 
 .main {
   margin-top: 35%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonsContainer {
+  margin-top: 6%;
 }
