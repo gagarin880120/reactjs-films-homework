@@ -1,0 +1,19 @@
+.wrapper {
+  background-image: linear-gradient(120.96deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.5) 100%), url('../../assets/images/cover-image.jpg');
+  background-size: cover cover;
+  padding: 0 5%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  padding-top: 1.5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 32px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
