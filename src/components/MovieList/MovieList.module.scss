@@ -1,0 +1,44 @@
+.wrapper {
+  background: #f5f5f5;
+  padding: 0 5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.movieCard {
+  background-size: cover;
+  width: 280px;
+  height: 340px;
+  margin-bottom: 2.5%;
+}
+
+.movieInfo {
+  height: 70px;
+  margin-top: 240px;
+  background: #fff;
+  padding: 30px 5% 0;
+}
+
+.movieTitle {
+  color: #242B2D;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.movieRating {
+  float: right;
+  color: #47C3F0;
+  border: 1px solid #47C3F0;
+  border-radius: 4px;
+  padding: 2px 5px;
+  margin-top: -4px;
+}
+
+.movieGenre {
+  margin-top: 10px;
+  font-size: 15px;
+  color: #47C3F0;
+  font-weight: bold;
+}

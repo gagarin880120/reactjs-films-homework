@@ -8,14 +8,6 @@ import styles from './MovieDetailsPage.module.scss';
 export default function MovieDetailsPage() {
   return (
     <div className={styles.wrapper}>
-      <header className={styles.header}>
-        <h1 className={styles.title}>
-          Films
-        </h1>
-        <div className={styles.searchFieldContainer}>
-          <SearchField />
-        </div>
-      </header>
       <main className={styles.main}>
         <MovieInfo />
         <div className={styles.buttonsContainer}>
