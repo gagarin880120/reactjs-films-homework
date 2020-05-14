@@ -1,0 +1,16 @@
+.trailerButton {
+  background: #3BB3DF;
+  color: #fff;
+  border-radius: 50%;
+  border: 0;
+  width: 60px;
+  height: 60px;
+  font-size: 64px;
+  outline: 0;
+  line-height: 64px;
+  cursor: pointer;
+}
+
+.trailerButton:active {
+  transform: translateY(2px);
+}

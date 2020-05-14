@@ -15,6 +15,7 @@ export default function SearchFieldContainer() {
       url.searchParams.set('query', str);
       url.searchParams.set('page', '1');
       url.searchParams.set('include_adult', 'false');
+      url.searchParams.set('video', 'true');
       fetch(url)
         .then(res => res.json())
         .then(data => dispatch(searchResultsAction(data.results)))
@@ -23,8 +24,10 @@ export default function SearchFieldContainer() {
   }
 
   function onKeyDownHandler(e) {
-    if (e.key ==='Enter') {
-      return getResults(query)()
+    if (query) {
+      if (e.key ==='Enter') {
+        return getResults(query)()
+      }
     }
   }
 
