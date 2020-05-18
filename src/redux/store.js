@@ -6,7 +6,7 @@ const initialState = {
   genres: [],
 };
 
-function reducer(state = initialState, action) {
+export function reducer(state = initialState, action) {
   switch (action.type) {
     case "SEARCH":
       return Object.assign({}, state, {searchResults: action.results});

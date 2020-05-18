@@ -1,10 +1,10 @@
 import ShallowRenderer from 'react-test-renderer/shallow';
 import React from 'react';
-import WatchNowButtonRect from '../WatchNowButtonRect';
+import Header from '../Header';
 
-test('WatchNowButtonRect component should render without crashing', () => {
+test('Header component should render without crashing', () => {
   const renderer = new ShallowRenderer();
-  renderer.render(<WatchNowButtonRect />);
+  renderer.render(<Header />);
   const result = renderer.getRenderOutput();
   expect(result).toMatchSnapshot();
 });

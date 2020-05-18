@@ -4,30 +4,22 @@ exports[`MovieDetailsPage component should render without crashing 1`] = `
 <div
   className="wrapper"
 >
-  <header
-    className="header"
+  <div
+    className="infoContainer"
   >
-    <h1
-      className="title"
+    <Header />
+    <main
+      className="main"
     >
-      Films
-    </h1>
-    <div
-      className="searchFieldContainer"
-    >
-      <SearchField />
-    </div>
-  </header>
-  <main
-    className="main"
-  >
-    <MovieInfo />
-    <div
-      className="buttonsContainer"
-    >
-      <WatchNowButtonRect />
-      <ViewInfoButton />
-    </div>
-  </main>
+      <MovieInfo />
+      <div
+        className="buttonsContainer"
+      >
+        <TrailerButtonRect />
+        <InfoButton />
+      </div>
+    </main>
+  </div>
+  <MovieListContainer />
 </div>
 `;

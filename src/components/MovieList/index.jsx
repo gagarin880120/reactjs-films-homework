@@ -6,66 +6,29 @@ import TrailerButtonRound from '../TrailerButtonRound/TrailerButtonRound';
 import styles from './MovieList.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { searchResultsSelector, genresSelector } from '../../redux/selectors';
-import { genresAction } from '../../redux/actions';
+import { getGenres } from '../../redux/actions';
+import { getGenresString, getTrailer } from '../../helpers/helpers';
 
 export default function MovieListContainer() {
   const [trailerSource, setTrailerSource] = useState('');
+  const [isTrailerLoading, setIsTrailerLoading] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [isInfoViewed, setIsInfoViewed] = useState(Array.from({length: 20}, () => false));
   const hoverRefs= useMemo(
-    () => Array.from({ length: 20 }, () => createRef()),//длину в след. части поменять на 16
+    () => Array.from({ length: 20 }, () => createRef()),
     []
   );
   const infoRefs= useMemo(
-    () => Array.from({ length: 20 }, () => createRef()),//длину в след. части поменять на 16
+    () => Array.from({ length: 20 }, () => createRef()),
     []
   );
   const results = useSelector(searchResultsSelector);
   const genres = useSelector(genresSelector);
   const dispatch = useDispatch();
 
-  function getGenres() {
-    return () => {
-      const url = new URL('https://api.themoviedb.org/3/genre/movie/list');
-      url.searchParams.set('api_key', '306b98213f954f1d07d1d09517898f10');
-      url.searchParams.set('language', 'en-US');
-      fetch(url)
-        .then(res => res.json())
-        .then(data => dispatch(genresAction(data.genres)))
-        .catch(e => console.log(e))
-    }
-  }
-
   useEffect(() => {
-    getGenres()();
+    dispatch(getGenres());
   }, [])
-
-  function getGenresString(arr) {
-    return arr.map(id => genres[genres.findIndex(v => v.id === id)].name).join(', ');
-  }
-
-  function onInfoButtonClick() {
-
-  }
-
-  function getTrailer(id, cb) {
-    const url = new URL(`https://api.themoviedb.org/3/movie/${id}`);
-    url.searchParams.set('api_key', '306b98213f954f1d07d1d09517898f10');
-    url.searchParams.set('append_to_response', 'videos');
-    fetch(url)
-      .then(res => res.json())
-      .then(data => cb(data.videos.results[0].key))
-      .catch(e => openModal(null))
-  }
-
-  function openModal(src) {
-    setTrailerSource(src);
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
 
   const arrayOfResults = results.map((result, i) => {
     return (
@@ -90,7 +53,15 @@ export default function MovieListContainer() {
         >
           <TrailerButtonRound onTrailerButtonClick={() =>
             {
-              getTrailer(result.id, openModal);
+              setIsTrailerLoading(true);
+              getTrailer(result.id).then(data => {
+                setTrailerSource(data.videos.results[0].key)
+              })
+              .catch(() => setTrailerSource(null))
+              .finally(() => {
+                setIsTrailerLoading(false);
+              });
+              setIsOpen(true);
             }} />
           <span className={styles.hoverTrailerText}>Watch Now</span>
           <InfoButton onInfoButtonClick={() => {
@@ -115,14 +86,15 @@ export default function MovieListContainer() {
             }
           </span>
           <span className={styles.movieRating}>{result.vote_average}</span>
-          <p className={styles.movieGenre}>{getGenresString(result.genre_ids)}</p>
+          <p className={styles.movieGenre}>{getGenresString(result.genre_ids, genres)}</p>
           {
             isInfoViewed[i] ?
             <>
               <div className={styles.overview}>{result.overview}</div>
               <TrailerButtonRect onTrailerButtonClick={() =>
             {
-              getTrailer(result.id, openModal);
+              getTrailer(result.id, setTrailerSource, setIsTrailerLoading);
+              setIsOpen(true);
             }}/>
             </> : null
           }
@@ -139,9 +111,9 @@ export default function MovieListContainer() {
       <div
         className={styles.modal}
         style={{display: modalIsOpen ? 'flex' : 'none'}}
-        onClick={() => closeModal()}
+        onClick={() => setIsOpen(false)}
       >
-        {trailerSource ?
+        {isTrailerLoading ? null : trailerSource ?
           <iframe
           width="800"
           height="450"

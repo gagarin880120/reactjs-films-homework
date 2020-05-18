@@ -1,10 +1,10 @@
 import ShallowRenderer from 'react-test-renderer/shallow';
 import React from 'react';
-import SearchField from '../SearchField';
+import TrailerButtonRect from '../TrailerButtonRect';
 
-test('SearchField component should render without crashing', () => {
+test('TrailerButtonRect component should render without crashing', () => {
   const renderer = new ShallowRenderer();
-  renderer.render(<SearchField />);
+  renderer.render(<TrailerButtonRect />);
   const result = renderer.getRenderOutput();
   expect(result).toMatchSnapshot();
 });

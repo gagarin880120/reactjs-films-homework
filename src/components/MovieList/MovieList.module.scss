@@ -86,10 +86,30 @@
   background: rgba(0,0,0,.7);
   height: 310px;
   padding: 30px 7% 0;
+  overflow-y: scroll;
 
   .movieTitle {
     color: #fff;
   }
+}
+
+.infoIsViewed::-webkit-scrollbar {
+  width: 8px;
+}
+
+.infoIsViewed::-webkit-scrollbar-track {
+  background: rgba(0,0,0,.5);
+  border-radius: 6px;
+}
+
+.infoIsViewed::-webkit-scrollbar-thumb {
+  background: #47C3F0;
+  border-radius: 6px;
+
+}
+
+.infoIsViewed::-webkit-scrollbar-thumb:hover {
+  background: #ace1f5;;
 }
 
 .closeInfo {

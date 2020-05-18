@@ -3,7 +3,9 @@
 exports[`SearchField component should render without crashing 1`] = `
 <input
   className="searchInput"
-  placeholder="the jungle book"
+  onChange={[Function]}
+  onKeyDown={[Function]}
+  placeholder="🔍"
   type="search"
 />
 `;
