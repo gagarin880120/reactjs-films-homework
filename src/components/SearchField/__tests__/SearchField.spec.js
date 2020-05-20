@@ -17,11 +17,10 @@ test('testing onChange event', () => {
   expect(input.value).toEqual('matrix');
 });
 
-// test('testing onKeyDown event', () => {
-//   const dispatch = jest.fn();
-//   const { container, getByPlaceholderText } = render(<SearchField dispatch={dispatch} />);
-//   const input = getByPlaceholderText('🔍');
-//   fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
-
-//   expect(dispatch).toHaveBeenCalledTimes(1);
-// });
+test('testing onKeyDown event', () => {
+  const { container, getByPlaceholderText } = render(<SearchField onKeyDownHandler={onKeyDownHandler} />);
+  const onKeyDownHandler = jest.fn();
+  const input = getByPlaceholderText('🔍');
+  fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
+  expect(onKeyDownHandler).toHaveBeenCalledTimes(1);
+});

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './SearchField.module.scss';
-import { getResults } from '../../redux/actions';
+
 
 export default function SearchField(props) {
   const [query, setQuery] = useState('');
@@ -15,7 +15,7 @@ export default function SearchField(props) {
       onKeyDown={(e) => {
         if (query) {
           if (e.key ==='Enter') {
-            return props.dispatch(getResults(query));
+            props.onKeyDownHandler(query);
           }
         }
       }}

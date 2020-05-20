@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchFieldContainer from '../SearchField/index';
+import SearchFieldContainer from '../SearchField';
 import styles from './Header.module.scss';
 
 export default function Header() {

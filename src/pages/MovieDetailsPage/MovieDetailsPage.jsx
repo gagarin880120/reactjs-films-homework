@@ -3,7 +3,7 @@ import Header from '../../components/Header/Header';
 import MovieInfo from '../../components/MovieInfo/MovieInfo';
 import InfoButton from '../../components/InfoButton/InfoButton';
 import TrailerButtonRect from '../../components/TrailerButtonRect/TrailerButtonRect';
-import MovieListContainer from '../../components/MovieList/index';
+import MovieListContainer from '../../components/MovieList';
 import styles from './MovieDetailsPage.module.scss';
 
 export default function MovieDetailsPage() {

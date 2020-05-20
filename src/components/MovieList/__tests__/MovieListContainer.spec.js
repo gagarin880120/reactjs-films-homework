@@ -1,6 +1,6 @@
 import ShallowRenderer from 'react-test-renderer/shallow';
 import React from 'react';
-import MovieListContainer from '../index';
+import MovieListContainer from '../MovieListContainer';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 
@@ -12,4 +12,3 @@ test('MovieListContainer component should render without crashing', () => {
   const result = renderer.getRenderOutput();
   expect(result).toMatchSnapshot();
 });
-
