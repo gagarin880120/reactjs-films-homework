@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TrailerModal component should render without crashing 1`] = `
+<div
+  className="modal"
+  data-testid="modal"
+  onClick={[Function]}
+  style={
+    Object {
+      "display": "none",
+    }
+  }
+>
+  <span
+    className="noTrailer"
+  >
+    Trailer is not available
+  </span>
+</div>
+`;

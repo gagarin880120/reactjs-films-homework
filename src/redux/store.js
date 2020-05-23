@@ -8,10 +8,10 @@ const initialState = {
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
-    case "SEARCH":
-      return Object.assign({}, state, {searchResults: action.results});
-    case "GENRES":
-      return Object.assign({}, state, {genres: action.genres});
+    case 'SEARCH':
+      return { ...state, searchResults: action.results };
+    case 'GENRES':
+      return { ...state, genres: action.genres };
     default:
       return state;
   }

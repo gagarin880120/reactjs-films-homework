@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieCard component should render without crashing 1`] = `
+<React.Fragment>
+  <div
+    className="wrapper"
+    data-testid="wrapper"
+    onMouseLeave={[Function]}
+    onMouseOver={[Function]}
+    style={
+      Object {
+        "backgroundImage": "url(https://spnbag.com/assets/general/images/no_poster.jpg)",
+      }
+    }
+  >
+    <div
+      className="hoverTrailer"
+    >
+      <TrailerButtonRound
+        onTrailerButtonClick={[Function]}
+      />
+      <span
+        className="hoverTrailerText"
+      >
+        Watch Now
+      </span>
+      <InfoButton
+        onInfoButtonClick={[Function]}
+      />
+    </div>
+    <div
+      className="movieInfo"
+    >
+      <span
+        className="movieTitle"
+      >
+        Star Wars
+      </span>
+      <span
+        className="movieRating"
+      />
+      <p
+        className="movieGenre"
+      >
+        Adventure
+      </p>
+    </div>
+  </div>
+  <TrailerModal
+    isTrailerLoading={false}
+    modalIsOpen={false}
+    setIsOpen={[Function]}
+    trailerSource=""
+  />
+</React.Fragment>
+`;

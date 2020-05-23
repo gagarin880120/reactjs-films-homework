@@ -13,16 +13,22 @@ export default function MovieCard(props) {
   const [modalIsOpen, setIsOpen] = useState(false);
   const hoverRef = useRef();
   const infoRef = useRef();
+
+  function onMouseOverHandler(e) {
+    hoverRef.current.style.display = isInfoViewed ? 'none' : 'flex';
+  }
+
+  function onMouseLeaveHandler(e) {
+    hoverRef.current.style.display = 'none';
+  }
+
   return (
     <>
       <div
         className={styles.wrapper}
-        onMouseOver={(e) => {
-          hoverRef.current.style.display = isInfoViewed ? 'none' : 'flex';
-        }}
-        onMouseLeave={(e) => {
-          hoverRef.current.style.display = 'none';
-        }}
+        data-testid="wrapper"
+        onMouseOver={onMouseOverHandler}
+        onMouseLeave={onMouseLeaveHandler}
         style={{
           backgroundImage: props.poster_path ?
           `url(https://image.tmdb.org/t/p/w300/${props.poster_path})`:
@@ -33,7 +39,8 @@ export default function MovieCard(props) {
           ref={hoverRef}
           className={styles.hoverTrailer}
         >
-          <TrailerButtonRound onTrailerButtonClick={() =>
+          <TrailerButtonRound
+            onTrailerButtonClick={() =>
             {
               setIsTrailerLoading(true);
               getTrailer(props.id).then(data => {
