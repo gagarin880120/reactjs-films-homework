@@ -1,0 +1,82 @@
+{
+  "name": "reactjs-films-homework",
+  "version": "1.0.0",
+  "main": "index.jsx",
+  "scripts": {
+    "lint": "eslint --config ./config/.eslintrc . && stylelint **/*.scss",
+    "test": "jest",
+    "start": "cross-env NODE_ENV=development node server.js",
+    "build": "cross-env NODE_ENV=production webpack --config ./config/webpack.prod.js",
+    "prod": "npm run build && node server.js"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
+    "coverageThreshold": {
+      "src/**/*.{js,jsx}": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    },
+    "moduleNameMapper": {
+      "\\.(css|scss)$": "identity-obj-proxy"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm test && npm run lint"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gagarin880120/reactjs-films-homework.git"
+  },
+  "author": "Andrei Mandryk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gagarin880120/reactjs-films-homework/issues"
+  },
+  "homepage": "https://github.com/gagarin880120/reactjs-films-homework#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "babel-jest": "^25.5.1",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.2",
+    "css-loader": "^3.5.3",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^3.0.0",
+    "express": "^4.17.1",
+    "html-webpack-plugin": "^4.2.1",
+    "husky": "^4.2.5",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^25.5.4",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.14.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-hot-loader": "^4.12.21",
+    "react-test-renderer": "^16.13.1",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.1",
+    "stylelint": "^13.3.3",
+    "stylelint-config-standard": "^20.0.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-hot-middleware": "^2.25.0",
+    "webpack-merge": "^4.2.2"
+  }
+}
