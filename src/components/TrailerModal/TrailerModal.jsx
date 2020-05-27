@@ -11,6 +11,7 @@ export default function TrailerModal(props) {
     >
       {props.isTrailerLoading ? null : props.trailerSource ?
         <iframe
+        data-testid="video"
         width="800"
         height="450"
         src={`https://www.youtube.com/embed/${props.trailerSource}`}
@@ -18,7 +19,7 @@ export default function TrailerModal(props) {
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen>
         </iframe> :
-        <span className={styles.noTrailer}>
+        <span data-testid="noTrailer" className={styles.noTrailer}>
           Trailer is not available
         </span>
       }

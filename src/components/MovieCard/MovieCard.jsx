@@ -13,13 +13,28 @@ export default function MovieCard(props) {
   const [modalIsOpen, setIsOpen] = useState(false);
   const hoverRef = useRef();
   const infoRef = useRef();
-
   function onMouseOverHandler(e) {
     hoverRef.current.style.display = isInfoViewed ? 'none' : 'flex';
   }
 
   function onMouseLeaveHandler(e) {
     hoverRef.current.style.display = 'none';
+  }
+
+  function onTrailerButtonClick() {
+    setIsTrailerLoading(true);
+    setIsOpen(true);
+    getTrailer(props.id)
+    .then(data => {
+      setTrailerSource(data.videos.results[0].key)
+    })
+    .catch((e) => {
+      setTrailerSource(null)
+    })
+    .finally(() => {
+      setIsTrailerLoading(false);
+    });
+
   }
 
   return (
@@ -37,31 +52,24 @@ export default function MovieCard(props) {
       >
         <div
           ref={hoverRef}
+          data-testid="hoverTrailer"
           className={styles.hoverTrailer}
         >
           <TrailerButtonRound
-            onTrailerButtonClick={() =>
-            {
-              setIsTrailerLoading(true);
-              getTrailer(props.id).then(data => {
-                setTrailerSource(data.videos.results[0].key)
-              })
-              .catch(() => setTrailerSource(null))
-              .finally(() => {
-                setIsTrailerLoading(false);
-              });
-              setIsOpen(true);
-            }} />
+            testid="trailerButtonRound"
+            onTrailerButtonClick={onTrailerButtonClick} />
           <span className={styles.hoverTrailerText}>Watch Now</span>
-          <InfoButton onInfoButtonClick={() => {
+          <InfoButton
+            testid="infoButton"
+            onInfoButtonClick={() => {
             hoverRef.current.style.display = 'none';
             setIsInfoViewed(true);
             infoRef.current.className = styles.infoIsViewed;
           }} />
         </div>
-        <div className={styles.movieInfo} ref={infoRef}>
+        <div className={styles.movieInfo} data-testid="info" ref={infoRef}>
           {
-            isInfoViewed ? <div className={styles.closeInfo} onClick={() => {
+            isInfoViewed ? <div data-testid="closeInfo" className={styles.closeInfo} onClick={() => {
               setIsInfoViewed(false);
               infoRef.current.className = styles.movieInfo;
             }}><span>X</span></div> : null
@@ -79,18 +87,7 @@ export default function MovieCard(props) {
             isInfoViewed ?
             <>
               <div className={styles.overview}>{props.overview}</div>
-              <TrailerButtonRect onTrailerButtonClick={() =>
-            {
-              setIsTrailerLoading(true);
-              getTrailer(props.id).then(data => {
-                setTrailerSource(data.videos.results[0].key)
-              })
-              .catch(() => setTrailerSource(null))
-              .finally(() => {
-                setIsTrailerLoading(false);
-              });
-              setIsOpen(true);
-            }}/>
+              <TrailerButtonRect onTrailerButtonClick={onTrailerButtonClick}/>
             </> : null
           }
         </div>

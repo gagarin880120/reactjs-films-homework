@@ -1,15 +1,25 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-
+import { connect } from 'react-redux';
+import { getResults } from '../../redux/actions';
 
 import SearchField from './SearchField';
 
-export default function SearchFieldContainer() {
-  const dispatch = useDispatch();
-
+export function SearchFieldContainer({ onSearch }) {
   return (
     <SearchField
-      dispatch={dispatch}
+      onSearch={onSearch}
     />
   )
 }
+
+export const mapDispatchToProps = (dispatch) => {
+  return {
+    onSearch(query) {
+      if(query) {
+        dispatch(getResults(query))
+      }
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(SearchFieldContainer)

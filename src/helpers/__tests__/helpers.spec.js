@@ -19,7 +19,7 @@ describe('testing getTrailer', () => {
     fetch.resetMocks()
   })
 
-  it('calls getTrailer and returns data to me', () => {
+  test('calls getTrailer and returns data to me', () => {
     fetch.mockResponseOnce(JSON.stringify({ data: '12345' }))
 
     getTrailer(603).then(res => {

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MovieCard component should render without crashing 1`] = `
+exports[`MovieCard MovieCard component should render without crashing 1`] = `
 <React.Fragment>
   <div
     className="wrapper"
@@ -15,9 +15,11 @@ exports[`MovieCard component should render without crashing 1`] = `
   >
     <div
       className="hoverTrailer"
+      data-testid="hoverTrailer"
     >
       <TrailerButtonRound
         onTrailerButtonClick={[Function]}
+        testid="trailerButtonRound"
       />
       <span
         className="hoverTrailerText"
@@ -26,10 +28,12 @@ exports[`MovieCard component should render without crashing 1`] = `
       </span>
       <InfoButton
         onInfoButtonClick={[Function]}
+        testid="infoButton"
       />
     </div>
     <div
       className="movieInfo"
+      data-testid="info"
     >
       <span
         className="movieTitle"

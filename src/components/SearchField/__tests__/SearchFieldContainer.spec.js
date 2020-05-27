@@ -1,15 +1,54 @@
 import ShallowRenderer from 'react-test-renderer/shallow';
 import React from 'react';
-import SearchFieldContainer from '../';
-import { Provider } from 'react-redux';
-import configureStore from 'redux-mock-store';
+import { SearchFieldContainer, mapDispatchToProps } from '../SearchFieldContainer';
+import { getResults } from '../../../redux/actions';
 
-const mockStore = configureStore();
-const store = mockStore({});
+jest.mock('../../../redux/actions',() => ({
+  getResults: jest.fn().mockReturnValue('getResultsAction'),
+}))
 
-test('SearchFieldContainer component should render without crashing', () => {
+const renderComponent = (props = {}) => {
   const renderer = new ShallowRenderer();
-  renderer.render(<Provider store={store}><SearchFieldContainer /></Provider>);
-  const result = renderer.getRenderOutput();
-  expect(result).toMatchSnapshot();
-});
+  renderer.render(<SearchFieldContainer onSearch={jest.fn()} {...props} />);
+
+  return renderer
+}
+
+describe('SearchFieldContainer', () => {
+  describe('component', () => {
+    test('SearchFieldContainer component should render without crashing', () => {
+      const component = renderComponent()
+
+      const result = component.getRenderOutput();
+
+      expect(result).toMatchSnapshot();
+    });
+
+  })
+
+  describe('mapDispatchToProps', () => {
+    afterEach(() => {
+      jest.clearAllMocks();
+    })
+
+    test('onSearch should dispatch getResults action', () => {
+      const dispatch = jest.fn();
+      const {onSearch} = mapDispatchToProps(dispatch);
+
+      onSearch('abc')
+
+      expect(getResults).toHaveBeenCalledWith('abc')
+      expect(dispatch).toHaveBeenCalledWith('getResultsAction')
+    })
+
+    test('onSearch should not dispatch getResults action if no query', () => {
+      const dispatch = jest.fn();
+      const {onSearch} = mapDispatchToProps(dispatch);
+
+      onSearch()
+
+      expect(getResults).not.toHaveBeenCalled()
+      expect(dispatch).not.toHaveBeenCalled()
+    })
+  })
+})

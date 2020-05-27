@@ -7,5 +7,6 @@ exports[`SearchField component should render without crashing 1`] = `
   onKeyDown={[Function]}
   placeholder="🔍"
   type="search"
+  value=""
 />
 `;

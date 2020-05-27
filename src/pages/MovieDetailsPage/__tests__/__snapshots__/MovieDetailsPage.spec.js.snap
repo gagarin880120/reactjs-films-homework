@@ -20,6 +20,6 @@ exports[`MovieDetailsPage component should render without crashing 1`] = `
       </div>
     </main>
   </div>
-  <MovieListContainer />
+  <Memo(Connect(MovieListContainer)) />
 </div>
 `;
