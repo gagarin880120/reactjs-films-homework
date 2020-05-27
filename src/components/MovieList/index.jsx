@@ -1,2 +1,1 @@
-import MovieListContainer from './MovieListContainer';
-export default MovieListContainer;
+export {default} from './MovieListContainer';

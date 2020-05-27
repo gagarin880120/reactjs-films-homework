@@ -1,2 +1,1 @@
-import SearchFieldContainer from './SearchFieldContainer';
-export default SearchFieldContainer;
+export {default} from './SearchFieldContainer';
