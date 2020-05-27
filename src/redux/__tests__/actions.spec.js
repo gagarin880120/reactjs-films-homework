@@ -22,46 +22,51 @@ test('genresAction should return object with type GENRES and genres array', () =
   );
 });
 
-describe('testing async actions', () => {
+describe('Async actions', () => {
   beforeEach(() => {
     fetch.resetMocks()
   })
-  it('getResults should dispatch search results', () => {
-    const store = mockStore({});
-    fetch.mockResponseOnce(JSON.stringify({ data: '12345' }))
-    return store.dispatch(getResults())
-      .then(res => {
-        const actions = store.getActions()
-        expect(actions[0]).toEqual(searchResultsAction(res.data))
-      });
+
+  describe('getResults', () => {
+    test('should dispatch search results', () => {
+      const store = mockStore({});
+      fetch.mockResponseOnce(JSON.stringify({ data: '12345' }))
+      return store.dispatch(getResults())
+        .then(res => {
+          const actions = store.getActions()
+          expect(actions[0]).toEqual(searchResultsAction(res.data))
+        });
+    });
+    test('getResults should catch error if is rejected', () => {
+      const store = mockStore({});
+      fetch.mockReject(new Error('fake error message'))
+      return store.dispatch(getResults())
+        .then(res => {
+          const actions = store.getActions()
+          expect(actions[0]).toEqual(undefined)
+        });
+    });
   });
 
-  it('getGenres should dispatch genres', () => {
-    const store = mockStore({});
-    fetch.mockResponseOnce(JSON.stringify({ data: 'Adventure' }))
-    return store.dispatch(getGenres())
-      .then(res => {
-        const actions = store.getActions()
-        expect(actions[0]).toEqual(genresAction(res.data))
-      });
-  });
-  it('getResults should catch error', () => {
-    const store = mockStore({});
-    fetch.mockReject(new Error('fake error message'))
-    return store.dispatch(getResults())
-      .then(res => {
-        const actions = store.getActions()
-        expect(actions[0]).toEqual(undefined)
-      });
-  });
-  it('getGenres should catch error', () => {
-    const store = mockStore({});
-    fetch.mockReject(new Error('fake error message'))
-    return store.dispatch(getGenres())
-      .then(res => {
-        const actions = store.getActions()
-        expect(actions[0]).toEqual(undefined)
-      });
-  });
+  describe('getGenres', () => {
+    test('should dispatch genres', () => {
+      const store = mockStore({});
+      fetch.mockResponseOnce(JSON.stringify({ data: 'Adventure' }))
+      return store.dispatch(getGenres())
+        .then(res => {
+          const actions = store.getActions()
+          expect(actions[0]).toEqual(genresAction(res.data))
+        });
+    });
 
+    test('should catch error if is rejected', () => {
+      const store = mockStore({});
+      fetch.mockReject(new Error('fake error message'))
+      return store.dispatch(getGenres())
+        .then(res => {
+          const actions = store.getActions()
+          expect(actions[0]).toEqual(undefined)
+        });
+    });
+  });
 });

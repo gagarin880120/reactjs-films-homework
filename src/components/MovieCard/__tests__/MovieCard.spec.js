@@ -1,18 +1,17 @@
 import ShallowRenderer from 'react-test-renderer/shallow';
 import React from 'react';
 import MovieCard from '../MovieCard';
-import {render, fireEvent, waitFor } from '@testing-library/react';
-import {getTrailer} from '../../../helpers/helpers'
+import { render, fireEvent, waitFor } from '@testing-library/react';
 
-describe('MovieCard', () => {
-  test('MovieCard component should render without crashing', () => {
+describe('MovieCard component', () => {
+  test('should render without crashing', () => {
     const renderer = new ShallowRenderer();
     renderer.render(<MovieCard title='Star Wars' genre_ids={[28]} genres={[{id:28, name:'Adventure'}]} />);
     const result = renderer.getRenderOutput();
     expect(result).toMatchSnapshot();
   });
 
-  test('testing onMouseOver event', () => {
+  test('onMouseOver should display hoverTrailer element', () => {
     const { getByTestId } = render(<MovieCard title='Star Wars' genre_ids={[28]} genres={[{id:28, name:'Adventure'}]} />);
     const wrapper = getByTestId('wrapper');
     const hoverTrailer = getByTestId('hoverTrailer');
@@ -22,7 +21,7 @@ describe('MovieCard', () => {
     expect(hoverTrailer.style.display).toBe('flex')
   });
 
-  test('testing onMouseOver event when info is viewed', () => {
+  test('onMouseOver should not display hoverTrailer element render when info is viewed', () => {
     const { getByTestId } = render(<MovieCard title='Star Wars' genre_ids={[28]} genres={[{id:28, name:'Adventure'}]} />);
     const wrapper = getByTestId('wrapper');
     const hoverTrailer = getByTestId('hoverTrailer');
@@ -35,7 +34,7 @@ describe('MovieCard', () => {
     expect(hoverTrailer.style.display).toBe('none')
   });
 
-  test('testing onMouseLeave event', () => {
+  test('onMouseLeave should not display hoverTrailer element', () => {
     const { getByTestId } = render(<MovieCard title='Star Wars' poster_path='path' genre_ids={[28]} genres={[{id:28, name:'Adventure'}]} />);
     const wrapper = getByTestId('wrapper');
     const hoverTrailer = getByTestId('hoverTrailer');
@@ -45,7 +44,7 @@ describe('MovieCard', () => {
     expect(hoverTrailer.style.display).toBe('none');
   });
 
-  test('testing onClick event on InfoButton element', () => {
+  test('when InfoButton element is clicked should chanhe info element\'s className to infoIsViewed', () => {
     const { getByTestId } = render(<MovieCard title='The Matrix: Revolution' genre_ids={[28]} genres={[{id:28, name:'Adventure'}]} />);
     const button = getByTestId('infoButton');
     const hoverTrailer = getByTestId('hoverTrailer');
@@ -57,7 +56,7 @@ describe('MovieCard', () => {
     expect(info.className).toBe('infoIsViewed');
   });
 
-  test('testing onClick event on closeInfo element', () => {
+  test('when closeInfo element is clicked should change info element\'s className to movieInfo', () => {
     const { getByTestId } = render(<MovieCard title='Star Wars' genre_ids={[28]} genres={[{id:28, name:'Adventure'}]} />);
 
     const button = getByTestId('infoButton');
@@ -67,14 +66,15 @@ describe('MovieCard', () => {
     const info = getByTestId('info');
 
     fireEvent.click(closeEl);
+
     expect(info.className).toBe('movieInfo');
   });
 
-  describe('testing onClick event on TrailerButtonRound element', () => {
+  describe('when TrailerButtonRound element is clicked', () => {
     beforeEach(() => {
       fetch.resetMocks()
     })
-    test('Should render iframe element with trailer if getTrailer is resolved', async () => {
+    test('should render iframe element with trailer if getTrailer is resolved', async () => {
       const { getByTestId } = render(<MovieCard title='Star Wars' id={11} genre_ids={[28]} genres={[{id:28, name:'Adventure'}]} />);
       const button = getByTestId('trailerButtonRound');
       const modal = getByTestId('modal');
@@ -88,7 +88,7 @@ describe('MovieCard', () => {
       expect(video).not.toBeNull();
     })
 
-    test('Should render span element with text Trailer is not available if getTrailer is rejected', async () => {
+    test('should render span element with text Trailer is not available if getTrailer is rejected', async () => {
       const { getByTestId } = render(<MovieCard title='Star Wars' id={11} genre_ids={[28]} genres={[{id:28, name:'Adventure'}]} />);
       const button = getByTestId('trailerButtonRound');
       const modal = getByTestId('modal');

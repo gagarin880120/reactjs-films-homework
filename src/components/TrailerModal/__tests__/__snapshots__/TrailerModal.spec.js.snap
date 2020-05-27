@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TrailerModal component TrailerModal component should render without crashing 1`] = `
+exports[`TrailerModal component should render without crashing 1`] = `
 <div
   className="modal"
   data-testid="modal"

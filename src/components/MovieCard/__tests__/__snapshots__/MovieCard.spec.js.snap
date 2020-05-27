@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MovieCard MovieCard component should render without crashing 1`] = `
+exports[`MovieCard component should render without crashing 1`] = `
 <React.Fragment>
   <div
     className="wrapper"

@@ -14,12 +14,12 @@ test('function getGenresString must return string of genres according to their i
   expect(getGenresString([28, 12], genres)).toStrictEqual('Action, Adventure');
 });
 
-describe('testing getTrailer', () => {
+describe('getTrailer', () => {
   beforeEach(() => {
     fetch.resetMocks()
   })
 
-  test('calls getTrailer and returns data to me', () => {
+  test('when is called should return data to me', () => {
     fetch.mockResponseOnce(JSON.stringify({ data: '12345' }))
 
     getTrailer(603).then(res => {

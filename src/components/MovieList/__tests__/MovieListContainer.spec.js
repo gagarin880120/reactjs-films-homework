@@ -19,7 +19,7 @@ const renderComponent = (props = {}) => {
 
 describe('MovieListContainer', () => {
   describe('component', () => {
-    test('MovieListContainer component should render without crashing', () => {
+    test('should render without crashing', () => {
       const component = renderComponent();
 
       const result = component.getRenderOutput();
@@ -39,9 +39,9 @@ describe('MovieListContainer', () => {
       expect(onGetGenres).toHaveBeenCalled();
     });
   });
-  describe('mapStateToProps', () => {
 
-    test('mapStateToProps', () => {
+  describe('mapStateToProps', () => {
+    test('should return the right value', () => {
       const initialState = {
         genres: 'genresArray',
       };
