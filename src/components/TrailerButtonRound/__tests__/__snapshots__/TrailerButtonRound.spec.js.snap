@@ -4,6 +4,8 @@ exports[`TrailerButtonRound component should render without crashing 1`] = `
 <button
   className="trailerButton"
 >
-  ▶
+  <i
+    className="fas fa-play"
+  />
 </button>
 `;
