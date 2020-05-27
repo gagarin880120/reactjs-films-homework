@@ -7,6 +7,8 @@ export default function TrailerButtonRound(props) {
       data-testid={props.testid}
       onClick={props.onTrailerButtonClick}
       className={styles.trailerButton}
-    >▶</button>
+    >
+      <i className="fas fa-play"></i>
+    </button>
   )
 }
