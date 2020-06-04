@@ -7,4 +7,4 @@ export default function searchResultsSelector(state) {
     return obj;
   });
   return state.searchResults;
-};
+}
