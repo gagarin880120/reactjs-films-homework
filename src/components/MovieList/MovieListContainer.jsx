@@ -1,28 +1,24 @@
 import React, { useEffect } from 'react';
 import MovieList from './MovieList';
 import { connect } from 'react-redux';
-import { searchResultsSelector, genresSelector } from '../../redux/selectors';
+import searchResultsSelector from '../../redux/selectors';
 import { getGenres } from '../../redux/actions';
 
-export function MovieListContainer({onGetGenres, results, genres}) {
+export function MovieListContainer({onGetGenres, results}) {
   useEffect(() => {
     onGetGenres();
   }, [])
 
   return (
-    <div>
-      <MovieList
-        results={results}
-        genres={genres}
-      />
-    </div>
+    <MovieList
+      results={results}
+    />
   )
 }
 
 export const mapStateToProps = state => {
   return {
     results: searchResultsSelector(state),
-    genres: genresSelector(state)
   }
 }
 

@@ -2,8 +2,15 @@
   background-size: cover;
   width: 280px;
   height: 340px;
-  margin-bottom: 2.5%;
   position: relative;
+}
+
+.wrapper:hover .hoverTrailer {
+  display: flex;
+}
+
+.hoverElDisplayNone {
+  display: none;
 }
 
 .movieInfo {
@@ -14,9 +21,13 @@
 }
 
 .movieTitle {
+  white-space: nowrap;
+  overflow: hidden;
+  width: 210px;
   color: #242b2d;
   text-transform: uppercase;
   font-weight: bold;
+  text-overflow: ellipsis;
 }
 
 .movieRating {
@@ -25,7 +36,7 @@
   border: 1px solid #47c3f0;
   border-radius: 4px;
   padding: 2px 5px;
-  margin-top: -4px;
+  margin-top: -20px;
 }
 
 .movieGenre {

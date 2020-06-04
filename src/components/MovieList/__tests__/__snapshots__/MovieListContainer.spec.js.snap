@@ -1,7 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MovieListContainer component should render without crashing 1`] = `
-<div>
-  <MovieList />
-</div>
-`;
+exports[`MovieListContainer component should render without crashing 1`] = `<MovieList />`;

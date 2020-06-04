@@ -28,10 +28,10 @@ describe('TrailerModal component', () => {
   });
 
   test('onClick should call setIsOpen', () => {
-    const setIsOpen = jest.fn();
-    const { getByTestId } = render(<TrailerModal setIsOpen={setIsOpen} />);
+    const setModalIsOpen = jest.fn();
+    const { getByTestId } = render(<TrailerModal setModalIsOpen={setModalIsOpen} />);
     const modal = getByTestId('modal');
     fireEvent.click(modal);
-    expect(setIsOpen).toHaveBeenCalledTimes(1);
+    expect(setModalIsOpen).toHaveBeenCalledTimes(1);
   });
 });

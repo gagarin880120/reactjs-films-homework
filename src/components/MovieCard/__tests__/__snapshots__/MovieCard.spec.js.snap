@@ -5,8 +5,6 @@ exports[`MovieCard component should render without crashing 1`] = `
   <div
     className="wrapper"
     data-testid="wrapper"
-    onMouseLeave={[Function]}
-    onMouseOver={[Function]}
     style={
       Object {
         "backgroundImage": "url(https://spnbag.com/assets/general/images/no_poster.jpg)",
@@ -35,25 +33,22 @@ exports[`MovieCard component should render without crashing 1`] = `
       className="movieInfo"
       data-testid="info"
     >
-      <span
+      <p
         className="movieTitle"
       >
         Star Wars
-      </span>
+      </p>
       <span
         className="movieRating"
       />
       <p
         className="movieGenre"
-      >
-        Adventure
-      </p>
+      />
     </div>
   </div>
   <TrailerModal
-    isTrailerLoading={false}
     modalIsOpen={false}
-    setIsOpen={[Function]}
+    setModalIsOpen={[Function]}
     trailerSource=""
   />
 </React.Fragment>

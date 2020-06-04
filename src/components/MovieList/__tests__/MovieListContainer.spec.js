@@ -3,8 +3,6 @@ import {create, act} from 'react-test-renderer';
 import React from 'react';
 import { mapStateToProps, mapDispatchToProps, MovieListContainer } from '../MovieListContainer';
 import { getGenres } from '../../../redux/actions';
-import configureMockStore from 'redux-mock-store';
-// import { searchResultsSelector, genresSelector } from '../../../redux/selectors';
 
 jest.mock('../../../redux/actions',() => ({
   getGenres: jest.fn().mockReturnValue('getGenresAction'),
@@ -32,7 +30,6 @@ describe('MovieListContainer', () => {
         root = create(
         <MovieListContainer
           onGetGenres={onGetGenres}
-          genres={[{id: 28, name: 'Adventure'}]}
           results={[{title:"Star Wars", genre_ids:[28]}]} />
         )
       });
@@ -43,9 +40,10 @@ describe('MovieListContainer', () => {
   describe('mapStateToProps', () => {
     test('should return the right value', () => {
       const initialState = {
-        genres: 'genresArray',
+        searchResults: [{title:"Star Wars", genre_ids:[28]}],
+        genres: [{id: 28, name: 'Action'}]
       };
-      expect(mapStateToProps(initialState).genres).toEqual('genresArray');
+      expect(mapStateToProps(initialState).results).toEqual([{title:"Star Wars", genre_ids:[28], genres: 'Action'}]);
     });
   });
 
