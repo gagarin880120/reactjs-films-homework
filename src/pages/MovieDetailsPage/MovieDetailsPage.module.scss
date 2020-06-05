@@ -1,23 +1,12 @@
-body {
-  background-image: radial-gradient(circle, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%), url('https://i.ibb.co/sFknm5r/cover-image.jpg');
-  background-size: cover cover;
-}
-
 .wrapper {
-  padding: 0 5%;
   font-family: Arial, Helvetica, sans-serif;
   color: #fff;
 }
 
-.header {
-  padding-top: 1.5%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.title {
-  font-size: 30px;
-  text-transform: uppercase;
+.infoContainer {
+  padding: 0 5% 2%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 30%), linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 10%), url(https://i.ibb.co/sFknm5r/cover-image.jpg);
+  background-size: cover;
 }
 
 .main {
@@ -27,7 +16,7 @@ body {
 }
 
 .buttonsContainer {
-  margin-top: 6%;
+  margin-top: 5%;
   width: 21%;
   display: flex;
   justify-content: space-between;
