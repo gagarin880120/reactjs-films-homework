@@ -1,0 +1,23 @@
+.wrapper {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+}
+
+.infoContainer {
+  padding: 0 5% 2%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 30%), linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 10%), url(https://i.ibb.co/sFknm5r/cover-image.jpg);
+  background-size: cover;
+}
+
+.main {
+  margin-top: 35%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonsContainer {
+  margin-top: 5%;
+  width: 21%;
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,47 @@
+.wrapper {
+  width: 30%;
+}
+
+.movieTitle {
+  text-transform: uppercase;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.genreDurationContainer {
+  font-size: 14px;
+  width: 100%;
+  margin-top: 2%;
+}
+
+.genre {
+  word-spacing: 15px;
+}
+
+.genre::after {
+  content: '|';
+  margin-left: 20px;
+}
+
+.duration {
+  margin-left: 5%;
+}
+
+.rating {
+  margin-top: 5%;
+}
+
+.ratingStars {
+  color: #09ade3;
+  font-size: 26px;
+  letter-spacing: 8px;
+  vertical-align: middle;
+}
+
+.ratingText {
+  font-size: 14px;
+  border: 1px solid #0ab9f3;
+  border-radius: 3px;
+  padding: 3px 8px;
+  background: #020201;
+}
