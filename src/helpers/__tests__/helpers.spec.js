@@ -1,4 +1,4 @@
-import { getGenresString, getTrailer } from '../helpers';
+import getGenresString from '../helpers';
 
 test('function getGenresString must return string of genres according to their id\'s', () => {
   const genres = [
@@ -13,19 +13,3 @@ test('function getGenresString must return string of genres according to their i
   ]
   expect(getGenresString([28, 12], genres)).toStrictEqual('Action, Adventure');
 });
-
-describe('getTrailer', () => {
-  beforeEach(() => {
-    fetch.resetMocks()
-  })
-
-  test('when is called should return data to me', () => {
-    fetch.mockResponseOnce(JSON.stringify({ data: '12345' }))
-
-    getTrailer(603).then(res => {
-      expect(res.data).toEqual('12345')
-    })
-
-    expect(fetch.mock.calls.length).toEqual(1)
-  })
-})
