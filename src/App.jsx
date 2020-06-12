@@ -4,9 +4,9 @@ import MovieDetailsPage from './pages/MovieDetailsPage/MovieDetailsPage';
 
 function App() {
   return (
-    <div>
+    <>
       <MovieDetailsPage />
-    </div>
+    </>
   )
 }
 
