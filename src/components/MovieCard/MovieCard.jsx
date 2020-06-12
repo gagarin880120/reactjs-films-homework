@@ -4,25 +4,15 @@ import InfoButton from '../InfoButton/InfoButton';
 import TrailerButtonRect from '../TrailerButtonRect/TrailerButtonRect';
 import TrailerButtonRound from '../TrailerButtonRound/TrailerButtonRound';
 import TrailerModal from '../TrailerModal/TrailerModal';
-import { getTrailer } from '../../helpers/helpers';
 
 export default function MovieCard(props) {
   const [isInfoViewed, setIsInfoViewed] = useState(false);
-  const [trailerSource, setTrailerSource] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const hoverEl = useRef();
   const infoEl = useRef();
 
-  async function onTrailerButtonClick() {
-    setTrailerSource('loading');
+  function onTrailerButtonClick() {
     setModalIsOpen(true);
-
-    try {
-      const data = await getTrailer(props.movie.id);
-      setTrailerSource(data.videos.results[0].key)
-    } catch (error) {
-      setTrailerSource(null)
-    }
   }
 
   return (
@@ -80,11 +70,15 @@ export default function MovieCard(props) {
           }
         </div>
       </div>
-      <TrailerModal
-        setModalIsOpen={setModalIsOpen}
-        modalIsOpen={modalIsOpen}
-        trailerSource={trailerSource}
-      />
+      {
+        modalIsOpen ?
+        <TrailerModal
+          setModalIsOpen={setModalIsOpen}
+          modalIsOpen={modalIsOpen}
+          id={props.movie.id}
+        /> : null
+      }
+
     </>
   )
 }
