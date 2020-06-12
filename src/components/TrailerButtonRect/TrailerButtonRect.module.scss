@@ -13,3 +13,9 @@
 .watchButton:active {
   transform: translateY(2px);
 }
+
+@media screen and (max-width: 600px) {
+  .watchButton {
+    width: 70px;
+  }
+}
