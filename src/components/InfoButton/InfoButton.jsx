@@ -6,7 +6,7 @@ export default function InfoButton(props) {
     <button
       onClick={props.onInfoButtonClick}
       className={styles.infoButton}
-      data-testid={props.testid}
+      testid={props.testid}
     >
       View Info
     </button>

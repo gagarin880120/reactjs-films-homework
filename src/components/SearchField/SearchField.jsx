@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './SearchField.module.scss';
 
-export default function SearchField({onSearch}) {
+export default function SearchField(props) {
   const [query, setQuery] = useState('');
 
   return (
@@ -13,7 +13,7 @@ export default function SearchField({onSearch}) {
       value={query}
       onKeyDown={(e) => {
         if (e.key ==='Enter') {
-          onSearch(query)
+          props.onSearch(query)
         }
       }}
     />
