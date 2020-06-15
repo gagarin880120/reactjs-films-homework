@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import MovieList from './MovieList';
 import { connect } from 'react-redux';
 import { searchResultsSelector, modalSelector } from '../../redux/selectors';
-import { getGenres } from '../../redux/actions';
 
-export function MovieListContainer({onGetGenres, results, isModalOpen}) {
-  useEffect(() => {
-    onGetGenres();
-  }, [])
+export function MovieListContainer({results, isModalOpen}) {
 
   return (
     <MovieList
@@ -24,12 +20,4 @@ export const mapStateToProps = state => {
   }
 }
 
-export const mapDispatchToProps = (dispatch) => {
-  return {
-    onGetGenres() {
-      dispatch(getGenres())
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MovieListContainer)
+export default connect(mapStateToProps)(MovieListContainer)
