@@ -3,38 +3,23 @@ import styles from './TrailerModal.module.scss';
 import getTrailer from '../../services/services';
 
 export default function TrailerModal(props) {
-  const [trailerSource, setTrailerSource] = useState('loading');
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await getTrailer(props.id);
-        setTrailerSource(data.videos.results[0].key)
-      } catch (error) {
-        setTrailerSource(null)
-      }
-    }
-
-    fetchData();
-  }, [props.modalIsOpen])
-
   return (
     <div
       className={styles.modal}
       testid="modal"
-      onClick={() => props.setModalIsOpen(false)}
+      onClick={() => props.closeModal()}
     >
-      {trailerSource === 'loading' ? null : trailerSource ?
+      {props.trailerURL === 'loading' ? null : props.trailerURL ?
         <iframe
           data-testid="video"
           width="800"
           height="450"
-          src={`https://www.youtube.com/embed/${trailerSource}`}
+          src={`https://www.youtube.com/embed/${props.trailerURL}`}
           frameBorder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         ></iframe> :
-        <span data-testid="noTrailer" className={styles.noTrailer}>
+        <span testid="noTrailer" className={styles.noTrailer}>
           Trailer is not available
         </span>
       }
