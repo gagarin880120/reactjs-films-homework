@@ -1,10 +1,17 @@
-import { getGenresString } from '../helpers/helpers';
+import getGenresString from '../helpers/helpers';
 
-export default function searchResultsSelector(state) {
-  state.searchResults.forEach((v) => {
+function searchResultsSelector(state) {
+  state.searchResults.map((v) => {
     const obj = v;
     obj.genres = getGenresString(v.genre_ids, state.genres);
-    return obj;
+    return {...obj};
   });
   return state.searchResults;
 }
+
+const modalSelector = (state) => state.isModalOpen;
+
+const trailerSelector = (state) => state.trailerURL;
+
+
+export {searchResultsSelector, modalSelector, trailerSelector};

@@ -14,6 +14,32 @@ function genresAction(genres) {
   };
 }
 
+function setModal(isModalOpen) {
+  return {
+    type: 'MODAL',
+    isModalOpen
+  }
+}
+
+function setTrailerURL(trailerURL) {
+  return {
+    type: 'TRAILER',
+    trailerURL
+  }
+}
+
+function getTrailer(id) {
+  return (dispatch) => {
+    dispatch(setTrailerURL('loading'));
+    return fetch(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos`,
+    )
+      .then((res) => res.json())
+      .then((data) => dispatch(setTrailerURL(data.videos.results[0].key)))
+      .catch(() => dispatch(setTrailerURL(null)))
+  }
+}
+
 function getResults(str) {
   return (dispatch) => fetch(
     `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}`
@@ -35,5 +61,5 @@ function getGenres() {
 }
 
 export {
-  searchResultsAction, genresAction, getResults, getGenres,
+  searchResultsAction, genresAction, getResults, getGenres, setModal, getTrailer
 };
