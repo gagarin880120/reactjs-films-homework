@@ -1,4 +1,4 @@
-import searchResultsSelector from '../selectors';
+import { searchResultsSelector, modalSelector, trailerSelector } from '../selectors';
 
 const state = {
   searchResults: [
@@ -24,10 +24,22 @@ const state = {
     {id: 878, name: 'Science Fiction'},
     {id: 12, name: 'Action'},
     {id: 53, name: 'Thriller'}
-  ]
+  ],
+  isModalOpen: false,
+  trailerURL: 'path-to-trailer'
 };
 
-test('searchResultsSelector should return results', () => {
-  expect(searchResultsSelector(state)).toStrictEqual(state.searchResults)
+describe('Selector', () => {
+  test('searchResultsSelector should return results', () => {
+    expect(searchResultsSelector(state)).toStrictEqual(state.searchResults)
+  });
+
+  test('modalSelector should return results', () => {
+    expect(modalSelector(state)).toStrictEqual(state.isModalOpen)
+  });
+
+  test('trailerSelector should return results', () => {
+    expect(trailerSelector(state)).toStrictEqual(state.trailerURL)
+  });
 });
 

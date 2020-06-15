@@ -4,7 +4,7 @@ exports[`MovieList component should render without crashing 1`] = `
 <div
   className="wrapper"
 >
-  <MovieCard
+  <Memo(Connect(MovieCardContainer))
     movie={
       Object {
         "genre_ids": Array [
@@ -19,7 +19,7 @@ exports[`MovieList component should render without crashing 1`] = `
       }
     }
   />
-  <MovieCard
+  <Memo(Connect(MovieCardContainer))
     movie={
       Object {
         "genre_ids": Array [

@@ -13,10 +13,10 @@ exports[`MovieCard component should render without crashing 1`] = `
   >
     <div
       className="hoverTrailer"
-      data-testid="hoverTrailer"
+      testid="hoverTrailer"
     >
       <TrailerButtonRound
-        onTrailerButtonClick={[Function]}
+        id={11}
         testid="trailerButtonRound"
       />
       <span
@@ -31,7 +31,7 @@ exports[`MovieCard component should render without crashing 1`] = `
     </div>
     <div
       className="movieInfo"
-      data-testid="info"
+      testid="info"
     >
       <p
         className="movieTitle"
@@ -46,10 +46,5 @@ exports[`MovieCard component should render without crashing 1`] = `
       />
     </div>
   </div>
-  <TrailerModal
-    modalIsOpen={false}
-    setModalIsOpen={[Function]}
-    trailerSource=""
-  />
 </React.Fragment>
 `;

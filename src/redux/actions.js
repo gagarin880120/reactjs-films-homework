@@ -35,8 +35,10 @@ function getTrailer(id) {
       `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos`,
     )
       .then((res) => res.json())
-      .then((data) => dispatch(setTrailerURL(data.videos.results[0].key)))
-      .catch(() => dispatch(setTrailerURL(null)))
+      .then((data) => {
+        return dispatch(setTrailerURL(data.videos.results[0].key))
+      })
+      .catch((e) => dispatch(setTrailerURL(null)))
   }
 }
 
@@ -61,5 +63,6 @@ function getGenres() {
 }
 
 export {
-  searchResultsAction, genresAction, getResults, getGenres, setModal, getTrailer
+  searchResultsAction, genresAction, getResults,
+  getGenres, setModal, getTrailer, setTrailerURL
 };

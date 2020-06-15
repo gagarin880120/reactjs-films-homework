@@ -1,37 +1,18 @@
 import ShallowRenderer from 'react-test-renderer/shallow';
+import TestRenderer, {act} from 'react-test-renderer';
 import React from 'react';
 import TrailerModal from '../TrailerModal';
-import { render, fireEvent } from '@testing-library/react';
 
 describe('TrailerModal component', () => {
+  beforeEach(() => {
+    fetch.resetMocks()
+  });
+  // fetch.mockResponseOnce(JSON.stringify({ videos: {results: [{key: '123'}]} }));
+
   test('should render without crashing', () => {
     const renderer = new ShallowRenderer();
-    renderer.render(<TrailerModal />);
+    renderer.render(<TrailerModal modalIsOpen={true} />);
     const result = renderer.getRenderOutput();
     expect(result).toMatchSnapshot();
-  });
-
-  test('if modal is open should have display === flex', () => {
-    const { getByTestId } = render(<TrailerModal modalIsOpen={true} />);
-    const modal = getByTestId('modal');
-    expect(modal.style.display).toBe('flex');
-  });
-
-  test('if trailer is loading should not render iframe element', () => {
-    const { queryByTestId } = render(<TrailerModal isTrailerLoading={true} />);
-    expect(queryByTestId('video')).toBeNull();
-  });
-
-  test('if trailerSource is, should render iframe element', () => {
-    const { queryByTestId } = render(<TrailerModal trailerSource="path_to_video" />);
-    expect(queryByTestId('video')).not.toBeNull();
-  });
-
-  test('onClick should call setIsOpen', () => {
-    const setModalIsOpen = jest.fn();
-    const { getByTestId } = render(<TrailerModal setModalIsOpen={setModalIsOpen} />);
-    const modal = getByTestId('modal');
-    fireEvent.click(modal);
-    expect(setModalIsOpen).toHaveBeenCalledTimes(1);
   });
 });

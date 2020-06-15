@@ -1,6 +1,6 @@
 import getGenresString from '../helpers/helpers';
 
-function searchResultsSelector(state) {
+const searchResultsSelector = (state) => {
   state.searchResults.map((v) => {
     const obj = v;
     obj.genres = getGenresString(v.genre_ids, state.genres);

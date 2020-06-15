@@ -1,10 +1,11 @@
 import ShallowRenderer from 'react-test-renderer/shallow';
 import React from 'react';
 import { SearchFieldContainer, mapDispatchToProps } from '../SearchFieldContainer';
-import { getResults } from '../../../redux/actions';
+import { getResults, getGenres } from '../../../redux/actions';
 
 jest.mock('../../../redux/actions',() => ({
   getResults: jest.fn().mockReturnValue('getResultsAction'),
+  getGenres: jest.fn().mockReturnValue('getGenresAction'),
 }))
 
 const renderComponent = (props = {}) => {
@@ -31,14 +32,15 @@ describe('SearchFieldContainer', () => {
       jest.clearAllMocks();
     })
 
-    test('onSearch should dispatch getResults action', () => {
+    test('onSearch should dispatch getResults and getGenres actions', () => {
       const dispatch = jest.fn();
       const {onSearch} = mapDispatchToProps(dispatch);
 
-      onSearch('abc')
+      onSearch('abc');
 
-      expect(getResults).toHaveBeenCalledWith('abc')
-      expect(dispatch).toHaveBeenCalledWith('getResultsAction')
+      expect(getResults).toHaveBeenCalledWith('abc');
+      expect(getGenres).toHaveBeenCalled();
+      expect(dispatch).toHaveBeenCalledWith('getResultsAction');
     })
 
     test('onSearch should not dispatch getResults action if no query', () => {

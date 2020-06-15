@@ -3,17 +3,12 @@
 exports[`TrailerModal component should render without crashing 1`] = `
 <div
   className="modal"
-  data-testid="modal"
   onClick={[Function]}
-  style={
-    Object {
-      "display": "none",
-    }
-  }
+  testid="modal"
 >
   <span
     className="noTrailer"
-    data-testid="noTrailer"
+    testid="noTrailer"
   >
     Trailer is not available
   </span>

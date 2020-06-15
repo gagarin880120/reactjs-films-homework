@@ -1,7 +1,7 @@
 import ShallowRenderer from 'react-test-renderer/shallow';
 import React from 'react';
 import SearchField from '../SearchField';
-import {render, fireEvent} from '@testing-library/react';
+import TestRenderer, {act} from 'react-test-renderer';
 
 describe('SearchField component', () => {
   test('should render without crashing', () => {
@@ -12,33 +12,37 @@ describe('SearchField component', () => {
   });
 
   test('when input onChange called should change input\'s value', () => {
-    const { getByPlaceholderText } = render(<SearchField />);
-    const input = getByPlaceholderText('🔍');
+    const testRenderer = TestRenderer.create(<SearchField />);
+    const input = testRenderer.root.findByProps({ type: 'search' });
 
-    fireEvent.change(input, { target: { value: 'matrix' } });
-
-    expect(input.value).toEqual('matrix');
+    act(() => {
+      input.props.onChange({ target: { value: 'matrix' } });
+    });
+    expect(input.props.value).toEqual('matrix');
   });
 
   describe('onKeyDown', () => {
+
     test('should call onSearch if keycode === Enter', () => {
       const onSearch = jest.fn();
+      const testRenderer = TestRenderer.create(<SearchField onSearch={onSearch} />);
+      const input = testRenderer.root.findByProps({ type: 'search' });
 
-      const { getByPlaceholderText } = render(<SearchField onSearch={onSearch} />);
-      const input = getByPlaceholderText('🔍');
-      fireEvent.change(input, { target: { value: 'matrix' } });
-      fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
+      act(() => {
+        input.props.onKeyDown({ key: 'Enter', code: 'Enter', which: 13 });
+      });
 
-      expect(onSearch).toHaveBeenCalledWith('matrix');
+      expect(onSearch).toHaveBeenCalled();
     });
 
     test('should not call onSearch function if keycode !== Enter', () => {
       const onSearch = jest.fn();
+      const testRenderer = TestRenderer.create(<SearchField onSearch={onSearch} />);
+      const input = testRenderer.root.findByProps({ type: 'search' });
 
-      const { getByPlaceholderText } = render(<SearchField onSearch={onSearch} />);
-      const input = getByPlaceholderText('🔍');
-      fireEvent.change(input, { target: { value: 'matrix' } });
-      fireEvent.keyDown(input, { key: 's', code: 'KeyS' });
+      act(() => {
+        input.props.onKeyDown({ key: 's', code: 'KeyS', which: 83 });
+      });
 
       expect(onSearch).not.toHaveBeenCalled();
     });
