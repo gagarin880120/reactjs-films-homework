@@ -3,17 +3,11 @@ import styles from './MovieCard.module.scss';
 import InfoButton from '../InfoButton/InfoButton';
 import TrailerButtonRect from '../TrailerButtonRect/TrailerButtonRect';
 import TrailerButtonRound from '../TrailerButtonRound/TrailerButtonRound';
-import TrailerModal from '../TrailerModal/TrailerModal';
 
 export default function MovieCard(props) {
   const [isInfoViewed, setIsInfoViewed] = useState(false);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
   const hoverEl = useRef();
   const infoEl = useRef();
-
-  function onTrailerButtonClick() {
-    setModalIsOpen(true);
-  }
 
   return (
     <>
@@ -28,12 +22,14 @@ export default function MovieCard(props) {
       >
         <div
           ref={hoverEl}
-          data-testid="hoverTrailer"
+          testid="hoverTrailer"
           className={styles.hoverTrailer}
         >
           <TrailerButtonRound
             testid="trailerButtonRound"
-            onTrailerButtonClick={onTrailerButtonClick} />
+            onTrailerButtonClick={props.onTrailerButtonClick}
+            id={props.movie.id}
+          />
           <span className={styles.hoverTrailerText}>Watch Now</span>
           <InfoButton
             testid="infoButton"
@@ -46,7 +42,7 @@ export default function MovieCard(props) {
         </div>
         <div
           className={styles.movieInfo}
-          data-testid="info"
+          testid="info"
           ref={infoEl}
         >
           {
@@ -65,20 +61,14 @@ export default function MovieCard(props) {
             isInfoViewed ?
             <>
               <div className={styles.overview}>{props.movie.overview}</div>
-              <TrailerButtonRect onTrailerButtonClick={onTrailerButtonClick}/>
+              <TrailerButtonRect
+                onTrailerButtonClick={props.onTrailerButtonClick}
+                id={props.movie.id}
+              />
             </> : null
           }
         </div>
       </div>
-      {
-        modalIsOpen ?
-        <TrailerModal
-          setModalIsOpen={setModalIsOpen}
-          modalIsOpen={modalIsOpen}
-          id={props.movie.id}
-        /> : null
-      }
-
     </>
   )
 }
