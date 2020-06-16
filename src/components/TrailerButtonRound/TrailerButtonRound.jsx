@@ -4,7 +4,7 @@ import styles from './TrailerButtonRound.module.scss';
 export default function TrailerButtonRound(props) {
   return (
     <button
-      testid={props.testid}
+      testid="trailerButtonRound"
       onClick={() => {
         props.onTrailerButtonClick(props.id);
       }}

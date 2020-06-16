@@ -21,11 +21,27 @@ const results = [
   }
 ]
 
+const renderComponent = (props = {}) => {
+  const renderer = new ShallowRenderer();
+  renderer.render(<MovieList results={results} {...props} />);
+
+  return renderer;
+}
+
 describe('MovieList component', () => {
   test('should render without crashing', () => {
-    const renderer = new ShallowRenderer();
-    renderer.render(<MovieList results={results} />);
-    const result = renderer.getRenderOutput();
+    const component = renderComponent({isModalOpen: true});
+
+    const result = component.getRenderOutput();
+
     expect(result).toMatchSnapshot();
   });
+
+  test('should render TrailerModalContainer if isModalOpen', () => {
+    const component = renderComponent();
+
+    const result = component.getRenderOutput();
+
+    expect(result).toMatchSnapshot();
+  })
 });

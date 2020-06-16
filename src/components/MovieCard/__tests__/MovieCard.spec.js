@@ -1,5 +1,5 @@
 import ShallowRenderer from 'react-test-renderer/shallow';
-import TestRenderer, {act} from 'react-test-renderer';
+import TestRenderer, { act } from 'react-test-renderer';
 import React from 'react';
 import MovieCard from '../MovieCard';
 
@@ -17,24 +17,46 @@ describe('MovieCard component', () => {
     poster_path: 'path'
   }
 
+  const genres = [{id:28, name:'Adventure'}]
+
   test('should render without crashing', () => {
     const renderer = new ShallowRenderer();
-    renderer.render(<MovieCard movie={movie} genres={[{id:28, name:'Adventure'}]} />);
+    renderer.render(<MovieCard movie={movie} genres={genres} />);
     const result = renderer.getRenderOutput();
     expect(result).toMatchSnapshot();
   });
 
-  // test('when onTrailerButtonClick is called should render modal', () => {
-  //   const testRenderer = TestRenderer.create(<MovieCard movie={movieWithPoster} genres={[{id:28, name:'Adventure'}]} />);
-  //   const button = testRenderer.root.findByProps({testid: 'trailerButtonRound'});
+  describe('with mocked refs', () => {
+    const testRenderer = TestRenderer.create(
+      <MovieCard movie={movieWithPoster} genres={genres} />,
+      {
+        createNodeMock: (element) => {
+          return element;
+        }
+      }
+    );
 
-  //   act(() => {
-  //     button.props.onTrailerButtonClick();
-  //   });
+    test('when infoButton is clicked should render overview element', () => {
+      const button = testRenderer.root.findByProps({testid: 'infoButton'});
 
-  //   const modal = testRenderer.root.findByProps({testid: 'modal'});
+      act(() => {
+        button.props.onClick();
+      });
 
-  //   expect(modal).not.toBeNull();
-  // })
+      const overview = testRenderer.root.findByProps({className: 'overview'});
 
+      expect(overview).not.toBeNull();
+    });
+
+    test('when closeInfo is clicked should change hoverEl className to hoverTrailer', () => {
+      const closeInfo = testRenderer.root.findByProps({testid: 'closeInfo'});
+      const hoverEl = testRenderer.root.findByProps({testid: 'hoverTrailer'});
+
+      act(() => {
+        closeInfo.props.onClick();
+      });
+
+      expect(hoverEl.props.className).toBe('hoverTrailer');
+    });
+  });
 });

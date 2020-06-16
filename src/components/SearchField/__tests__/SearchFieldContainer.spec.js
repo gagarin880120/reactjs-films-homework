@@ -17,8 +17,8 @@ const renderComponent = (props = {}) => {
 
 describe('SearchFieldContainer', () => {
   describe('component', () => {
-    test('SearchFieldContainer component should render without crashing', () => {
-      const component = renderComponent()
+    test('should render without crashing', () => {
+      const component = renderComponent();
 
       const result = component.getRenderOutput();
 

@@ -4,7 +4,6 @@ exports[`MovieCard component should render without crashing 1`] = `
 <React.Fragment>
   <div
     className="wrapper"
-    data-testid="wrapper"
     style={
       Object {
         "backgroundImage": "url(https://spnbag.com/assets/general/images/no_poster.jpg)",
@@ -17,7 +16,6 @@ exports[`MovieCard component should render without crashing 1`] = `
     >
       <TrailerButtonRound
         id={11}
-        testid="trailerButtonRound"
       />
       <span
         className="hoverTrailerText"
@@ -26,7 +24,6 @@ exports[`MovieCard component should render without crashing 1`] = `
       </span>
       <InfoButton
         onInfoButtonClick={[Function]}
-        testid="infoButton"
       />
     </div>
     <div

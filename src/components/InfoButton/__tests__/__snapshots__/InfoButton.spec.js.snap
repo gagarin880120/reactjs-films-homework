@@ -3,6 +3,7 @@
 exports[`InfoButton component should render without crashing 1`] = `
 <button
   className="infoButton"
+  testid="infoButton"
 >
   View Info
 </button>

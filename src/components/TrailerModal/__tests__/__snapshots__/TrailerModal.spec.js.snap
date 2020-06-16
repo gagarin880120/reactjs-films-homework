@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TrailerModal component should render without crashing 1`] = `
+exports[`TrailerModal component should render span with text "Trailer is not available" if trailerURL === null 1`] = `
 <div
   className="modal"
   onClick={[Function]}
@@ -13,4 +13,12 @@ exports[`TrailerModal component should render without crashing 1`] = `
     Trailer is not available
   </span>
 </div>
+`;
+
+exports[`TrailerModal component should render without crashing 1`] = `
+<div
+  className="modal"
+  onClick={[Function]}
+  testid="modal"
+/>
 `;

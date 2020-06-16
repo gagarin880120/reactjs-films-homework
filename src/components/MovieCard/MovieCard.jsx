@@ -13,7 +13,6 @@ export default function MovieCard(props) {
     <>
       <div
         className={styles.wrapper}
-        data-testid="wrapper"
         style={{
           backgroundImage: props.movie.poster_path ?
           `url(https://image.tmdb.org/t/p/w300/${props.movie.poster_path})`:
@@ -26,13 +25,12 @@ export default function MovieCard(props) {
           className={styles.hoverTrailer}
         >
           <TrailerButtonRound
-            testid="trailerButtonRound"
             onTrailerButtonClick={props.onTrailerButtonClick}
             id={props.movie.id}
           />
           <span className={styles.hoverTrailerText}>Watch Now</span>
           <InfoButton
-            testid="infoButton"
+
             onInfoButtonClick={() => {
               hoverEl.current.className = styles.hoverElDisplayNone;
               setIsInfoViewed(true);
@@ -46,7 +44,7 @@ export default function MovieCard(props) {
           ref={infoEl}
         >
           {
-            isInfoViewed ? <div data-testid="closeInfo" className={styles.closeInfo} onClick={() => {
+            isInfoViewed ? <div testid="closeInfo" className={styles.closeInfo} onClick={() => {
               setIsInfoViewed(false);
               infoEl.current.className = styles.movieInfo;
               hoverEl.current.className = styles.hoverTrailer;
