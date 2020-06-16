@@ -5,7 +5,7 @@ const initialState = {
   searchResults: [],
   genres: [],
   isModalOpen: false,
-  trailerURL: ''
+  trailerURL: '',
 };
 
 export function reducer(state = initialState, action) {

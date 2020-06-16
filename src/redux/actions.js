@@ -17,15 +17,15 @@ function genresAction(genres) {
 function setModal(isModalOpen) {
   return {
     type: 'MODAL',
-    isModalOpen
-  }
+    isModalOpen,
+  };
 }
 
 function setTrailerURL(trailerURL) {
   return {
     type: 'TRAILER',
-    trailerURL
-  }
+    trailerURL,
+  };
 }
 
 function getTrailer(id) {
@@ -35,11 +35,9 @@ function getTrailer(id) {
       `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos`,
     )
       .then((res) => res.json())
-      .then((data) => {
-        return dispatch(setTrailerURL(data.videos.results[0].key))
-      })
-      .catch((e) => dispatch(setTrailerURL(null)))
-  }
+      .then((data) => dispatch(setTrailerURL(data.videos.results[0].key)))
+      .catch(() => dispatch(setTrailerURL(null)));
+  };
 }
 
 function getResults(str) {
@@ -64,5 +62,5 @@ function getGenres() {
 
 export {
   searchResultsAction, genresAction, getResults,
-  getGenres, setModal, getTrailer, setTrailerURL
+  getGenres, setModal, getTrailer, setTrailerURL,
 };
