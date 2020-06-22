@@ -1,13 +1,9 @@
 import getGenresString from '../helpers/helpers';
 
-const searchResultsSelector = (state) => {
-  state.searchResults.map((v) => {
-    const obj = v;
-    obj.genres = getGenresString(v.genre_ids, state.genres);
-    return { ...obj };
-  });
-  return state.searchResults;
-};
+const searchResultsSelector = (state) => state.searchResults.map((v) => ({
+    ...v,
+    genres = getGenresString(v.genre_ids, state.genres),
+  }));
 
 const modalSelector = (state) => state.isModalOpen;
 
