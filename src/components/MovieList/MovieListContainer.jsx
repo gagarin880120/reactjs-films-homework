@@ -5,14 +5,12 @@ import { searchResultsSelector, modalSelector } from '../../redux/selectors';
 import { getGenres } from '../../redux/actions';
 
 export function MovieListContainer({results, isModalOpen, onGetGenres}) {
-  useEffect(() => {
-    onGetGenres();
-  }, [])
-  
+
   return (
     <MovieList
       results={results}
       isModalOpen={isModalOpen}
+      onGetGenres={onGetGenres}
     />
   )
 }

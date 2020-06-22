@@ -1,6 +1,9 @@
 import ShallowRenderer from 'react-test-renderer/shallow';
 import React from 'react';
 import MovieList from '../MovieList';
+import { create, act } from 'react-test-renderer';
+import { Provider } from 'react-redux';
+import { store } from '../../../redux/store';
 
 const results = [
   {
@@ -35,6 +38,19 @@ describe('MovieList component', () => {
     const result = component.getRenderOutput();
 
     expect(result).toMatchSnapshot();
+  });
+
+  test('should call onGetGenres when is mounted', () => {
+    let root;
+    const onGetGenres = jest.fn();
+    act(() => {
+      root = create(
+      <Provider store={store}>
+        <MovieList onGetGenres={onGetGenres} results={results} isModalOpen={false} />
+      </Provider>
+      )
+    });
+    expect(onGetGenres).toHaveBeenCalled();
   });
 
   test('should render TrailerModalContainer if isModalOpen', () => {
