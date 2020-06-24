@@ -2,7 +2,7 @@
 
 exports[`TrailerModalContainer component should render without crashing 1`] = `
 <TrailerModal
-  closeModal={[Function]}
+  closeModal={null}
   isModalOpen={false}
   trailerURL=""
 />
