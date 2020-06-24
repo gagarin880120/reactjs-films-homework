@@ -1,1 +1,1 @@
-export {default} from './MovieCardContainer';
+export { default } from './MovieCardContainer';

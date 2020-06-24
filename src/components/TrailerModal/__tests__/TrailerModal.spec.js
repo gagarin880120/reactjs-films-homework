@@ -30,4 +30,30 @@ describe('TrailerModal component', () => {
 
     expect(closeModal).toHaveBeenCalled();
   });
+
+  describe('onKeyDown', () => {
+    test('should call closeModal if keycode === Enter', () => {
+      const closeModal = jest.fn();
+      const testRenderer = TestRenderer.create(<TrailerModal closeModal={closeModal} trailerURL="url" />);
+      const modal = testRenderer.root.findByProps({testid: 'modal'});
+
+      act(() => {
+        modal.props.onKeyDown({ key: 'Escape', code: 'Escape', which: 27 });
+      });
+
+      expect(closeModal).toHaveBeenCalled();
+    });
+
+    test('should not call closeModal function if keycode !== Enter', () => {
+      const closeModal = jest.fn();
+      const testRenderer = TestRenderer.create(<TrailerModal closeModal={closeModal} trailerURL="url" />);
+      const modal = testRenderer.root.findByProps({testid: 'modal'});
+
+      act(() => {
+        modal.props.onKeyDown({ key: 's', code: 'KeyS', which: 83 });
+      });
+
+      expect(closeModal).not.toHaveBeenCalled();
+    });
+  });
 });

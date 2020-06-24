@@ -4,14 +4,19 @@ exports[`TrailerModal component should render span with text "Trailer is not ava
 <div
   className="modal"
   onClick={[Function]}
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
   testid="modal"
 >
-  <span
-    className="noTrailer"
-    testid="noTrailer"
-  >
-    Trailer is not available
-  </span>
+  <React.Fragment>
+    <span
+      className="noTrailer"
+      testid="noTrailer"
+    >
+      Trailer is not available
+    </span>
+  </React.Fragment>
 </div>
 `;
 
@@ -19,6 +24,9 @@ exports[`TrailerModal component should render without crashing 1`] = `
 <div
   className="modal"
   onClick={[Function]}
+  onKeyDown={[Function]}
+  role="button"
+  tabIndex={0}
   testid="modal"
 />
 `;

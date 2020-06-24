@@ -4,7 +4,7 @@ exports[`TrailerButtonRound component should render without crashing 1`] = `
 <button
   className="trailerButton"
   onClick={[Function]}
-  testid="trailerButtonRound"
+  type="button"
 >
   <i
     className="fas fa-play"

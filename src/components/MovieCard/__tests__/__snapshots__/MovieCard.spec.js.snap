@@ -16,6 +16,7 @@ exports[`MovieCard component should render without crashing 1`] = `
     >
       <TrailerButtonRound
         id={11}
+        onTrailerButtonClick={null}
       />
       <span
         className="hoverTrailerText"

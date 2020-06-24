@@ -1,6 +1,6 @@
+import React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import TestRenderer, { act } from 'react-test-renderer';
-import React from 'react';
 import TrailerButtonRound from '../TrailerButtonRound';
 
 describe('TrailerButtonRound component', () => {
@@ -14,7 +14,7 @@ describe('TrailerButtonRound component', () => {
   test('should call onTrailerButtonClick on click', () => {
     const onTrailerButtonClick = jest.fn();
     const testRenderer = TestRenderer.create(<TrailerButtonRound onTrailerButtonClick={onTrailerButtonClick} />);
-    const button = testRenderer.root.findByProps({testid: 'trailerButtonRound'});
+    const button = testRenderer.root.findByType('button');
     act(() => {
       button.props.onClick();
     });

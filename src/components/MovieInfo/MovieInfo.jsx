@@ -16,13 +16,13 @@ export default function MovieInfo() {
         </span>
       </div>
       <div className={styles.rating}>
-          <span className={styles.ratingStars}>
-            ★★★★★
-          </span>
-          <span className={styles.ratingText}>
-            4.8
-          </span>
-        </div>
+        <span className={styles.ratingStars}>
+          ★★★★★
+        </span>
+        <span className={styles.ratingText}>
+          4.8
+        </span>
+      </div>
     </div>
-  )
+  );
 }

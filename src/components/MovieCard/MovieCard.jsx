@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react';
+import PropTypes from 'prop-types';
 import styles from './MovieCard.module.scss';
 import InfoButton from '../InfoButton/InfoButton';
 import TrailerButtonRect from '../TrailerButtonRect/TrailerButtonRect';
 import TrailerButtonRound from '../TrailerButtonRound/TrailerButtonRound';
 
-export default function MovieCard(props) {
+export default function MovieCard({ movie, onTrailerButtonClick }) {
   const [isInfoViewed, setIsInfoViewed] = useState(false);
   const hoverEl = useRef();
   const infoEl = useRef();
@@ -14,9 +15,9 @@ export default function MovieCard(props) {
       <div
         className={styles.wrapper}
         style={{
-          backgroundImage: props.movie.poster_path ?
-          `url(https://image.tmdb.org/t/p/w300/${props.movie.poster_path})`:
-          'url(https://spnbag.com/assets/general/images/no_poster.jpg)'
+          backgroundImage: movie.poster_path
+            ? `url(https://image.tmdb.org/t/p/w300/${movie.poster_path})`
+            : 'url(https://spnbag.com/assets/general/images/no_poster.jpg)',
         }}
       >
         <div
@@ -25,8 +26,8 @@ export default function MovieCard(props) {
           className={styles.hoverTrailer}
         >
           <TrailerButtonRound
-            onTrailerButtonClick={props.onTrailerButtonClick}
-            id={props.movie.id}
+            onTrailerButtonClick={onTrailerButtonClick}
+            id={movie.id}
           />
           <span className={styles.hoverTrailerText}>Watch Now</span>
           <InfoButton
@@ -44,29 +45,64 @@ export default function MovieCard(props) {
           ref={infoEl}
         >
           {
-            isInfoViewed ? <div testid="closeInfo" className={styles.closeInfo} onClick={() => {
-              setIsInfoViewed(false);
-              infoEl.current.className = styles.movieInfo;
-              hoverEl.current.className = styles.hoverTrailer;
-            }}><span>X</span></div> : null
+            isInfoViewed ? (
+              <button
+                testid="closeInfo"
+                className={styles.closeInfo}
+                type="button"
+                onClick={() => {
+                  setIsInfoViewed(false);
+                  infoEl.current.className = styles.movieInfo;
+                  hoverEl.current.className = styles.hoverTrailer;
+                }}
+              >
+                X
+              </button>
+            ) : null
           }
           <p className={styles.movieTitle}>
-            {props.movie.title}
+            {movie.title}
           </p>
-          <span className={styles.movieRating}>{props.movie.vote_average}</span>
-          <p className={styles.movieGenre}>{props.movie.genres}</p>
+          <span className={styles.movieRating}>{movie.vote_average}</span>
+          <p className={styles.movieGenre}>{movie.genres}</p>
           {
-            isInfoViewed ?
-            <>
-              <div className={styles.overview}>{props.movie.overview}</div>
-              <TrailerButtonRect
-                onTrailerButtonClick={props.onTrailerButtonClick}
-                id={props.movie.id}
-              />
-            </> : null
+            isInfoViewed
+              ? (
+                <>
+                  <div className={styles.overview}>{movie.overview}</div>
+                  <TrailerButtonRect
+                    onTrailerButtonClick={onTrailerButtonClick}
+                    id={movie.id}
+                  />
+                </>
+              ) : null
           }
         </div>
       </div>
     </>
-  )
+  );
 }
+
+MovieCard.propTypes = {
+  onTrailerButtonClick: PropTypes.func,
+  movie: PropTypes.shape({
+    poster_path: PropTypes.string,
+    id: PropTypes.number,
+    title: PropTypes.string,
+    vote_average: PropTypes.number,
+    genres: PropTypes.string,
+    overview: PropTypes.string,
+  }),
+};
+
+MovieCard.defaultProps = {
+  onTrailerButtonClick: null,
+  movie: {
+    poster_path: '',
+    id: 0,
+    title: '',
+    vote_average: 0,
+    genres: '',
+    overview: '',
+  },
+};

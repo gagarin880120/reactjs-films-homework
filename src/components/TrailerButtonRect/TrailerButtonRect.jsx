@@ -1,13 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './TrailerButtonRect.module.scss';
-export default function TrailerButtonRect(props) {
+
+export default function TrailerButtonRect({ onTrailerButtonClick, id }) {
   return (
-  <button
-    onClick={props.onTrailerButtonClick}
-    className={styles.watchButton}
-  >
-    Watch Now
-  </button>
+    <button
+      className={styles.watchButton}
+      type="button"
+      onClick={() => {
+        onTrailerButtonClick(id);
+      }}
+    >
+      Watch Now
+    </button>
   );
 }
 
+TrailerButtonRect.propTypes = {
+  onTrailerButtonClick: PropTypes.func,
+  id: PropTypes.number,
+};
+
+TrailerButtonRect.defaultProps = {
+  onTrailerButtonClick: null,
+  id: 0,
+};

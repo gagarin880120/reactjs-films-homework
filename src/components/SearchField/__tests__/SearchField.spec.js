@@ -22,7 +22,6 @@ describe('SearchField component', () => {
   });
 
   describe('onKeyDown', () => {
-
     test('should call onSearch if keycode === Enter', () => {
       const onSearch = jest.fn();
       const testRenderer = TestRenderer.create(<SearchField onSearch={onSearch} />);

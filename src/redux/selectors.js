@@ -9,5 +9,4 @@ const modalSelector = (state) => state.isModalOpen;
 
 const trailerSelector = (state) => state.trailerURL;
 
-
 export { searchResultsSelector, modalSelector, trailerSelector };
