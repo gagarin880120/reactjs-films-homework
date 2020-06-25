@@ -3,9 +3,10 @@ import thunk from 'redux-thunk';
 
 const initialState = {
   searchResults: [],
-  genres: [],
+  genres: null,
   isModalOpen: false,
   trailerURL: '',
+  movieDetails: null
 };
 
 export function reducer(state = initialState, action) {
@@ -18,6 +19,8 @@ export function reducer(state = initialState, action) {
       return { ...state, isModalOpen: action.isModalOpen };
     case 'TRAILER':
       return { ...state, trailerURL: action.trailerURL };
+    case 'MOVIE_DETAILS':
+      return { ...state, movieDetails: action.detailsObj };
     default:
       return state;
   }

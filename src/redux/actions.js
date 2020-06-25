@@ -28,6 +28,13 @@ function setTrailerURL(trailerURL) {
   };
 }
 
+function setMovieDetails(detailsObj) {
+  return {
+    type: 'MOVIE_DETAILS',
+    detailsObj,
+  };
+}
+
 function getTrailer(id) {
   return (dispatch) => {
     dispatch(setTrailerURL('loading'));
@@ -40,13 +47,31 @@ function getTrailer(id) {
   };
 }
 
-function getResults(str) {
+function getSearchResults(str) {
   return (dispatch) => fetch(
     `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}`
       + `&language=en-US&query=${str}&page=1&include_adult=false&video=true`,
   )
     .then((res) => res.json())
     .then((data) => dispatch(searchResultsAction(data.results)))
+    .catch((e) => console.log(e));
+}
+
+function getTrendingResults() {
+  return (dispatch) => fetch(
+    `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`,
+  )
+    .then((res) => res.json())
+    .then((data) => dispatch(searchResultsAction(data.results)))
+    .catch((e) => console.log(e));
+}
+
+function getMovieDetails(id) {
+  return (dispatch) => fetch(
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`,
+  )
+    .then((res) => res.json())
+    .then((data) => dispatch(setMovieDetails(data)))
     .catch((e) => console.log(e));
 }
 
@@ -61,6 +86,7 @@ function getGenres() {
 }
 
 export {
-  searchResultsAction, genresAction, getResults,
-  getGenres, setModal, getTrailer, setTrailerURL,
+  searchResultsAction, genresAction, getSearchResults,
+  getGenres, setModal, getTrailer, setTrailerURL, getTrendingResults,
+  getMovieDetails
 };
