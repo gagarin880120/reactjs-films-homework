@@ -1,11 +1,12 @@
 import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './MovieCard.module.scss';
 import InfoButton from '../InfoButton/InfoButton';
 import TrailerButtonRect from '../TrailerButtonRect/TrailerButtonRect';
 import TrailerButtonRound from '../TrailerButtonRound/TrailerButtonRound';
 
-export default function MovieCard({ movie, onTrailerButtonClick }) {
+export default function MovieCard({ movie, onTrailerButtonClick, onLinkClick }) {
   const [isInfoViewed, setIsInfoViewed] = useState(false);
   const hoverEl = useRef();
   const infoEl = useRef();
@@ -31,7 +32,6 @@ export default function MovieCard({ movie, onTrailerButtonClick }) {
           />
           <span className={styles.hoverTrailerText}>Watch Now</span>
           <InfoButton
-
             onInfoButtonClick={() => {
               hoverEl.current.className = styles.hoverElDisplayNone;
               setIsInfoViewed(true);
@@ -60,9 +60,15 @@ export default function MovieCard({ movie, onTrailerButtonClick }) {
               </button>
             ) : null
           }
-          <p className={styles.movieTitle}>
+          <Link
+            className={styles.movieTitle}
+            to="/movieDetailsPage"
+            onClick={() => {
+              onLinkClick(movie.id);
+            }}
+          >
             {movie.title}
-          </p>
+          </Link>
           <span className={styles.movieRating}>{movie.vote_average}</span>
           <p className={styles.movieGenre}>{movie.genres}</p>
           {
@@ -85,6 +91,7 @@ export default function MovieCard({ movie, onTrailerButtonClick }) {
 
 MovieCard.propTypes = {
   onTrailerButtonClick: PropTypes.func,
+  onLinkClick: PropTypes.func,
   movie: PropTypes.shape({
     poster_path: PropTypes.string,
     id: PropTypes.number,
@@ -97,6 +104,7 @@ MovieCard.propTypes = {
 
 MovieCard.defaultProps = {
   onTrailerButtonClick: null,
+  onLinkClick: null,
   movie: {
     poster_path: '',
     id: 0,
