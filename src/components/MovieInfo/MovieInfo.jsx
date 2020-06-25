@@ -1,18 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './MovieInfo.module.scss';
 
-export default function MovieInfo() {
+export default function MovieInfo({ movie }) {
   return (
     <div className={styles.wrapper}>
       <h2 className={styles.movieTitle}>
-        The Jungle Book
+        {movie.title}
       </h2>
       <div className={styles.genreDurationContainer}>
         <span className={styles.genre}>
           Adventure Drama Family Fantasy
         </span>
         <span className={styles.duration}>
-          1h 46m
+          {`${movie.runtime}`}
         </span>
       </div>
       <div className={styles.rating}>
@@ -26,3 +27,19 @@ export default function MovieInfo() {
     </div>
   );
 }
+
+MovieInfo.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string,
+    backdrop_path: PropTypes.string,
+    runtime: PropTypes.number,
+  }),
+};
+
+MovieInfo.defaultProps = {
+  movie: {
+    title: '',
+    backdrop_path: '',
+    runtime: 0,
+  },
+};
