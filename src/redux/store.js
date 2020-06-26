@@ -2,17 +2,19 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 const initialState = {
-  searchResults: [],
+  results: [],
   genres: null,
   isModalOpen: false,
   trailerURL: '',
-  movieDetails: null
+  movieDetails: null,
+  currentGenre: 0,
+  filteredResults: null,
 };
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
-    case 'SEARCH':
-      return { ...state, searchResults: action.results };
+    case 'RESULTS':
+      return { ...state, results: action.results };
     case 'GENRES':
       return { ...state, genres: action.genres };
     case 'MODAL':
@@ -21,6 +23,10 @@ export function reducer(state = initialState, action) {
       return { ...state, trailerURL: action.trailerURL };
     case 'MOVIE_DETAILS':
       return { ...state, movieDetails: action.detailsObj };
+    case 'CURRENT_GENRE':
+      return { ...state, currentGenre: action.genreId };
+    case 'FILTERED_RESULTS':
+      return { ...state, filteredResults: action.filteredResults };
     default:
       return state;
   }
