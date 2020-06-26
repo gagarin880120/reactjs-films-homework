@@ -10,6 +10,14 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/,
+        loader: 'file-loader',
+        options: {
+          context: path.resolve(__dirname, 'src'),
+          name: '[path][name].[ext]',
+        },
+      },
     ],
   },
   resolve: { extensions: ['.js', '.jsx'] },
