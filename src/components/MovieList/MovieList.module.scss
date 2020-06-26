@@ -2,6 +2,10 @@
   background: #f5f5f5;
   font-family: Arial, Helvetica, sans-serif;
   padding: 2%;
+}
+
+.container {
+  margin-top: 2%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 10px;
@@ -10,27 +14,27 @@
 }
 
 @media screen and (min-width: 1600px) {
-  .wrapper {
+  .container {
     grid-template-columns: repeat(5, 1fr);
   }
 }
 
 @media screen and (max-width: 1200px) {
-  .wrapper {
+  .container {
     padding: 1%;
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media screen and (max-width: 890px) {
-  .wrapper {
+  .container {
     padding: 1%;
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (max-width: 600px) {
-  .wrapper {
+  .container {
     padding: 1%;
     grid-template-columns: 1fr;
   }
