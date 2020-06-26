@@ -18,7 +18,7 @@ export default function MovieCard({ movie, onTrailerButtonClick, onLinkClick }) 
         style={{
           backgroundImage: movie.poster_path
             ? `url(https://image.tmdb.org/t/p/w300/${movie.poster_path})`
-            : 'url(https://spnbag.com/assets/general/images/no_poster.jpg)',
+            : null,
         }}
       >
         <div
@@ -61,13 +61,12 @@ export default function MovieCard({ movie, onTrailerButtonClick, onLinkClick }) 
             ) : null
           }
           <Link
-            className={styles.movieTitle}
             to="/movieDetailsPage"
             onClick={() => {
               onLinkClick(movie.id);
             }}
           >
-            {movie.title}
+            <p className={styles.movieTitle}>{movie.title}</p>
           </Link>
           <span className={styles.movieRating}>{movie.vote_average}</span>
           <p className={styles.movieGenre}>{movie.genres}</p>
