@@ -6,16 +6,19 @@ import {
   Route,
 } from 'react-router-dom';
 import MovieDetailsPageContainer from '../../pages/MovieDetailsPage';
-import SearchResultsPage from '../../pages/SearchResultsPage/SearchResultsPage';
+import SearchResultsPageContainer from '../../pages/SearchResultsPage';
+import styles from './App.module.scss';
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path="/" exact component={SearchResultsPage} />
-        <Route path="/movieDetailsPage" exact component={MovieDetailsPageContainer} />
-      </Switch>
-    </Router>
+    <div className={styles.wrapper}>
+      <Router>
+        <Switch>
+          <Route path="/" exact component={SearchResultsPageContainer} />
+          <Route path="/movieDetailsPage" exact component={MovieDetailsPageContainer} />
+        </Switch>
+      </Router>
+    </div>
   );
 }
 
