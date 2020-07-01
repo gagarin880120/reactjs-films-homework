@@ -1,19 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MovieListNavBar from './MovieListNavBar';
-import {
-  getTrendingMovies, getTopRatedMovies, getUpcomingMovies, setCurrentGenre,
-  filterResultsByGenre,
-} from '../../redux/actions';
-import { genresSelector, resultsSelector, currentGenreSelector } from '../../redux/selectors';
+import { getMovies, setCurrentURL } from '../../redux/actions';
+import { genresSelector } from '../../redux/selectors';
+import getURL from '../../utils/utils';
 
 export function MovieListNavBarContainer({
-  onTrending, onTopRated, onUpcoming, genres, onGenreChange, results, currentGenre
+  onTrending, onTopRated, onUpcoming, genres, onGenreChange
 }) {
-  useEffect(() => {
-    onTrending(0);
-  }, []);
 
   return (
     <MovieListNavBar
@@ -22,31 +17,30 @@ export function MovieListNavBarContainer({
       onUpcoming={onUpcoming}
       onGenreChange={onGenreChange}
       genres={genres}
-      results={results}
-      currentGenre={currentGenre}
     />
   );
 }
 
 export const mapStateToProps = (state) => ({
   genres: genresSelector(state),
-  results: resultsSelector(state),
-  currentGenre: currentGenreSelector(state),
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  onTrending(genre) {
-    dispatch(getTrendingMovies(genre));
+  onTrending() {
+    // dispatch(setCurrentURL(getURL('trending')));
+    dispatch(getMovies(getURL('trending'), 1));
   },
-  onTopRated(genre) {
-    dispatch(getTopRatedMovies(genre));
+  onTopRated() {
+    // dispatch(setCurrentURL(getURL('topRated')));
+    dispatch(getMovies(getURL('topRated'), 1));
   },
-  onUpcoming(genre) {
-    dispatch(getUpcomingMovies(genre));
+  onUpcoming() {
+    // dispatch(setCurrentURL(getURL('upComing')));
+    dispatch(getMovies(getURL('upComing'), 1));
   },
-  onGenreChange(results, genreId) {
-    dispatch(setCurrentGenre(genreId));
-    dispatch(filterResultsByGenre(results, genreId));
+  onGenreChange(genreId) {
+    // dispatch(setCurrentURL(getURL('byGenre')));
+    dispatch(getMovies(getURL('byGenre'), 1, '', genreId));
   }
 });
 
@@ -56,8 +50,6 @@ MovieListNavBarContainer.propTypes = {
   onUpcoming: PropTypes.func,
   onGenreChange: PropTypes.func,
   genres: PropTypes.instanceOf(Array),
-  results: PropTypes.instanceOf(Array),
-  currentGenre: PropTypes.number,
 };
 
 MovieListNavBarContainer.defaultProps = {
@@ -66,8 +58,6 @@ MovieListNavBarContainer.defaultProps = {
   onUpcoming: null,
   onGenreChange: null,
   genres: [],
-  results: [],
-  currentGenre: 0,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieListNavBarContainer);

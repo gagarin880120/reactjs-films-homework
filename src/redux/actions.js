@@ -7,6 +7,13 @@ function setResults(results) {
   };
 }
 
+function setQuery(query) {
+  return {
+    type: 'QUERY',
+    query,
+  };
+}
+
 function genresAction(genres) {
   return {
     type: 'GENRES',
@@ -35,17 +42,55 @@ function setMovieDetails(detailsObj) {
   };
 }
 
-function setCurrentGenre(genreId) {
+function setCurrentPage(page) {
   return {
-    type: 'CURRENT_GENRE',
-    genreId,
+    type: 'CURRENT_PAGE',
+    page,
   };
 }
 
-function setFilteredResults(filteredResults) {
+function setTotalPages(numberOfPages) {
   return {
-    type: 'FILTERED_RESULTS',
-    filteredResults,
+    type: 'TOTAL_PAGES',
+    numberOfPages,
+  };
+}
+
+function setIsLoaded(isLoaded) {
+  return {
+    type: 'IS_LOADED',
+    isLoaded,
+  };
+}
+
+function setCurrentURL(currentURL) {
+  return {
+    type: 'CURRENT_URL',
+    currentURL,
+  };
+}
+
+function getMovies(currUrl, page, query, genre, results) {
+  let url = currUrl;
+  if (url.includes('search') && page === 1) {
+    url += query;
+  } else if (url.includes('discover') && page === 1) {
+    url += genre;
+  }
+  return (dispatch) => {
+    dispatch(setResults(results || []));
+    dispatch(setIsLoaded(false));
+    dispatch(setCurrentURL(url));
+    dispatch(setQuery(query));
+    dispatch(setCurrentPage(page));
+    return fetch(`${url}&page=${page}`)
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch(setResults(page > 1 ? [...results, ...data.results] : data.results));
+        dispatch(setTotalPages(data.total_pages));
+        dispatch(setIsLoaded(true));
+      })
+      .catch((e) => console.log(e));
   };
 }
 
@@ -56,69 +101,6 @@ function getGenres() {
   )
     .then((res) => res.json())
     .then((data) => dispatch(genresAction(data.genres)))
-    .catch((e) => console.log(e));
-}
-
-function getSearchResults(str, genre) {
-  return (dispatch) => fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}`
-      + `&language=en-US&query=${str}&page=1&include_adult=false&video=true`,
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      if (!genre) {
-        return dispatch(setResults(data.results));
-      }
-      return dispatch(setFilteredResults(data.results.filter((v) => v.genre_ids.includes(genre))));
-    })
-    .catch((e) => console.log(e));
-}
-
-function getTrendingMovies(genre) {
-  return (dispatch) => fetch(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`,
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      dispatch(setResults(data.results));
-      if (genre) {
-        return dispatch(
-          setFilteredResults(data.results.filter((v) => v.genre_ids.includes(genre)))
-        );
-      }
-    })
-    .catch((e) => console.log(e));
-}
-
-function getTopRatedMovies(genre) {
-  return (dispatch) => fetch(
-    `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`,
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      dispatch(setResults(data.results));
-      if (genre) {
-        return dispatch(
-          setFilteredResults(data.results.filter((v) => v.genre_ids.includes(genre)))
-        );
-      }
-    })
-    .catch((e) => console.log(e));
-}
-
-function getUpcomingMovies(genre) {
-  return (dispatch) => fetch(
-    `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`,
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      dispatch(setResults(data.results));
-      if (genre) {
-        return dispatch(
-          setFilteredResults(data.results.filter((v) => v.genre_ids.includes(genre)))
-        );
-      }
-    })
     .catch((e) => console.log(e));
 }
 
@@ -143,17 +125,7 @@ function getMovieDetails(id) {
     .catch((e) => console.log(e));
 }
 
-function filterResultsByGenre(results, genre) {
-  return (dispatch) => {
-    if (!genre) {
-      return dispatch(setFilteredResults(null));
-    }
-    return dispatch(setFilteredResults(results.filter((v) => v.genre_ids.includes(genre))));
-  };
-}
-
 export {
-  genresAction, getSearchResults, getGenres, setModal, getTrailer,
-  setTrailerURL, getTrendingMovies, getTopRatedMovies, getUpcomingMovies,
-  getMovieDetails, setCurrentGenre, filterResultsByGenre,
+  genresAction, getGenres, setModal, getTrailer,
+  setTrailerURL, getMovieDetails, getMovies, setCurrentURL,
 };

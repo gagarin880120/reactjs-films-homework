@@ -2,9 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MovieList from './MovieList';
-import { resultsSelector, modalSelector, filteredResultsSelector } from '../../redux/selectors';
+import {
+  resultsSelector, modalSelector,
+} from '../../redux/selectors';
 
-export function MovieListContainer({ results, isModalOpen }) {
+export function MovieListContainer({
+  results, isModalOpen,
+}) {
   return (
     <MovieList
       results={results}
@@ -14,7 +18,7 @@ export function MovieListContainer({ results, isModalOpen }) {
 }
 
 export const mapStateToProps = (state) => ({
-  results: filteredResultsSelector(state) ? filteredResultsSelector(state) : resultsSelector(state),
+  results: resultsSelector(state),
   isModalOpen: modalSelector(state),
 });
 

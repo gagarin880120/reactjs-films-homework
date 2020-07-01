@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './MovieListNavBar.module.scss';
 
 export default function MovieListNavBar({
-  onTrending, onTopRated, onUpcoming, genres, onGenreChange, results, currentGenre
+  onTrending, onTopRated, onUpcoming, genres, onGenreChange,
 }) {
   return (
     <div className={styles.wrapper}>
@@ -11,7 +11,7 @@ export default function MovieListNavBar({
         type="button"
         className={styles.button}
         onClick={() => {
-          onTrending(currentGenre);
+          onTrending();
         }}
       >
         Trending
@@ -20,7 +20,7 @@ export default function MovieListNavBar({
         type="button"
         className={styles.button}
         onClick={() => {
-          onTopRated(currentGenre);
+          onTopRated();
         }}
       >
         Top rated
@@ -29,13 +29,13 @@ export default function MovieListNavBar({
         type="button"
         className={styles.button}
         onClick={() => {
-          onUpcoming(currentGenre);
+          onUpcoming();
         }}
       >
         Coming soon
       </button>
-      <select name="genres" onChange={(e) => onGenreChange(results, +e.target.value)}>
-        <option value={0}>Genre</option>
+      <select name="genres" onChange={(e) => onGenreChange(e.target.value)}>
+        <option value="">Genre</option>
         {
           genres.map((genre) => (
             <option key={genre.id} value={genre.id}>{genre.name}</option>))
@@ -51,8 +51,6 @@ MovieListNavBar.propTypes = {
   onUpcoming: PropTypes.func,
   onGenreChange: PropTypes.func,
   genres: PropTypes.instanceOf(Array),
-  results: PropTypes.instanceOf(Array),
-  currentGenre: PropTypes.number,
 };
 
 MovieListNavBar.defaultProps = {
@@ -61,6 +59,4 @@ MovieListNavBar.defaultProps = {
   onUpcoming: null,
   onGenreChange: null,
   genres: [],
-  results: [],
-  currentGenre: 0,
 };

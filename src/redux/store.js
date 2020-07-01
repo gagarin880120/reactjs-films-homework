@@ -3,18 +3,23 @@ import thunk from 'redux-thunk';
 
 const initialState = {
   results: [],
+  query: '',
   genres: null,
   isModalOpen: false,
   trailerURL: '',
   movieDetails: null,
-  currentGenre: 0,
-  filteredResults: null,
+  currentPage: 1,
+  totalPages: 0,
+  isLoaded: false,
+  currentURL: '',
 };
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
     case 'RESULTS':
       return { ...state, results: action.results };
+    case 'QUERY':
+      return { ...state, query: action.query };
     case 'GENRES':
       return { ...state, genres: action.genres };
     case 'MODAL':
@@ -23,10 +28,14 @@ export function reducer(state = initialState, action) {
       return { ...state, trailerURL: action.trailerURL };
     case 'MOVIE_DETAILS':
       return { ...state, movieDetails: action.detailsObj };
-    case 'CURRENT_GENRE':
-      return { ...state, currentGenre: action.genreId };
-    case 'FILTERED_RESULTS':
-      return { ...state, filteredResults: action.filteredResults };
+    case 'CURRENT_PAGE':
+      return { ...state, currentPage: action.page };
+    case 'TOTAL_PAGES':
+      return { ...state, totalPages: action.numberOfPages };
+    case 'IS_LOADED':
+      return { ...state, isLoaded: action.isLoaded };
+    case 'CURRENT_URL':
+      return { ...state, currentURL: action.currentURL };
     default:
       return state;
   }
