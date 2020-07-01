@@ -6,85 +6,85 @@ import InfoButton from '../InfoButton/InfoButton';
 import TrailerButtonRect from '../TrailerButtonRect/TrailerButtonRect';
 import TrailerButtonRound from '../TrailerButtonRound/TrailerButtonRound';
 
-export default function MovieCard({ movie, onTrailerButtonClick, onLinkClick }) {
+export default function MovieCard({
+  movie, onTrailerButtonClick, onLinkClick,
+}) {
   const [isInfoViewed, setIsInfoViewed] = useState(false);
   const hoverEl = useRef();
   const infoEl = useRef();
 
   return (
-    <>
+    <div
+      className={styles.wrapper}
+      style={{
+        backgroundImage: movie.poster_path
+          ? `url(https://image.tmdb.org/t/p/w185/${movie.poster_path})`
+          : null,
+      }}
+    >
       <div
-        className={styles.wrapper}
-        style={{
-          backgroundImage: movie.poster_path
-            ? `url(https://image.tmdb.org/t/p/w300/${movie.poster_path})`
-            : null,
-        }}
+        ref={hoverEl}
+        testid="hoverTrailer"
+        className={styles.hoverTrailer}
       >
-        <div
-          ref={hoverEl}
-          testid="hoverTrailer"
-          className={styles.hoverTrailer}
-        >
-          <TrailerButtonRound
-            onTrailerButtonClick={onTrailerButtonClick}
-            id={movie.id}
-          />
-          <span className={styles.hoverTrailerText}>Watch Now</span>
-          <InfoButton
-            onInfoButtonClick={() => {
-              hoverEl.current.className = styles.hoverElDisplayNone;
-              setIsInfoViewed(true);
-              infoEl.current.className = styles.infoIsViewed;
-            }}
-          />
-        </div>
-        <div
-          className={styles.movieInfo}
-          testid="info"
-          ref={infoEl}
-        >
-          {
-            isInfoViewed ? (
-              <button
-                testid="closeInfo"
-                className={styles.closeInfo}
-                type="button"
-                onClick={() => {
-                  setIsInfoViewed(false);
-                  infoEl.current.className = styles.movieInfo;
-                  hoverEl.current.className = styles.hoverTrailer;
-                }}
-              >
-                X
-              </button>
-            ) : null
-          }
-          <Link
-            to="/movieDetailsPage"
-            onClick={() => {
-              onLinkClick(movie.id);
-            }}
-          >
-            <p className={styles.movieTitle}>{movie.title}</p>
-          </Link>
-          <span className={styles.movieRating}>{movie.vote_average}</span>
-          <p className={styles.movieGenre}>{movie.genres}</p>
-          {
-            isInfoViewed
-              ? (
-                <>
-                  <div className={styles.overview}>{movie.overview}</div>
-                  <TrailerButtonRect
-                    onTrailerButtonClick={onTrailerButtonClick}
-                    id={movie.id}
-                  />
-                </>
-              ) : null
-          }
-        </div>
+        <TrailerButtonRound
+          onTrailerButtonClick={onTrailerButtonClick}
+          id={movie.id}
+        />
+        <span className={styles.hoverTrailerText}>Watch Now</span>
+        <InfoButton
+          onInfoButtonClick={() => {
+            hoverEl.current.className = styles.hoverElDisplayNone;
+            setIsInfoViewed(true);
+            infoEl.current.className = styles.infoIsViewed;
+          }}
+        />
       </div>
-    </>
+      <div
+        className={styles.movieInfo}
+        testid="info"
+        ref={infoEl}
+      >
+        {
+          isInfoViewed ? (
+            <button
+              testid="closeInfo"
+              className={styles.closeInfo}
+              type="button"
+              onClick={() => {
+                setIsInfoViewed(false);
+                infoEl.current.className = styles.movieInfo;
+                hoverEl.current.className = styles.hoverTrailer;
+              }}
+            >
+              X
+            </button>
+          ) : null
+        }
+        <Link
+          to="/movieDetailsPage"
+          onClick={() => {
+            onLinkClick(movie.id);
+          }}
+        >
+          <p className={styles.movieTitle}>{movie.title}</p>
+        </Link>
+        <span className={styles.movieRating}>{movie.vote_average}</span>
+        <p className={styles.movieGenre}>{movie.genres}</p>
+        {
+          isInfoViewed
+            ? (
+              <>
+                <div className={styles.overview}>{movie.overview}</div>
+                <TrailerButtonRect
+                  onTrailerButtonClick={onTrailerButtonClick}
+                  id={movie.id}
+                />
+              </>
+            ) : null
+        }
+      </div>
+    </div>
   );
 }
 
