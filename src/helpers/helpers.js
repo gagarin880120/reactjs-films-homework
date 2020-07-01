@@ -7,11 +7,11 @@ function getStars(num) {
   const arr = [];
   arr.length = Math.floor(half);
   const rest = half - Math.floor(half);
-  arr.fill({type: 'full'});
+  arr.fill({ type: 'full' });
   if (rest > 0.75) {
-    arr.push({type: 'full'});
+    arr.push({ type: 'full' });
   } else if (rest > 0.25) {
-    arr.push({type: 'half'})
+    arr.push({ type: 'half' });
   }
   return arr.map((v, i) => ({
     ...v,
@@ -23,4 +23,4 @@ function convertTime(num) {
   return `${Math.floor(num / 60)}h${num % 60 ? ` ${num % 60}m` : ''}`;
 }
 
-export { getGenresString, getStars, convertTime }
+export { getGenresString, getStars, convertTime };
