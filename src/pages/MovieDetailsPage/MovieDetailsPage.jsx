@@ -5,9 +5,13 @@ import MovieInfoContainer from '../../components/MovieInfo';
 import InfoButton from '../../components/InfoButton/InfoButton';
 import TrailerButtonRect from '../../components/TrailerButtonRect/TrailerButtonRect';
 import MovieListContainer from '../../components/MovieList';
+import FooterContainer from '../../components/Footer';
+import Spinner from '../../components/Spinner/Spinner';
 import styles from './MovieDetailsPage.module.scss';
 
-export default function MovieDetailsPage({ movie, onTrailerButtonClick }) {
+export default function MovieDetailsPage({
+  movie, onTrailerButtonClick, isLoaded, results
+}) {
   const infoEl = useRef();
 
   const style = {
@@ -51,6 +55,14 @@ export default function MovieDetailsPage({ movie, onTrailerButtonClick }) {
         </div>
       </main>
       <MovieListContainer />
+      <div className={styles.loading}>
+        {
+          !isLoaded ? <Spinner /> : null
+        }
+      </div>
+      {
+        results.length ? <FooterContainer /> : null
+      }
     </div>
   );
 }
@@ -62,6 +74,8 @@ MovieDetailsPage.propTypes = {
     overview: PropTypes.string,
   }),
   onTrailerButtonClick: PropTypes.func,
+  isLoaded: PropTypes.bool,
+  results: PropTypes.instanceOf(Array),
 };
 
 MovieDetailsPage.defaultProps = {
@@ -71,4 +85,6 @@ MovieDetailsPage.defaultProps = {
     overview: '',
   },
   onTrailerButtonClick: null,
+  isLoaded: false,
+  results: [],
 };

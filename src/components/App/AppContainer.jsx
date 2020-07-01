@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { getGenres } from '../../redux/actions';
 import { genresSelector } from '../../redux/selectors';
 import App from './App';
+import Spinner from '../Spinner/Spinner';
+import styles from './App.module.scss';
 
 export function AppContainer({ onGetGenres, genres }) {
   useEffect(() => {
@@ -12,7 +14,11 @@ export function AppContainer({ onGetGenres, genres }) {
 
   return (
     genres
-      ? <App /> : <>Loading...</>
+      ? <App /> : (
+        <div className={styles.loading}>
+          <Spinner />
+        </div>
+      )
   );
 }
 
