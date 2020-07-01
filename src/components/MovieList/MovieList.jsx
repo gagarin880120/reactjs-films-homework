@@ -7,7 +7,9 @@ import MovieListNavBarContainer from '../MovieListNavBar';
 
 export default function MovieList({ results, isModalOpen }) {
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={styles.wrapper}
+    >
       <MovieListNavBarContainer />
       <div className={styles.container}>
         {results.map((result) => (

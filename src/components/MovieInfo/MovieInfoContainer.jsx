@@ -5,7 +5,6 @@ import MovieInfo from './MovieInfo';
 import { movieDetailsSelector } from '../../redux/selectors';
 
 export function MovieInfoContainer({ movie }) {
-  console.log(movie)
   return (
     <MovieInfo
       movie={movie}
