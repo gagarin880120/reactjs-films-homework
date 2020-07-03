@@ -3,7 +3,6 @@
 exports[`MovieListContainer component should render without crashing 1`] = `
 <MovieList
   isModalOpen={false}
-  onGetGenres={[MockFunction]}
   results={Array []}
 />
 `;

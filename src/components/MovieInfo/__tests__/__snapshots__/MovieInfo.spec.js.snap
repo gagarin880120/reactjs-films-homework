@@ -7,7 +7,7 @@ exports[`MovieInfo component should render without crashing 1`] = `
   <h2
     className="movieTitle"
   >
-    The Jungle Book
+    
   </h2>
   <div
     className="genreDurationContainer"
@@ -15,12 +15,12 @@ exports[`MovieInfo component should render without crashing 1`] = `
     <span
       className="genre"
     >
-      Adventure Drama Family Fantasy
+      
     </span>
     <span
       className="duration"
     >
-      1h 46m
+      
     </span>
   </div>
   <div
@@ -28,13 +28,11 @@ exports[`MovieInfo component should render without crashing 1`] = `
   >
     <span
       className="ratingStars"
-    >
-      ★★★★★
-    </span>
+    />
     <span
       className="ratingText"
     >
-      4.8
+      0
     </span>
   </div>
 </div>

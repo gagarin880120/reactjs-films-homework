@@ -3,6 +3,7 @@
 exports[`MovieCardContainer component should render without crashing 1`] = `
 <MovieCard
   movie={Object {}}
+  onLinkClick={null}
   onTrailerButtonClick={null}
 />
 `;
