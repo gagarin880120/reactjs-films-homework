@@ -10,4 +10,3 @@ describe('Header component', () => {
     expect(result).toMatchSnapshot();
   });
 });
-
