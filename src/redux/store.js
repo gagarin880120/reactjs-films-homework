@@ -2,16 +2,17 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 const initialState = {
-  results: [],
+  results: JSON.parse(localStorage.getItem('results')) || [],
   query: '',
-  genres: null,
+  genres: null || JSON.parse(localStorage.getItem('genres')),
   isModalOpen: false,
   trailerURL: '',
-  movieDetails: null,
-  currentPage: 1,
+  movieDetails: null || JSON.parse(localStorage.getItem('movieDetails')),
+  currentPage: +localStorage.getItem('currentPage') || 1,
   totalPages: 0,
-  isLoaded: false,
-  currentURL: '',
+  isLoaded: JSON.parse(localStorage.getItem('isLoaded')) && false,
+  currentURL: '' || localStorage.getItem('currentURL'),
+  currentGenre: localStorage.getItem('currentGenre') || '',
 };
 
 export function reducer(state = initialState, action) {
@@ -36,6 +37,8 @@ export function reducer(state = initialState, action) {
       return { ...state, isLoaded: action.isLoaded };
     case 'CURRENT_URL':
       return { ...state, currentURL: action.currentURL };
+    case 'CURRENT_GENRE':
+      return { ...state, currentGenre: action.currentGenre };
     default:
       return state;
   }

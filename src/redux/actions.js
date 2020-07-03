@@ -1,6 +1,7 @@
 const API_KEY = '306b98213f954f1d07d1d09517898f10';
 
 function setResults(results) {
+  localStorage.setItem('results', JSON.stringify(results));
   return {
     type: 'RESULTS',
     results,
@@ -14,7 +15,8 @@ function setQuery(query) {
   };
 }
 
-function genresAction(genres) {
+function setGenres(genres) {
+  localStorage.setItem('genres', JSON.stringify(genres));
   return {
     type: 'GENRES',
     genres,
@@ -36,6 +38,7 @@ function setTrailerURL(trailerURL) {
 }
 
 function setMovieDetails(detailsObj) {
+  localStorage.setItem('movieDetails', JSON.stringify(detailsObj));
   return {
     type: 'MOVIE_DETAILS',
     detailsObj,
@@ -43,6 +46,7 @@ function setMovieDetails(detailsObj) {
 }
 
 function setCurrentPage(page) {
+  localStorage.setItem('currentPage', page);
   return {
     type: 'CURRENT_PAGE',
     page,
@@ -57,6 +61,7 @@ function setTotalPages(numberOfPages) {
 }
 
 function setIsLoaded(isLoaded) {
+  localStorage.setItem('isLoaded', isLoaded);
   return {
     type: 'IS_LOADED',
     isLoaded,
@@ -64,9 +69,18 @@ function setIsLoaded(isLoaded) {
 }
 
 function setCurrentURL(currentURL) {
+  localStorage.setItem('currentURL', currentURL);
   return {
     type: 'CURRENT_URL',
     currentURL,
+  };
+}
+
+function setCurrentGenre(currentGenre) {
+  localStorage.setItem('currentGenre', currentGenre);
+  return {
+    type: 'CURRENT_GENRE',
+    currentGenre,
   };
 }
 
@@ -100,7 +114,7 @@ function getGenres() {
         + '&language=en-US',
   )
     .then((res) => res.json())
-    .then((data) => dispatch(genresAction(data.genres)))
+    .then((data) => dispatch(setGenres(data.genres)))
     .catch((e) => console.log(e));
 }
 
@@ -126,6 +140,6 @@ function getMovieDetails(id) {
 }
 
 export {
-  genresAction, getGenres, setModal, getTrailer,
-  setTrailerURL, getMovieDetails, getMovies, setCurrentURL,
+  getGenres, setModal, getTrailer, setTrailerURL, getMovieDetails,
+  getMovies, setCurrentURL, setCurrentGenre,
 };
