@@ -24,16 +24,6 @@ export default function MovieDetailsPage({
     <div className={styles.wrapper} style={style}>
       <Header />
       <div className={styles.overview} ref={infoEl}>
-        <button
-          testid="closeInfo"
-          className={styles.closeInfo}
-          type="button"
-          onClick={() => {
-            infoEl.current.style.display = 'none';
-          }}
-        >
-          X
-        </button>
         <p>{movie.overview}</p>
       </div>
       <main className={styles.main}>
