@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchField from '../SearchField/SearchField';
+import SearchFieldContainer from '../SearchField';
 import styles from './Header.module.scss';
 
 export default function Header() {
@@ -8,7 +8,9 @@ export default function Header() {
       <h1 className={styles.title}>
         Films
       </h1>
-      <SearchField />
+      <SearchFieldContainer />
+    </header>
+  );
     </header>
   )
 }

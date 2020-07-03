@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TrailerButtonRound component should render without crashing 1`] = `
+<button
+  className="trailerButton"
+  onClick={[Function]}
+  type="button"
+>
+  <i
+    className="fas fa-play"
+  />
+</button>
+`;

@@ -1,0 +1,111 @@
+.wrapper {
+  background-size: cover;
+  width: 280px;
+  height: 340px;
+  position: relative;
+}
+
+.hoverTrailer {
+  width: 280px;
+  height: 180px;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60px;
+}
+
+.wrapper:hover .hoverTrailer {
+  display: flex;
+}
+
+.hoverElDisplayNone {
+  display: none;
+}
+
+.movieInfo {
+  height: 70px;
+  margin-top: 240px;
+  background: #fff;
+  padding: 30px 5% 0;
+}
+
+.movieTitle {
+  white-space: nowrap;
+  overflow: hidden;
+  width: 210px;
+  color: #242b2d;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-overflow: ellipsis;
+}
+
+.movieRating {
+  float: right;
+  color: #47c3f0;
+  border: 1px solid #47c3f0;
+  border-radius: 4px;
+  padding: 2px 5px;
+  margin-top: -20px;
+}
+
+.movieGenre {
+  margin-top: 10px;
+  font-size: 15px;
+  color: #47c3f0;
+  font-weight: bold;
+}
+
+.hoverTrailerText {
+  color: #fff;
+  margin: 10px 0 20px;
+}
+
+.infoIsViewed {
+  background: rgba(0, 0, 0, 0.7);
+  height: 300px;
+  padding: 30px 7% 10px;
+  overflow-y: scroll;
+
+  .movieTitle {
+    color: #fff;
+  }
+}
+
+.infoIsViewed::-webkit-scrollbar {
+  width: 8px;
+}
+
+.infoIsViewed::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+}
+
+.infoIsViewed::-webkit-scrollbar-thumb {
+  background: #47c3f0;
+  border-radius: 6px;
+}
+
+.infoIsViewed::-webkit-scrollbar-thumb:hover {
+  background: #02729b;
+}
+
+.closeInfo {
+  margin-bottom: 20px;
+  padding: 0;
+  outline: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 22px;
+}
+
+.overview {
+  margin: 20px 0;
+  font-size: 15px;
+  line-height: 20px;
+}

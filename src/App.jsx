@@ -7,7 +7,7 @@ function App() {
     <>
       <MovieDetailsPage />
     </>
-  )
+  );
 }
 
 export default hot(App);

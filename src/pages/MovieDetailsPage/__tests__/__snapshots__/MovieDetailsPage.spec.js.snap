@@ -15,10 +15,16 @@ exports[`MovieDetailsPage component should render without crashing 1`] = `
       <div
         className="buttonsContainer"
       >
-        <WatchNowButtonRect />
-        <ViewInfoButton />
+        <TrailerButtonRect
+          id={0}
+          onTrailerButtonClick={null}
+        />
+        <InfoButton
+          onInfoButtonClick={null}
+        />
       </div>
     </main>
   </div>
+  <Memo(Connect(MovieListContainer)) />
 </div>
 `;

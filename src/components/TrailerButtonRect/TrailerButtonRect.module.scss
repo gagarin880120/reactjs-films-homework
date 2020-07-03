@@ -1,0 +1,21 @@
+.watchButton {
+  color: #fff;
+  font-size: 16px;
+  outline: 0;
+  background: #09ade3;
+  border: none;
+  border-radius: 3px;
+  width: 114px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.watchButton:active {
+  transform: translateY(2px);
+}
+
+@media screen and (max-width: 600px) {
+  .watchButton {
+    width: 70px;
+  }
+}

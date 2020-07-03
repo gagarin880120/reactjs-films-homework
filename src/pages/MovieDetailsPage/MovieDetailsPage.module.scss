@@ -16,8 +16,14 @@
 }
 
 .buttonsContainer {
-  margin-top: 5%;
-  width: 21%;
+  margin-top: 100px;
+  width: 250px;
   display: flex;
   justify-content: space-between;
+}
+
+@media screen and (max-width: 600px) {
+  .buttonsContainer {
+    width: 150px;
+  }
 }

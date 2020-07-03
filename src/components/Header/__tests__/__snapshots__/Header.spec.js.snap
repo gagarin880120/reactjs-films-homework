@@ -9,6 +9,6 @@ exports[`Header component should render without crashing 1`] = `
   >
     Films
   </h1>
-  <SearchField />
+  <Memo(Connect(SearchFieldContainer)) />
 </header>
 `;

@@ -1,8 +1,9 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
 import MovieInfo from '../../components/MovieInfo/MovieInfo';
-import ViewInfoButton from '../../components/ViewInfoButton/ViewInfoButton';
-import WatchNowButtonRect from '../../components/WatchNowButtonRect/WatchNowButtonRect';
+import InfoButton from '../../components/InfoButton/InfoButton';
+import TrailerButtonRect from '../../components/TrailerButtonRect/TrailerButtonRect';
+import MovieListContainer from '../../components/MovieList';
 import styles from './MovieDetailsPage.module.scss';
 
 export default function MovieDetailsPage() {
@@ -13,11 +14,12 @@ export default function MovieDetailsPage() {
         <main className={styles.main}>
           <MovieInfo />
           <div className={styles.buttonsContainer}>
-            <WatchNowButtonRect />
-            <ViewInfoButton />
+            <TrailerButtonRect />
+            <InfoButton />
           </div>
         </main>
       </div>
+      <MovieListContainer />
     </div>
-  )
+  );
 }

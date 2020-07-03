@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InfoButton component should render without crashing 1`] = `
+<button
+  className="infoButton"
+  onClick={null}
+  type="button"
+>
+  View Info
+</button>
+`;

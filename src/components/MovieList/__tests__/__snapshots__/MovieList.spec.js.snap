@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieList component should render TrailerModalContainer if isModalOpen 1`] = `
+<div
+  className="wrapper"
+>
+  <Memo(Connect(MovieCardContainer))
+    movie={
+      Object {
+        "genre_ids": Array [
+          28,
+          878,
+        ],
+        "id": 603,
+        "overview": "Set in the 22nd century, The Matrix tells the story of a computer hacker...",
+        "poster_path": "/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg",
+        "title": "The Matrix",
+        "vote_average": 8.1,
+      }
+    }
+  />
+  <Memo(Connect(MovieCardContainer))
+    movie={
+      Object {
+        "genre_ids": Array [
+          28,
+          12,
+          878,
+          53,
+        ],
+        "id": 604,
+        "overview": "Six months after the events depicted in The Matrix, Neo has proved...",
+        "poster_path": "/aA5qHS0FbSXO8PxcxUIHbDrJyuh.jpg",
+        "title": "The Matrix Reloaded",
+        "vote_average": 6.9,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`MovieList component should render without crashing 1`] = `
+<div
+  className="wrapper"
+>
+  <Memo(Connect(MovieCardContainer))
+    movie={
+      Object {
+        "genre_ids": Array [
+          28,
+          878,
+        ],
+        "id": 603,
+        "overview": "Set in the 22nd century, The Matrix tells the story of a computer hacker...",
+        "poster_path": "/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg",
+        "title": "The Matrix",
+        "vote_average": 8.1,
+      }
+    }
+  />
+  <Memo(Connect(MovieCardContainer))
+    movie={
+      Object {
+        "genre_ids": Array [
+          28,
+          12,
+          878,
+          53,
+        ],
+        "id": 604,
+        "overview": "Six months after the events depicted in The Matrix, Neo has proved...",
+        "poster_path": "/aA5qHS0FbSXO8PxcxUIHbDrJyuh.jpg",
+        "title": "The Matrix Reloaded",
+        "vote_average": 6.9,
+      }
+    }
+  />
+  <Memo(Connect(TrailerModalContainer)) />
+</div>
+`;

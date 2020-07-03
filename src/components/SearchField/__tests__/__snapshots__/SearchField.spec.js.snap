@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchField component should render without crashing 1`] = `
+<input
+  className="searchInput"
+  onChange={[Function]}
+  onKeyDown={[Function]}
+  placeholder="🔍"
+  type="search"
+  value=""
+/>
+`;

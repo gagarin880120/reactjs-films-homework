@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TrailerModalContainer component should render without crashing 1`] = `
+<TrailerModal
+  closeModal={null}
+  isModalOpen={false}
+  isTrailerLoaded={false}
+  trailerURL=""
+/>
+`;
