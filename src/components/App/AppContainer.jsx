@@ -1,15 +1,18 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getGenres } from '../../redux/actions';
+import { getGenres, getMovies } from '../../redux/actions';
 import { genresSelector } from '../../redux/selectors';
+import getURL from '../../utils/utils';
 import App from './App';
 import Spinner from '../Spinner/Spinner';
 import styles from './App.module.scss';
 
-export function AppContainer({ onGetGenres, genres }) {
+export function AppContainer({ onAppLoad, genres }) {
   useEffect(() => {
-    onGetGenres();
+    if (!genres) {
+      onAppLoad();
+    }
   }, []);
 
   return (
@@ -27,18 +30,19 @@ export const mapStateToProps = (state) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  onGetGenres() {
+  onAppLoad() {
     dispatch(getGenres());
+    dispatch(getMovies(getURL('trending'), 1));
   },
 });
 
 AppContainer.propTypes = {
-  onGetGenres: PropTypes.func,
+  onAppLoad: PropTypes.func,
   genres: PropTypes.instanceOf(Array),
 };
 
 AppContainer.defaultProps = {
-  onGetGenres: null,
+  onAppLoad: null,
   genres: [],
 };
 
