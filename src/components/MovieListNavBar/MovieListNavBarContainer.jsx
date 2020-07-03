@@ -29,17 +29,20 @@ export const mapStateToProps = (state) => ({
 export const mapDispatchToProps = (dispatch) => ({
   onTrending() {
     dispatch(getMovies(getURL('trending'), 1));
+    dispatch(setCurrentGenre(''));
   },
   onTopRated() {
     dispatch(getMovies(getURL('topRated'), 1));
+    dispatch(setCurrentGenre(''));
   },
   onUpcoming() {
     dispatch(getMovies(getURL('upComing'), 1));
+    dispatch(setCurrentGenre(''));
   },
   onGenreChange(genreId) {
     dispatch(setCurrentGenre(genreId));
     dispatch(getMovies(getURL('byGenre'), 1, '', genreId));
-  }
+  },
 });
 
 MovieListNavBarContainer.propTypes = {
