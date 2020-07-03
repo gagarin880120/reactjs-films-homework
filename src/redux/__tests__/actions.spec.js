@@ -51,7 +51,7 @@ describe('Async action', () => {
       return store.dispatch(getTrailer())
         .then(res => {
           const actions = store.getActions();
-          expect(actions[1]).toEqual(setTrailerURL('123'))
+          expect(actions[2]).toEqual(setTrailerURL('123'))
         });
     });
 
@@ -61,7 +61,7 @@ describe('Async action', () => {
       return store.dispatch(getTrailer())
         .then(res => {
           const actions = store.getActions()
-          expect(actions[1]).toEqual(setTrailerURL(null))
+          expect(actions[2]).toEqual(setTrailerURL(null))
         });
     });
   });

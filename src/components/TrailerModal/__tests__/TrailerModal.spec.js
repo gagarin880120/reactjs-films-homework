@@ -7,22 +7,24 @@ describe('TrailerModal component', () => {
 
   test('should render without crashing', () => {
     const renderer = new ShallowRenderer();
-    renderer.render(<TrailerModal modalIsOpen={true} trailerURL="loading" />);
+    renderer.render(<TrailerModal modalIsOpen={true} isTrailerLoaded={false} />);
     const result = renderer.getRenderOutput();
     expect(result).toMatchSnapshot();
   });
 
   test('should render span with text "Trailer is not available" if trailerURL === null', () => {
     const renderer = new ShallowRenderer();
-    renderer.render(<TrailerModal modalIsOpen={true} trailerURL={null} />);
+    renderer.render(<TrailerModal modalIsOpen={true} trailerURL={null} isTrailerLoaded={true} />);
     const result = renderer.getRenderOutput();
     expect(result).toMatchSnapshot();
   });
 
   test('should call closeModal on click', () => {
     const closeModal = jest.fn();
-    const testRenderer = TestRenderer.create(<TrailerModal closeModal={closeModal} trailerURL="url" />);
-    const modal = testRenderer.root.findByProps({testid: 'modal'});
+    const testRenderer = TestRenderer.create(
+    <TrailerModal closeModal={closeModal} isTrailerLoaded={true} trailerURL="url" />
+    );
+    const modal = testRenderer.root.findByProps({className: 'modal'});
 
     act(() => {
       modal.props.onClick();
@@ -35,7 +37,7 @@ describe('TrailerModal component', () => {
     test('should call closeModal if keycode === Enter', () => {
       const closeModal = jest.fn();
       const testRenderer = TestRenderer.create(<TrailerModal closeModal={closeModal} trailerURL="url" />);
-      const modal = testRenderer.root.findByProps({testid: 'modal'});
+      const modal = testRenderer.root.findByProps({className: 'modal'});
 
       act(() => {
         modal.props.onKeyDown({ key: 'Escape', code: 'Escape', which: 27 });
@@ -47,7 +49,7 @@ describe('TrailerModal component', () => {
     test('should not call closeModal function if keycode !== Enter', () => {
       const closeModal = jest.fn();
       const testRenderer = TestRenderer.create(<TrailerModal closeModal={closeModal} trailerURL="url" />);
-      const modal = testRenderer.root.findByProps({testid: 'modal'});
+      const modal = testRenderer.root.findByProps({className: 'modal'});
 
       act(() => {
         modal.props.onKeyDown({ key: 's', code: 'KeyS', which: 83 });

@@ -1,11 +1,14 @@
 import { reducer } from '../store';
-import { searchResultsAction, genresAction, setModal, setTrailerURL } from '../actions';
+import {
+  searchResultsAction, genresAction, setModal, setTrailerURL, setIsTrailerLoaded
+} from '../actions';
 
 const state = {
   searchResults: [],
   genres: [],
   isModalOpen: false,
-  trailerURL: ''
+  trailerURL: '',
+  isTrailerLoaded: false,
 };
 
 describe('Reducer should return store with changes according to action type', () => {
@@ -15,7 +18,8 @@ describe('Reducer should return store with changes according to action type', ()
         searchResults: [1, 2, 3],
         genres: [],
         isModalOpen: false,
-        trailerURL: ''
+        trailerURL: '',
+        isTrailerLoaded: false,
       }
     )
   });
@@ -26,7 +30,8 @@ describe('Reducer should return store with changes according to action type', ()
         searchResults: [],
         genres: ['Drama', 'Adventure'],
         isModalOpen: false,
-        trailerURL: ''
+        trailerURL: '',
+        isTrailerLoaded: false,
       }
     )
   });
@@ -37,18 +42,32 @@ describe('Reducer should return store with changes according to action type', ()
         searchResults: [],
         genres: [],
         isModalOpen: true,
-        trailerURL: ''
+        trailerURL: '',
+        isTrailerLoaded: false,
       }
     )
   });
 
-  test('setModal', () => {
+  test('setTrailerURL', () => {
     expect(reducer(state, setTrailerURL('some url'))).toStrictEqual(
       {
         searchResults: [],
         genres: [],
         isModalOpen: false,
-        trailerURL: 'some url'
+        trailerURL: 'some url',
+        isTrailerLoaded: false,
+      }
+    )
+  });
+
+  test('setIsTrailerLoaded', () => {
+    expect(reducer(state, setIsTrailerLoaded(true))).toStrictEqual(
+      {
+        searchResults: [],
+        genres: [],
+        isModalOpen: false,
+        trailerURL: '',
+        isTrailerLoaded: true,
       }
     )
   });

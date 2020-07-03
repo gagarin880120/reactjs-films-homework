@@ -6,6 +6,7 @@ const initialState = {
   genres: [],
   isModalOpen: false,
   trailerURL: '',
+  isTrailerLoaded: false,
 };
 
 export function reducer(state = initialState, action) {
@@ -18,6 +19,8 @@ export function reducer(state = initialState, action) {
       return { ...state, isModalOpen: action.isModalOpen };
     case 'TRAILER':
       return { ...state, trailerURL: action.trailerURL };
+    case 'IS_TRAILER_LOADED':
+      return { ...state, isTrailerLoaded: action.isTrailerLoaded };
     default:
       return state;
   }

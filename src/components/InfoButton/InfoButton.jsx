@@ -8,7 +8,6 @@ export default function InfoButton({ onInfoButtonClick }) {
       onClick={onInfoButtonClick}
       className={styles.infoButton}
       type="button"
-      testid="infoButton"
     >
       View Info
     </button>

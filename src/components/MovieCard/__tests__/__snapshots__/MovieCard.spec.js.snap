@@ -12,7 +12,6 @@ exports[`MovieCard component should render without crashing 1`] = `
   >
     <div
       className="hoverTrailer"
-      testid="hoverTrailer"
     >
       <TrailerButtonRound
         id={11}
@@ -29,7 +28,6 @@ exports[`MovieCard component should render without crashing 1`] = `
     </div>
     <div
       className="movieInfo"
-      testid="info"
     >
       <p
         className="movieTitle"

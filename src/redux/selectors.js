@@ -8,5 +8,8 @@ const searchResultsSelector = (state) => state.searchResults.map((v) => ({
 const modalSelector = (state) => state.isModalOpen;
 
 const trailerSelector = (state) => state.trailerURL;
+const isTrailerLoadedSelector = (state) => state.isTrailerLoaded;
 
-export { searchResultsSelector, modalSelector, trailerSelector };
+export {
+  searchResultsSelector, modalSelector, trailerSelector, isTrailerLoadedSelector,
+};

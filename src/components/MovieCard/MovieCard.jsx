@@ -22,7 +22,6 @@ export default function MovieCard({ movie, onTrailerButtonClick }) {
       >
         <div
           ref={hoverEl}
-          testid="hoverTrailer"
           className={styles.hoverTrailer}
         >
           <TrailerButtonRound
@@ -31,7 +30,6 @@ export default function MovieCard({ movie, onTrailerButtonClick }) {
           />
           <span className={styles.hoverTrailerText}>Watch Now</span>
           <InfoButton
-
             onInfoButtonClick={() => {
               hoverEl.current.className = styles.hoverElDisplayNone;
               setIsInfoViewed(true);
@@ -41,13 +39,11 @@ export default function MovieCard({ movie, onTrailerButtonClick }) {
         </div>
         <div
           className={styles.movieInfo}
-          testid="info"
           ref={infoEl}
         >
           {
             isInfoViewed ? (
               <button
-                testid="closeInfo"
                 className={styles.closeInfo}
                 type="button"
                 onClick={() => {

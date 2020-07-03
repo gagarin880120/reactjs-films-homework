@@ -7,12 +7,11 @@ exports[`TrailerModal component should render span with text "Trailer is not ava
   onKeyDown={[Function]}
   role="button"
   tabIndex={0}
-  testid="modal"
 >
   <React.Fragment>
     <span
       className="noTrailer"
-      testid="noTrailer"
+      testId="noTrailer"
     >
       Trailer is not available
     </span>
@@ -27,6 +26,5 @@ exports[`TrailerModal component should render without crashing 1`] = `
   onKeyDown={[Function]}
   role="button"
   tabIndex={0}
-  testid="modal"
 />
 `;

@@ -37,7 +37,7 @@ describe('MovieCard component', () => {
     );
 
     test('when infoButton is clicked should render overview element', () => {
-      const button = testRenderer.root.findByProps({testid: 'infoButton'});
+      const button = testRenderer.root.findByProps({className: 'infoButton'});
 
       act(() => {
         button.props.onClick();
@@ -49,8 +49,8 @@ describe('MovieCard component', () => {
     });
 
     test('when closeInfo is clicked should change hoverEl className to hoverTrailer', () => {
-      const closeInfo = testRenderer.root.findByProps({testid: 'closeInfo'});
-      const hoverEl = testRenderer.root.findByProps({testid: 'hoverTrailer'});
+      const closeInfo = testRenderer.root.findByProps({className: 'closeInfo'});
+      const hoverEl = testRenderer.root.findByProps({className: 'hoverTrailer'});
 
       act(() => {
         closeInfo.props.onClick();

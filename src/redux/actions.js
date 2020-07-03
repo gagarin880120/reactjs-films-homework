@@ -28,15 +28,28 @@ function setTrailerURL(trailerURL) {
   };
 }
 
+function setIsTrailerLoaded(isTrailerLoaded) {
+  return {
+    type: 'IS_TRAILER_LOADED',
+    isTrailerLoaded,
+  };
+}
+
 function getTrailer(id) {
   return (dispatch) => {
-    dispatch(setTrailerURL('loading'));
+    dispatch(setIsTrailerLoaded(false));
     return fetch(
       `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos`,
     )
       .then((res) => res.json())
-      .then((data) => dispatch(setTrailerURL(data.videos.results[0].key)))
-      .catch(() => dispatch(setTrailerURL(null)));
+      .then((data) => {
+        dispatch(setIsTrailerLoaded(true));
+        dispatch(setTrailerURL(data.videos.results[0].key));
+      })
+      .catch(() => {
+        dispatch(setIsTrailerLoaded(true));
+        dispatch(setTrailerURL(null));
+      });
   };
 }
 
@@ -61,6 +74,6 @@ function getGenres() {
 }
 
 export {
-  searchResultsAction, genresAction, getResults,
-  getGenres, setModal, getTrailer, setTrailerURL,
+  searchResultsAction, genresAction, getResults, getGenres,
+  setModal, getTrailer, setTrailerURL, setIsTrailerLoaded,
 };
