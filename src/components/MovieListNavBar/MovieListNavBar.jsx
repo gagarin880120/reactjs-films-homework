@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './MovieListNavBar.module.scss';
 
 export default function MovieListNavBar({
-  onTrending, onTopRated, onUpcoming, genres, onGenreChange,
+  onTrending, onTopRated, onUpcoming, genres, onGenreChange, currentGenre,
 }) {
   return (
     <div className={styles.wrapper}>
@@ -34,7 +34,13 @@ export default function MovieListNavBar({
       >
         Coming soon
       </button>
-      <select name="genres" onChange={(e) => onGenreChange(e.target.value)}>
+      <select
+        name="genres"
+        onChange={(e) => {
+          onGenreChange(e.target.value)
+        }}
+        value={currentGenre}
+      >
         <option value="">Genre</option>
         {
           genres.map((genre) => (
@@ -51,6 +57,7 @@ MovieListNavBar.propTypes = {
   onUpcoming: PropTypes.func,
   onGenreChange: PropTypes.func,
   genres: PropTypes.instanceOf(Array),
+  currentGenre: PropTypes.string,
 };
 
 MovieListNavBar.defaultProps = {
@@ -59,4 +66,5 @@ MovieListNavBar.defaultProps = {
   onUpcoming: null,
   onGenreChange: null,
   genres: [],
+  currentGenre: '',
 };
