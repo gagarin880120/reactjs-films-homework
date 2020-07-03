@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import Footer from './Footer';
 import { getMovies } from '../../redux/actions';
 import {
-  resultsSelector, currentActionSelector, currentPageSelector, querySelector,
-  currentGenreIdSelector, isLoadedSelector, currentURLSelector, totalPagesSelector,
+  resultsSelector, currentPageSelector, querySelector,
+  isLoadedSelector, currentURLSelector, totalPagesSelector,
 } from '../../redux/selectors';
 
 export function FooterContainer({
   results, onIntersect, currentAction, currentPage,
-  query, currentGenre, isLoaded, url, totalPages,
+  query, isLoaded, url, totalPages,
 }) {
   return (
     <Footer
@@ -18,7 +18,6 @@ export function FooterContainer({
       currentPage={currentPage}
       onIntersect={onIntersect}
       query={query}
-      currentGenre={currentGenre}
       currentAction={currentAction}
       isLoaded={isLoaded}
       url={url}
@@ -30,17 +29,15 @@ export function FooterContainer({
 export const mapStateToProps = (state) => ({
   results: resultsSelector(state),
   currentPage: currentPageSelector(state),
-  currentAction: currentActionSelector(state),
   query: querySelector(state),
-  currentGenre: currentGenreIdSelector(state),
   isLoaded: isLoadedSelector(state),
   url: currentURLSelector(state),
   totalPages: totalPagesSelector(state),
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  onIntersect(url, page, query, genre, results) {
-    dispatch(getMovies(url, page, query, genre, results));
+  onIntersect(url, page, query, results) {
+    dispatch(getMovies(url, page, query, '', results));
   },
 });
 
@@ -50,7 +47,6 @@ FooterContainer.propTypes = {
   currentAction: PropTypes.string,
   onIntersect: PropTypes.func,
   query: PropTypes.string,
-  currentGenre: PropTypes.number,
   isLoaded: PropTypes.bool,
   url: PropTypes.string,
   totalPages: PropTypes.number,
@@ -62,7 +58,6 @@ FooterContainer.defaultProps = {
   currentAction: '',
   onIntersect: null,
   query: '',
-  currentGenre: 0,
   isLoaded: false,
   url: '',
   totalPages: 0,

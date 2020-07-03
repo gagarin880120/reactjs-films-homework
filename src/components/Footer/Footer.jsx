@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Footer.module.scss';
 
 export default function Footer({
-  results, onIntersect, currentPage, query, currentGenre, isLoaded, url, totalPages,
+  results, onIntersect, currentPage, query, isLoaded, url, totalPages,
 }) {
   const footer = useRef();
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function Footer({
       entries.forEach((entry) => {
         const { isIntersecting } = entry;
         if (isIntersecting) {
-          onIntersect(url, currentPage + 1, query, currentGenre, results);
+          onIntersect(url, currentPage + 1, query, results);
           observer = observer.disconnect();
         }
       });
@@ -40,7 +40,6 @@ Footer.propTypes = {
   currentPage: PropTypes.number,
   onIntersect: PropTypes.func,
   query: PropTypes.string,
-  currentGenre: PropTypes.number,
   isLoaded: PropTypes.bool,
   url: PropTypes.string,
   totalPages: PropTypes.number,
@@ -51,7 +50,6 @@ Footer.defaultProps = {
   currentPage: 1,
   onIntersect: null,
   query: '',
-  currentGenre: 0,
   isLoaded: false,
   url: '',
   totalPages: 0,

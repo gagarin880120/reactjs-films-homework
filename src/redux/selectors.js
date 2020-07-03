@@ -27,8 +27,10 @@ const totalPagesSelector = (state) => state.totalPages;
 const querySelector = (state) => state.query;
 const isLoadedSelector = (state) => state.isLoaded;
 const currentURLSelector = (state) => state.currentURL;
+const currentGenreSelector = (state) => state.currentGenre;
 
 export {
   resultsSelector, modalSelector, movieDetailsSelector, trailerSelector, genresSelector,
   currentPageSelector, totalPagesSelector, querySelector, isLoadedSelector, currentURLSelector,
+  currentGenreSelector,
 };
