@@ -5,12 +5,12 @@ import Footer from './Footer';
 import { getMovies } from '../../redux/actions';
 import {
   resultsSelector, currentPageSelector, querySelector,
-  isLoadedSelector, currentURLSelector, totalPagesSelector,
+  areMoviesLoadedSelector, currentURLSelector, totalPagesSelector,
 } from '../../redux/selectors';
 
 export function FooterContainer({
   results, onIntersect, currentAction, currentPage,
-  query, isLoaded, url, totalPages,
+  query, areMoviesLoaded, url, totalPages,
 }) {
   return (
     <Footer
@@ -19,7 +19,7 @@ export function FooterContainer({
       onIntersect={onIntersect}
       query={query}
       currentAction={currentAction}
-      isLoaded={isLoaded}
+      areMoviesLoaded={areMoviesLoaded}
       url={url}
       totalPages={totalPages}
     />
@@ -30,7 +30,7 @@ export const mapStateToProps = (state) => ({
   results: resultsSelector(state),
   currentPage: currentPageSelector(state),
   query: querySelector(state),
-  isLoaded: isLoadedSelector(state),
+  areMoviesLoaded: areMoviesLoadedSelector(state),
   url: currentURLSelector(state),
   totalPages: totalPagesSelector(state),
 });
@@ -47,7 +47,7 @@ FooterContainer.propTypes = {
   currentAction: PropTypes.string,
   onIntersect: PropTypes.func,
   query: PropTypes.string,
-  isLoaded: PropTypes.bool,
+  areMoviesLoaded: PropTypes.bool,
   url: PropTypes.string,
   totalPages: PropTypes.number,
 };
@@ -58,7 +58,7 @@ FooterContainer.defaultProps = {
   currentAction: '',
   onIntersect: null,
   query: '',
-  isLoaded: false,
+  areMoviesLoaded: false,
   url: '',
   totalPages: 0,
 };
