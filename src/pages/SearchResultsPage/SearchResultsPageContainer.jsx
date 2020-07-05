@@ -2,30 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SearchResultsPage from './SearchResultsPage';
-import { resultsSelector, isLoadedSelector } from '../../redux/selectors';
+import { resultsSelector, areMoviesLoadedSelector } from '../../redux/selectors';
 
-export function SearchResultsPageContainer({ results, isLoaded }) {
+export function SearchResultsPageContainer({ results, areMoviesLoaded }) {
   return (
     <SearchResultsPage
       results={results}
-      isLoaded={isLoaded}
+      areMoviesLoaded={areMoviesLoaded}
     />
   );
 }
 
 export const mapStateToProps = (state) => ({
   results: resultsSelector(state),
-  isLoaded: isLoadedSelector(state),
+  areMoviesLoaded: areMoviesLoadedSelector(state),
 });
 
 SearchResultsPageContainer.propTypes = {
   results: PropTypes.instanceOf(Array),
-  isLoaded: PropTypes.bool,
+  areMoviesLoaded: PropTypes.bool,
 };
 
 SearchResultsPageContainer.defaultProps = {
   results: [],
-  isLoaded: false,
+  areMoviesLoaded: false,
 };
 
 export default connect(mapStateToProps)(SearchResultsPageContainer);

@@ -6,7 +6,7 @@ import FooterContainer from '../../components/Footer';
 import Spinner from '../../components/Spinner/Spinner';
 import styles from './SearchResultsPage.module.scss';
 
-export default function SearchResultsPage({ results, isLoaded }) {
+export default function SearchResultsPage({ results, areMoviesLoaded }) {
   return (
     <div
       className={styles.wrapper}
@@ -15,7 +15,7 @@ export default function SearchResultsPage({ results, isLoaded }) {
       <MovieListContainer />
       <div className={styles.loading}>
         {
-          !isLoaded ? <Spinner /> : null
+          !areMoviesLoaded ? <Spinner /> : null
         }
       </div>
       {
@@ -27,10 +27,10 @@ export default function SearchResultsPage({ results, isLoaded }) {
 
 SearchResultsPage.propTypes = {
   results: PropTypes.instanceOf(Array),
-  isLoaded: PropTypes.bool,
+  areMoviesLoaded: PropTypes.bool,
 };
 
 SearchResultsPage.defaultProps = {
   results: [],
-  isLoaded: false,
+  areMoviesLoaded: false,
 };
