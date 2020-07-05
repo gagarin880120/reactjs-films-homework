@@ -9,6 +9,7 @@ const resultsSelector = (state) => state.results.map((v) => ({
 
 const modalSelector = (state) => state.isModalOpen;
 const trailerSelector = (state) => state.trailerURL;
+const isTrailerLoadedSelector = (state) => state.isTrailerLoaded;
 
 const movieDetailsSelector = (state) => {
   if (state.movieDetails) {
@@ -25,12 +26,12 @@ const movieDetailsSelector = (state) => {
 const currentPageSelector = (state) => state.currentPage;
 const totalPagesSelector = (state) => state.totalPages;
 const querySelector = (state) => state.query;
-const isLoadedSelector = (state) => state.isLoaded;
+const areMoviesLoadedSelector = (state) => state.areMoviesLoaded;
 const currentURLSelector = (state) => state.currentURL;
 const currentGenreSelector = (state) => state.currentGenre;
 
 export {
-  resultsSelector, modalSelector, movieDetailsSelector, trailerSelector, genresSelector,
-  currentPageSelector, totalPagesSelector, querySelector, isLoadedSelector, currentURLSelector,
-  currentGenreSelector,
+  resultsSelector, modalSelector, movieDetailsSelector, trailerSelector, isTrailerLoadedSelector,
+  genresSelector, currentPageSelector, totalPagesSelector, querySelector, areMoviesLoadedSelector,
+  currentURLSelector, currentGenreSelector,
 };

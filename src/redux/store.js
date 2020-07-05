@@ -7,10 +7,11 @@ const initialState = {
   genres: null || JSON.parse(localStorage.getItem('genres')),
   isModalOpen: false,
   trailerURL: '',
+  isTrailerLoaded: false,
   movieDetails: null || JSON.parse(localStorage.getItem('movieDetails')),
   currentPage: +localStorage.getItem('currentPage') || 1,
   totalPages: 0,
-  isLoaded: JSON.parse(localStorage.getItem('isLoaded')) && false,
+  areMoviesLoaded: false || JSON.parse(localStorage.getItem('areMoviesLoaded')),
   currentURL: '' || localStorage.getItem('currentURL'),
   currentGenre: localStorage.getItem('currentGenre') || '',
 };
@@ -27,14 +28,16 @@ export function reducer(state = initialState, action) {
       return { ...state, isModalOpen: action.isModalOpen };
     case 'TRAILER':
       return { ...state, trailerURL: action.trailerURL };
+    case 'IS_TRAILER_LOADED':
+      return { ...state, isTrailerLoaded: action.isTrailerLoaded };
     case 'MOVIE_DETAILS':
       return { ...state, movieDetails: action.detailsObj };
     case 'CURRENT_PAGE':
       return { ...state, currentPage: action.page };
     case 'TOTAL_PAGES':
       return { ...state, totalPages: action.numberOfPages };
-    case 'IS_LOADED':
-      return { ...state, isLoaded: action.isLoaded };
+    case 'ARE_MOVIES_LOADED':
+      return { ...state, areMoviesLoaded: action.areMoviesLoaded };
     case 'CURRENT_URL':
       return { ...state, currentURL: action.currentURL };
     case 'CURRENT_GENRE':

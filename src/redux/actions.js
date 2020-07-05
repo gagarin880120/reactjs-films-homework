@@ -37,6 +37,13 @@ function setTrailerURL(trailerURL) {
   };
 }
 
+function setIsTrailerLoaded(isTrailerLoaded) {
+  return {
+    type: 'IS_TRAILER_LOADED',
+    isTrailerLoaded,
+  };
+}
+
 function setMovieDetails(detailsObj) {
   localStorage.setItem('movieDetails', JSON.stringify(detailsObj));
   return {
@@ -60,11 +67,11 @@ function setTotalPages(numberOfPages) {
   };
 }
 
-function setIsLoaded(isLoaded) {
-  localStorage.setItem('isLoaded', isLoaded);
+function setAreMoviesLoaded(areMoviesLoaded) {
+  localStorage.setItem('areMoviesLoaded', areMoviesLoaded);
   return {
-    type: 'IS_LOADED',
-    isLoaded,
+    type: 'ARE_MOVIES_LOADED',
+    areMoviesLoaded,
   };
 }
 
@@ -93,7 +100,7 @@ function getMovies(currUrl, page, query, genre, results) {
   }
   return (dispatch) => {
     dispatch(setResults(results || []));
-    dispatch(setIsLoaded(false));
+    dispatch(setAreMoviesLoaded(false));
     dispatch(setCurrentURL(url));
     dispatch(setQuery(query));
     dispatch(setCurrentPage(page));
@@ -102,7 +109,7 @@ function getMovies(currUrl, page, query, genre, results) {
       .then((data) => {
         dispatch(setResults(page > 1 ? [...results, ...data.results] : data.results));
         dispatch(setTotalPages(data.total_pages));
-        dispatch(setIsLoaded(true));
+        dispatch(setAreMoviesLoaded(true));
       })
       .catch((e) => console.log(e));
   };
@@ -120,13 +127,19 @@ function getGenres() {
 
 function getTrailer(id) {
   return (dispatch) => {
-    dispatch(setTrailerURL('loading'));
+    dispatch(setIsTrailerLoaded(false));
     return fetch(
       `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos`,
     )
       .then((res) => res.json())
-      .then((data) => dispatch(setTrailerURL(data.videos.results[0].key)))
-      .catch(() => dispatch(setTrailerURL(null)));
+      .then((data) => {
+        dispatch(setIsTrailerLoaded(true));
+        dispatch(setTrailerURL(data.videos.results[0].key));
+      })
+      .catch(() => {
+        dispatch(setIsTrailerLoaded(true));
+        dispatch(setTrailerURL(null));
+      });
   };
 }
 
@@ -140,6 +153,7 @@ function getMovieDetails(id) {
 }
 
 export {
-  getGenres, setModal, getTrailer, setTrailerURL, getMovieDetails,
-  getMovies, setCurrentURL, setCurrentGenre,
+  setResults, setQuery, setGenres, setModal, setTrailerURL, setIsTrailerLoaded,
+  setMovieDetails, setCurrentPage, setTotalPages, setAreMoviesLoaded, setCurrentURL,
+  setCurrentGenre, getMovies, getGenres, getTrailer, getMovieDetails,
 };
