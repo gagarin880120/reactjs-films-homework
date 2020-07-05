@@ -3,20 +3,18 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MovieDetailsPage from './MovieDetailsPage';
 import Spinner from '../../components/Spinner/Spinner';
-import { movieDetailsSelector, isLoadedSelector, resultsSelector } from '../../redux/selectors';
-import { setModal, getTrailer } from '../../redux/actions';
+import { movieDetailsSelector, areMoviesLoadedSelector, resultsSelector } from '../../redux/selectors';
 import styles from './MovieDetailsPage.module.scss';
 
 export function MovieDetailsPageContainer({
-  movie, onTrailerButtonClick, isLoaded, results,
+  movie, areMoviesLoaded, results,
 }) {
   return (
     movie
       ? (
         <MovieDetailsPage
           movie={movie}
-          onTrailerButtonClick={onTrailerButtonClick}
-          isLoaded={isLoaded}
+          areMoviesLoaded={areMoviesLoaded}
           results={results}
         />
       ) : (
@@ -29,29 +27,20 @@ export function MovieDetailsPageContainer({
 
 export const mapStateToProps = (state) => ({
   movie: movieDetailsSelector(state),
-  isLoaded: isLoadedSelector(state),
+  areMoviesLoaded: areMoviesLoadedSelector(state),
   results: resultsSelector(state),
-});
-
-export const mapDispatchToProps = (dispatch) => ({
-  onTrailerButtonClick(id) {
-    dispatch(setModal(true));
-    dispatch(getTrailer(id));
-  },
 });
 
 MovieDetailsPageContainer.propTypes = {
   movie: PropTypes.instanceOf(Object),
-  onTrailerButtonClick: PropTypes.func,
-  isLoaded: PropTypes.bool,
+  areMoviesLoaded: PropTypes.bool,
   results: PropTypes.instanceOf(Array),
 };
 
 MovieDetailsPageContainer.defaultProps = {
   movie: {},
-  onTrailerButtonClick: null,
-  isLoaded: false,
+  areMoviesLoaded: false,
   results: [],
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieDetailsPageContainer);
+export default connect(mapStateToProps)(MovieDetailsPageContainer);

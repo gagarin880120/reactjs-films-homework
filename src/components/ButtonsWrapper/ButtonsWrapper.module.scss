@@ -1,0 +1,29 @@
+.buttonsContainer {
+  position: relative;
+  top: 80px;
+  right: 0;
+  width: 250px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.overview {
+  padding: 1%;
+  position: absolute;
+  width: 20%;
+  top: 80px;
+  right: 2%;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  border: 1px solid white;
+
+  p {
+    padding-left: 1%
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .buttonsContainer {
+    width: 150px;
+  }
+}

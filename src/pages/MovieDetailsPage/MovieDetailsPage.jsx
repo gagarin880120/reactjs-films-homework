@@ -1,19 +1,14 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../../components/Header/Header';
 import MovieInfoContainer from '../../components/MovieInfo';
-import InfoButton from '../../components/InfoButton/InfoButton';
-import TrailerButtonRect from '../../components/TrailerButtonRect/TrailerButtonRect';
 import MovieListContainer from '../../components/MovieList';
 import FooterContainer from '../../components/Footer';
 import Spinner from '../../components/Spinner/Spinner';
+import ButtonsWrapperContainer from '../../components/ButtonsWrapper';
 import styles from './MovieDetailsPage.module.scss';
 
-export default function MovieDetailsPage({
-  movie, onTrailerButtonClick, isLoaded, results
-}) {
-  const infoEl = useRef();
-
+export default function MovieDetailsPage({ movie, areMoviesLoaded, results }) {
   const style = {
     backgroundImage: movie.backdrop_path
       ? `url(https://image.tmdb.org/t/p/w1280${movie.backdrop_path})`
@@ -23,31 +18,16 @@ export default function MovieDetailsPage({
   return (
     <div className={styles.wrapper} style={style}>
       <Header />
-      <div className={styles.overview} ref={infoEl}>
-        <p>{movie.overview}</p>
-      </div>
       <main className={styles.main}>
         <MovieInfoContainer />
-        <div className={styles.buttonsContainer}>
-          <TrailerButtonRect
-            onTrailerButtonClick={onTrailerButtonClick}
-            id={movie.id}
-          />
-          <InfoButton
-            onInfoButtonClick={() => {
-              if (infoEl.current.style.display === 'block') {
-                infoEl.current.style.display = 'none';
-              } else {
-                infoEl.current.style.display = 'block';
-              }
-            }}
-          />
+        <div className={styles.buttons}>
+          <ButtonsWrapperContainer />
         </div>
       </main>
       <MovieListContainer />
       <div className={styles.loading}>
         {
-          !isLoaded ? <Spinner /> : null
+          !areMoviesLoaded ? <Spinner /> : null
         }
       </div>
       {
@@ -63,8 +43,7 @@ MovieDetailsPage.propTypes = {
     id: PropTypes.number,
     overview: PropTypes.string,
   }),
-  onTrailerButtonClick: PropTypes.func,
-  isLoaded: PropTypes.bool,
+  areMoviesLoaded: PropTypes.bool,
   results: PropTypes.instanceOf(Array),
 };
 
@@ -74,7 +53,6 @@ MovieDetailsPage.defaultProps = {
     id: 0,
     overview: '',
   },
-  onTrailerButtonClick: null,
-  isLoaded: false,
+  areMoviesLoaded: false,
   results: [],
 };

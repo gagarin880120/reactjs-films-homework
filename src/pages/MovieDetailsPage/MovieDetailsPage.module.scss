@@ -2,7 +2,6 @@
   color: #fff;
   background-image: url('../../assets/images/no_backdrop.jpg');
   background-size: 100%;
-  position: relative;
 }
 
 .main {
@@ -11,42 +10,6 @@
   margin-top: 25%;
   display: flex;
   justify-content: space-between;
-  position: relative;
-}
-
-.buttonsContainer {
-  position: relative;
-  top: 80px;
-  right: 0;
-  width: 250px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.overview {
-  padding: 1%;
-  display: none;
-  position: absolute;
-  width: 20%;
-  top: 80px;
-  right: 2%;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 5px;
-  border: 1px solid white;
-
-  p {
-    padding-left: 1%
-  }
-
-  button {
-    color: white;
-    background: transparent;
-    padding: 1%;
-    border: none;
-    outline: 0;
-    font-size: 20px;
-    cursor: pointer
-  }
 }
 
 .loading {
@@ -56,10 +19,4 @@
 
 .pageLoading {
   margin-top: 20%;
-}
-
-@media screen and (max-width: 600px) {
-  .buttonsContainer {
-    width: 150px;
-  }
 }
