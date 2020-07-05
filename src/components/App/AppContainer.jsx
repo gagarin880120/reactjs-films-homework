@@ -1,27 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getGenres, getMovies } from '../../redux/actions';
 import { genresSelector } from '../../redux/selectors';
 import getURL from '../../utils/utils';
 import App from './App';
-import Spinner from '../Spinner/Spinner';
-import styles from './App.module.scss';
 
 export function AppContainer({ onAppLoad, genres }) {
-  useEffect(() => {
-    if (!genres) {
-      onAppLoad();
-    }
-  }, []);
-
   return (
-    genres
-      ? <App /> : (
-        <div className={styles.loading}>
-          <Spinner />
-        </div>
-      )
+    <App
+      onAppLoad={onAppLoad}
+      genres={genres}
+    />
   );
 }
 
