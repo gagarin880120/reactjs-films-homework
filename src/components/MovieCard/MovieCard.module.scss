@@ -1,4 +1,4 @@
-.wrapper {
+.galleryWrapper {
   background-image: url('../../assets/images/no_poster.jpg');
   background-size: cover;
   width: 280px;
@@ -19,7 +19,7 @@
   padding-top: 60px;
 }
 
-.wrapper:hover .hoverTrailer {
+.galleryWrapper:hover .hoverTrailer {
   display: flex;
 }
 
@@ -32,6 +32,10 @@
   margin-top: 240px;
   background: #fff;
   padding: 30px 5% 0;
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .movieTitle {
@@ -110,4 +114,40 @@
   margin: 20px 0;
   font-size: 15px;
   line-height: 20px;
+}
+
+.listWrapper {
+  display: flex;
+  margin: 1% 0;
+  background: #fff;
+}
+
+.listImage {
+  background-image: url('../../assets/images/no_poster.jpg');
+  background-size: cover;
+  width: 25%;
+  height: 280px;
+}
+
+.listMovieInfo {
+  margin: 1% 0 0 1%;
+  width: 75%;
+
+  .movieTitle {
+    font-size: 22px;
+    width: 100%;
+    text-overflow: initial;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .overview {
+    color: black;
+  }
+
+  .movieRating {
+    margin-right: 1%;
+  }
 }

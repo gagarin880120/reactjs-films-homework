@@ -5,13 +5,13 @@ import MovieCardContainer from '../MovieCard';
 import TrailerModalContainer from '../TrailerModal';
 import MovieListNavBarContainer from '../MovieListNavBar';
 
-export default function MovieList({ results, isModalOpen }) {
+export default function MovieList({ results, isModalOpen, viewMode }) {
   return (
     <div
       className={styles.wrapper}
     >
       <MovieListNavBarContainer />
-      <div className={styles.container}>
+      <div className={styles[viewMode]}>
         {results.map((result) => (
           <MovieCardContainer
             key={result.id}
@@ -29,9 +29,11 @@ export default function MovieList({ results, isModalOpen }) {
 MovieList.propTypes = {
   results: PropTypes.instanceOf(Array),
   isModalOpen: PropTypes.bool,
+  viewMode: PropTypes.string,
 };
 
 MovieList.defaultProps = {
   results: [],
   isModalOpen: false,
+  viewMode: 'gallery',
 };

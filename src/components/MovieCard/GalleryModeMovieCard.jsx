@@ -6,7 +6,7 @@ import InfoButton from '../InfoButton/InfoButton';
 import TrailerButtonRect from '../TrailerButtonRect/TrailerButtonRect';
 import TrailerButtonRound from '../TrailerButtonRound/TrailerButtonRound';
 
-export default function MovieCard({
+export default function GalleryModeMovieCard({
   movie, onTrailerButtonClick, onLinkClick,
 }) {
   const [isInfoViewed, setIsInfoViewed] = useState(false);
@@ -15,7 +15,7 @@ export default function MovieCard({
 
   return (
     <div
-      className={styles.wrapper}
+      className={styles.galleryWrapper}
       style={{
         backgroundImage: movie.poster_path
           ? `url(https://image.tmdb.org/t/p/w185/${movie.poster_path})`
@@ -85,7 +85,7 @@ export default function MovieCard({
   );
 }
 
-MovieCard.propTypes = {
+GalleryModeMovieCard.propTypes = {
   onTrailerButtonClick: PropTypes.func,
   onLinkClick: PropTypes.func,
   movie: PropTypes.shape({
@@ -98,7 +98,7 @@ MovieCard.propTypes = {
   }),
 };
 
-MovieCard.defaultProps = {
+GalleryModeMovieCard.defaultProps = {
   onTrailerButtonClick: null,
   onLinkClick: null,
   movie: {

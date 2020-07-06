@@ -3,7 +3,7 @@
   padding: 2%;
 }
 
-.container {
+.gallery {
   margin-top: 2%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -12,28 +12,34 @@
   justify-items: center;
 }
 
+.list {
+  margin-top: 2%;
+  display: flex;
+  flex-direction: column;
+}
+
 @media screen and (min-width: 1600px) {
-  .container {
+  .gallery {
     grid-template-columns: repeat(5, 1fr);
   }
 }
 
 @media screen and (max-width: 1200px) {
-  .container {
+  .gallery {
     padding: 1%;
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media screen and (max-width: 890px) {
-  .container {
+  .gallery {
     padding: 1%;
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (max-width: 600px) {
-  .container {
+  .gallery {
     padding: 1%;
     grid-template-columns: 1fr;
   }

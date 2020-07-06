@@ -14,6 +14,8 @@ const initialState = {
   areMoviesLoaded: false || JSON.parse(localStorage.getItem('areMoviesLoaded')),
   currentURL: '' || localStorage.getItem('currentURL'),
   currentGenre: localStorage.getItem('currentGenre') || '',
+  viewMode: localStorage.getItem('viewMode') || 'gallery',
+  isMovieLoaded: false || JSON.parse(localStorage.getItem('isMovieLoaded')),
 };
 
 export function reducer(state = initialState, action) {
@@ -42,6 +44,10 @@ export function reducer(state = initialState, action) {
       return { ...state, currentURL: action.currentURL };
     case 'CURRENT_GENRE':
       return { ...state, currentGenre: action.currentGenre };
+    case 'VIEW_MODE':
+      return { ...state, viewMode: action.viewMode };
+    case 'IS_MOVIE_LOADED':
+      return { ...state, isMovieLoaded: action.isLoaded };
     default:
       return state;
   }

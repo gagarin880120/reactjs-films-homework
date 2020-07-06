@@ -29,9 +29,11 @@ const querySelector = (state) => state.query;
 const areMoviesLoadedSelector = (state) => state.areMoviesLoaded;
 const currentURLSelector = (state) => state.currentURL;
 const currentGenreSelector = (state) => state.currentGenre;
+const viewModeSelector = (state) => state.viewMode;
+const isMovieLoadedSelector = (state) => state.isMovieLoaded;
 
 export {
   resultsSelector, modalSelector, movieDetailsSelector, trailerSelector, isTrailerLoadedSelector,
   genresSelector, currentPageSelector, totalPagesSelector, querySelector, areMoviesLoadedSelector,
-  currentURLSelector, currentGenreSelector,
+  currentURLSelector, currentGenreSelector, viewModeSelector, isMovieLoadedSelector,
 };

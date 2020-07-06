@@ -1,14 +1,17 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import InfoButton from '../InfoButton/InfoButton';
 import TrailerButtonRect from '../TrailerButtonRect/TrailerButtonRect';
 import styles from './ButtonsWrapper.module.scss';
 
 export default function ButtonsWrapper({ movie, onTrailerButtonClick }) {
-  const info = useRef();
+  const [isInfoViewed, setIsInfoViewed] = useState(false);
   return (
     <div className={styles.wrapper}>
-      <div className={styles.overview} ref={info} style={{display: 'none'}}>
+      <div
+        className={styles.overview}
+        style={{ display: isInfoViewed ? 'block' : 'none' }}
+      >
         <p>{movie.overview}</p>
       </div>
       <div className={styles.buttonsContainer}>
@@ -18,10 +21,10 @@ export default function ButtonsWrapper({ movie, onTrailerButtonClick }) {
         />
         <InfoButton
           onInfoButtonClick={() => {
-            if (info.current.style.display === 'none') {
-              info.current.style.display = 'block';
+            if (isInfoViewed) {
+              setIsInfoViewed(false);
             } else {
-              info.current.style.display = 'none';
+              setIsInfoViewed(true);
             }
           }}
         />
@@ -31,11 +34,17 @@ export default function ButtonsWrapper({ movie, onTrailerButtonClick }) {
 }
 
 ButtonsWrapper.propTypes = {
-  movie: PropTypes.instanceOf(Object),
+  movie: PropTypes.shape({
+    id: PropTypes.number,
+    overview: PropTypes.string,
+  }),
   onTrailerButtonClick: PropTypes.func,
 };
 
 ButtonsWrapper.defaultProps = {
-  movie: {},
+  movie: {
+    id: 0,
+    overview: '',
+  },
   onTrailerButtonClick: null,
 };

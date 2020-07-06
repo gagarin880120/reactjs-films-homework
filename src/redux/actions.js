@@ -91,6 +91,22 @@ function setCurrentGenre(currentGenre) {
   };
 }
 
+function setViewMode(viewMode) {
+  localStorage.setItem('viewMode', viewMode);
+  return {
+    type: 'VIEW_MODE',
+    viewMode,
+  };
+}
+
+function setIsMovieLoaded(isLoaded) {
+  localStorage.setItem('isMovieLoaded', isLoaded);
+  return {
+    type: 'IS_MOVIE_LOADED',
+    isLoaded,
+  };
+}
+
 function getMovies(currUrl, page, query, genre, results) {
   let url = currUrl;
   if (url.includes('search') && page === 1) {
@@ -144,16 +160,22 @@ function getTrailer(id) {
 }
 
 function getMovieDetails(id) {
-  return (dispatch) => fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`,
-  )
-    .then((res) => res.json())
-    .then((data) => dispatch(setMovieDetails(data)))
-    .catch((e) => console.log(e));
+  return (dispatch) => {
+    dispatch(setIsMovieLoaded(false));
+    return fetch(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`,
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch(setMovieDetails(data));
+        dispatch(setIsMovieLoaded(true));
+      })
+      .catch((e) => console.log(e));
+  }
 }
 
 export {
   setResults, setQuery, setGenres, setModal, setTrailerURL, setIsTrailerLoaded,
   setMovieDetails, setCurrentPage, setTotalPages, setAreMoviesLoaded, setCurrentURL,
-  setCurrentGenre, getMovies, getGenres, getTrailer, getMovieDetails,
+  setCurrentGenre, getMovies, getGenres, getTrailer, getMovieDetails, setViewMode,
 };

@@ -1,20 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import MovieCard from './MovieCard';
-import {
-  setModal, getTrailer, getMovieDetails,
-} from '../../redux/actions';
+import GalleryModeMovieCard from './GalleryModeMovieCard';
+import ListModeMovieCard from './ListModeMovieCard';
+import { viewModeSelector } from '../../redux/selectors';
+import { setModal, getTrailer, getMovieDetails } from '../../redux/actions';
 
-export function MovieCardContainer({ onTrailerButtonClick, movie, onLinkClick }) {
+export function MovieCardContainer({
+  onTrailerButtonClick, movie, onLinkClick, viewMode,
+}) {
   return (
-    <MovieCard
-      onTrailerButtonClick={onTrailerButtonClick}
-      movie={movie}
-      onLinkClick={onLinkClick}
-    />
+    viewMode === 'gallery'
+      ? (
+        <GalleryModeMovieCard
+          onTrailerButtonClick={onTrailerButtonClick}
+          movie={movie}
+          onLinkClick={onLinkClick}
+          viewMode={viewMode}
+        />
+      ) : (
+        <ListModeMovieCard
+          onTrailerButtonClick={onTrailerButtonClick}
+          movie={movie}
+          onLinkClick={onLinkClick}
+          viewMode={viewMode}
+        />
+      )
   );
 }
+
+export const mapStateToProps = (state) => ({
+  viewMode: viewModeSelector(state),
+});
 
 export const mapDispatchToProps = (dispatch) => ({
   onTrailerButtonClick(id) {
@@ -30,12 +47,14 @@ MovieCardContainer.propTypes = {
   onTrailerButtonClick: PropTypes.func,
   onLinkClick: PropTypes.func,
   movie: PropTypes.shape({}),
+  viewMode: PropTypes.string,
 };
 
 MovieCardContainer.defaultProps = {
   onTrailerButtonClick: null,
   onLinkClick: null,
   movie: {},
+  viewMode: '',
 };
 
-export default connect(null, mapDispatchToProps)(MovieCardContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieCardContainer);

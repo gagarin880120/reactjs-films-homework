@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MovieListNavBar from './MovieListNavBar';
-import { getMovies, setCurrentGenre } from '../../redux/actions';
+import { getMovies, setCurrentGenre, setViewMode } from '../../redux/actions';
 import { genresSelector, currentGenreSelector } from '../../redux/selectors';
 import getURL from '../../utils/utils';
 
 export function MovieListNavBarContainer({
-  onTrending, onTopRated, onUpcoming, genres, onGenreChange, currentGenre,
+  onTrending, onTopRated, onUpcoming, genres, onGenreChange, currentGenre, switchViewMode,
 }) {
   return (
     <MovieListNavBar
@@ -17,6 +17,7 @@ export function MovieListNavBarContainer({
       onGenreChange={onGenreChange}
       genres={genres}
       currentGenre={currentGenre}
+      switchViewMode={switchViewMode}
     />
   );
 }
@@ -43,6 +44,9 @@ export const mapDispatchToProps = (dispatch) => ({
     dispatch(setCurrentGenre(genreId));
     dispatch(getMovies(getURL('byGenre'), 1, '', genreId));
   },
+  switchViewMode(mode) {
+    dispatch(setViewMode(mode));
+  },
 });
 
 MovieListNavBarContainer.propTypes = {
@@ -52,6 +56,7 @@ MovieListNavBarContainer.propTypes = {
   onGenreChange: PropTypes.func,
   genres: PropTypes.instanceOf(Array),
   currentGenre: PropTypes.string,
+  switchViewMode: PropTypes.func,
 };
 
 MovieListNavBarContainer.defaultProps = {
@@ -61,6 +66,7 @@ MovieListNavBarContainer.defaultProps = {
   onGenreChange: null,
   genres: [],
   currentGenre: '',
+  switchViewMode: null,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieListNavBarContainer);
