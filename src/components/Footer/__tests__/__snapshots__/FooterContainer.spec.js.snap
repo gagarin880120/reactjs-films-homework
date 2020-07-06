@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FooterContainer component should render without crashing 1`] = `
+<Footer
+  areMoviesLoaded={false}
+  currentAction=""
+  currentPage={1}
+  onIntersect={null}
+  query=""
+  results={Array []}
+  totalPages={0}
+  url=""
+/>
+`;

@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchResultsPageContainer component should render without crashing 1`] = `
+<SearchResultsPage
+  areMoviesLoaded={false}
+  results={Array []}
+/>
+`;

@@ -6,34 +6,30 @@ exports[`MovieInfo component should render without crashing 1`] = `
 >
   <h2
     className="movieTitle"
-  >
-    
-  </h2>
+  />
   <div
     className="genreDurationContainer"
   >
     <span
       className="genre"
-    >
-      
-    </span>
+    />
     <span
       className="duration"
-    >
-      
-    </span>
+    />
   </div>
   <div
     className="rating"
   >
     <span
       className="ratingStars"
-    />
+    >
+      <RatingStar
+        type="full"
+      />
+    </span>
     <span
       className="ratingText"
-    >
-      0
-    </span>
+    />
   </div>
 </div>
 `;

@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component should render without crashing 1`] = `
+<div
+  className="wrapper"
+>
+  <BrowserRouter>
+    <Switch>
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.memo),
+            "WrappedComponent": [Function],
+            "compare": null,
+            "displayName": "Connect(SearchResultsPageContainer)",
+            "type": [Function],
+          }
+        }
+        exact={true}
+        path="/"
+      />
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.memo),
+            "WrappedComponent": [Function],
+            "compare": null,
+            "displayName": "Connect(MovieDetailsPageContainer)",
+            "type": [Function],
+          }
+        }
+        exact={true}
+        path="/movieDetailsPage"
+      />
+    </Switch>
+  </BrowserRouter>
+</div>
+`;

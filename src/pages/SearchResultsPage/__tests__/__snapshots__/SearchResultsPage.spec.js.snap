@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchResultsPage component should render with other elements, depends on props 1`] = `
+<div
+  className="wrapper"
+>
+  <Header />
+  <Memo(Connect(MovieListContainer)) />
+  <div
+    className="loading"
+  >
+    <Spinner />
+  </div>
+  <Memo(Connect(FooterContainer)) />
+</div>
+`;
+
+exports[`SearchResultsPage component should render without crashing 1`] = `
+<div
+  className="wrapper"
+>
+  <Header />
+  <Memo(Connect(MovieListContainer)) />
+  <div
+    className="loading"
+  />
+</div>
+`;

@@ -4,11 +4,15 @@ exports[`Header component should render without crashing 1`] = `
 <header
   className="header"
 >
-  <h1
-    className="title"
+  <Link
+    to="/"
   >
-    Films
-  </h1>
+    <h1
+      className="title"
+    >
+      Films
+    </h1>
+  </Link>
   <Memo(Connect(SearchFieldContainer)) />
 </header>
 `;

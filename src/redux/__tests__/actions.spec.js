@@ -1,111 +1,190 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import {
-  searchResultsAction, genresAction, getResults, getGenres,
-  setModal, setTrailerURL, getTrailer
- } from '../actions';
+import { getMovies, getGenres, getTrailer, getMovieDetails } from '../actions';
+
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-
-test('searchResultsAction should return object with type SEARCH and results', () => {
-  expect(searchResultsAction([1, 2, 3])).toStrictEqual(
-    {
-      type: 'SEARCH',
-      results: [1, 2, 3]
-  });
-});
-
-test('genresAction should return object with type GENRES and genres array', () => {
-  expect(genresAction(['Drama', 'Adventure'])).toStrictEqual(
-    {
-      type: 'GENRES',
-      genres: ['Drama', 'Adventure']
-  });
-});
-
-test('setModal should return object with type MODAL and boolean value', () => {
-  expect(setModal(true)).toStrictEqual(
-    {
-      type: 'MODAL',
-      isModalOpen: true
-  });
-});
-
-test('setTrailerURL should return object with type TRAILER and path to trailer', () => {
-  expect(setTrailerURL('path-to-trailer')).toStrictEqual(
-    {
-      type: 'TRAILER',
-      trailerURL: 'path-to-trailer'
-  });
-});
 
 describe('Async action', () => {
   beforeEach(() => {
     fetch.resetMocks()
   });
 
-  describe('getTrailer', () => {
-    test('should dispatch trailerURL', () => {
+  describe('getMovies', () => {
+    test('should dispatch results, areMoviesLoaded, url, query (if it is), page, and total pages on successful fetch request', () => {
+      fetch.mockResponse(JSON.stringify({ results: [{title: 'Matrix'}], total_pages: 5 }));
+
+      const expectedActions = [
+        { type: 'RESULTS', results: [] },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: false },
+        { type: 'CURRENT_URL', currentURL: 'url/search/matrix' },
+        { type: 'QUERY', query: 'matrix' },
+        { type: 'CURRENT_PAGE', page: 1 },
+        { type: 'RESULTS', results: [{title: 'Matrix'}] },
+        { type: 'TOTAL_PAGES', numberOfPages: 5 },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: true },
+      ];
+
       const store = mockStore({});
-      fetch.mockResponseOnce(JSON.stringify({ videos: {results: [{key: '123'}]} }))
-      return store.dispatch(getTrailer())
-        .then(res => {
-          const actions = store.getActions();
-          expect(actions[1]).toEqual(setTrailerURL('123'))
-        });
+
+      return store.dispatch(getMovies('url/search/', 1, 'matrix'))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        })
+    });
+
+    test('should dispatch results, areMoviesLoaded, url (+ genre if url includes "discover"), page, and total pages on successful fetch request', () => {
+      fetch.mockResponse(JSON.stringify({ results: [{title: 'Matrix'}], total_pages: 5 }));
+
+      const expectedActions = [
+        { type: 'RESULTS', results: [] },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: false },
+        { type: 'CURRENT_URL', currentURL: 'url/discover/comedy' },
+        { type: 'QUERY', query: '' },
+        { type: 'CURRENT_PAGE', page: 1 },
+        { type: 'RESULTS', results: [{title: 'Matrix'}] },
+        { type: 'TOTAL_PAGES', numberOfPages: 5 },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: true },
+      ];
+
+      const store = mockStore({});
+
+      return store.dispatch(getMovies('url/discover/', 1, '', 'comedy'))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        })
+    });
+
+    test('should dispatch results (+ current results if are), areMoviesLoaded, url, page, and total pages on successful fetch request', () => {
+      fetch.mockResponse(JSON.stringify({ results: [{title: 'Matrix'}], total_pages: 5 }));
+
+      const expectedActions = [
+        { type: 'RESULTS', results: [{title: 'Star Wars'}] },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: false },
+        { type: 'CURRENT_URL', currentURL: 'url' },
+        { type: 'QUERY', query: '' },
+        { type: 'CURRENT_PAGE', page: 2 },
+        { type: 'RESULTS', results: [{title: 'Star Wars'}, {title: 'Matrix'}] },
+        { type: 'TOTAL_PAGES', numberOfPages: 5 },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: true },
+      ];
+
+      const store = mockStore({});
+
+      return store.dispatch(getMovies('url', 2, '', '', [{title: 'Star Wars'}]))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        })
     });
 
     test('should catch error if is rejected', () => {
+      fetch.mockReject(new Error('fake error message'));
+
+      const expectedActions = [
+        { type: 'RESULTS', results: [] },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: false },
+        { type: 'CURRENT_URL', currentURL: 'url' },
+        { type: 'QUERY', query: undefined },
+        { type: 'CURRENT_PAGE', page: 1 },
+      ];
+
       const store = mockStore({});
-      fetch.mockReject(new Error('fake error message'))
-      return store.dispatch(getTrailer())
-        .then(res => {
-          const actions = store.getActions()
-          expect(actions[1]).toEqual(setTrailerURL(null))
-        });
+
+      return store.dispatch(getMovies('url', 1))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        })
     });
   });
 
-  describe('getResults', () => {
-    test('should dispatch search results', () => {
+  describe('getTrailer', () => {
+    test('should dispatch trailerURL on successful fetch request', () => {
+      fetch.mockResponse(JSON.stringify({ videos: {results: [{key: '123'}]} }));
+
+      const expectedActions = [
+        { type: 'IS_TRAILER_LOADED', isTrailerLoaded: false },
+        { type: 'IS_TRAILER_LOADED', isTrailerLoaded: true },
+        { type: 'TRAILER', trailerURL: '123' },
+      ];
+
       const store = mockStore({});
-      fetch.mockResponseOnce(JSON.stringify({ data: '12345' }))
-      return store.dispatch(getResults())
-        .then(res => {
-          const actions = store.getActions();
-          expect(actions[0]).toEqual(searchResultsAction(res.data))
+
+      return store.dispatch(getTrailer())
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
         });
     });
 
     test('should catch error if is rejected', () => {
+      fetch.mockReject(new Error('fake error message'));
+
+      const expectedActions = [
+        { type: 'IS_TRAILER_LOADED', isTrailerLoaded: false },
+        { type: 'IS_TRAILER_LOADED', isTrailerLoaded: true },
+        { type: 'TRAILER', trailerURL: null },
+      ];
+
       const store = mockStore({});
-      fetch.mockReject(new Error('fake error message'))
-      return store.dispatch(getResults())
-        .then(res => {
-          const actions = store.getActions()
-          expect(actions[0]).toEqual(undefined)
+
+      return store.dispatch(getTrailer())
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions)
         });
     });
   });
 
   describe('getGenres', () => {
-    test('should dispatch genres', () => {
-      const store = mockStore({});
-      fetch.mockResponseOnce(JSON.stringify({ data: 'Adventure' }))
+    test('should dispatch genres on successful fetch request', () => {
+      fetch.mockResponse(JSON.stringify({ genres: ['Adventure'] }));
+
+      const expectedActions = [
+        { type: 'GENRES', genres: ['Adventure'] }
+      ];
+
+      const store = mockStore({})
+
       return store.dispatch(getGenres())
-        .then(res => {
-          const actions = store.getActions()
-          expect(actions[0]).toEqual(genresAction(res.data))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
         });
     });
 
     test('should catch error if is rejected', () => {
+      fetch.mockReject(new Error('fake error message'));
+
       const store = mockStore({});
-      fetch.mockReject(new Error('fake error message'))
+
       return store.dispatch(getGenres())
-        .then(res => {
-          const actions = store.getActions()
-          expect(actions[0]).toEqual(undefined)
+        .then(() => {
+          expect(store.getActions().length).toEqual(0)
+        });
+    });
+  });
+
+  describe('getMovieDetails', () => {
+    test('should dispatch movie details on successful fetch request', () => {
+      fetch.mockResponse(JSON.stringify({ title: 'Matrix', genre: 'Action' }));
+
+      const expectedActions = [
+        { type: 'MOVIE_DETAILS', detailsObj: {title: 'Matrix', genre: 'Action'} }
+      ];
+
+      const store = mockStore({})
+
+      return store.dispatch(getMovieDetails())
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        });
+    });
+
+    test('should catch error if is rejected', () => {
+      fetch.mockReject(new Error('fake error message'));
+
+      const store = mockStore({});
+
+      return store.dispatch(getMovieDetails())
+        .then(() => {
+          expect(store.getActions().length).toEqual(0)
         });
     });
   });

@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "../App";
+import AppContainer from "../components/App";
 import { Provider } from 'react-redux';
 import { store } from '../redux/store';
 
@@ -13,7 +13,7 @@ describe("Application root", () => {
     document.body.appendChild(div);
     require('../index.jsx');
     expect(ReactDOM.render).toHaveBeenCalledWith(<Provider store={store}>
-      <App />
+      <AppContainer />
     </Provider>, div);
   });
 });

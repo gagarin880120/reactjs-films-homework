@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieListNavBar component should render without crashing 1`] = `
+<div
+  className="wrapper"
+>
+  <button
+    className="button"
+    id="trending"
+    onClick={[Function]}
+    type="button"
+  >
+    Trending
+  </button>
+  <button
+    className="button"
+    id="topRated"
+    onClick={[Function]}
+    type="button"
+  >
+    Top rated
+  </button>
+  <button
+    className="button"
+    id="upComing"
+    onClick={[Function]}
+    type="button"
+  >
+    Coming soon
+  </button>
+  <select
+    name="genres"
+    onChange={[Function]}
+    value=""
+  >
+    <option
+      value=""
+    >
+      Genre
+    </option>
+  </select>
+</div>
+`;

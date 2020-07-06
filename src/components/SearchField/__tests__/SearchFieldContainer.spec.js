@@ -1,10 +1,10 @@
 import ShallowRenderer from 'react-test-renderer/shallow';
 import React from 'react';
 import { SearchFieldContainer, mapDispatchToProps } from '../SearchFieldContainer';
-import { getResults } from '../../../redux/actions';
+import { getMovies } from '../../../redux/actions';
 
 jest.mock('../../../redux/actions',() => ({
-  getResults: jest.fn().mockReturnValue('getResultsAction'),
+  getMovies: jest.fn().mockReturnValue('getMoviesAction'),
 }))
 
 const renderComponent = (props = {}) => {
@@ -31,24 +31,22 @@ describe('SearchFieldContainer', () => {
       jest.clearAllMocks();
     })
 
-    test('onSearch should dispatch getResults actions', () => {
+    test('onSearch should dispatch getMovies actions', () => {
       const dispatch = jest.fn();
       const {onSearch} = mapDispatchToProps(dispatch);
 
       onSearch('abc');
 
-      expect(getResults).toHaveBeenCalledWith('abc');
-      expect(dispatch).toHaveBeenCalledWith('getResultsAction');
+      expect(getMovies).toHaveBeenCalled();
     })
 
-    test('onSearch should not dispatch getResults action if no query', () => {
+    test('onSearch should not dispatch getMovies action if no query', () => {
       const dispatch = jest.fn();
       const {onSearch} = mapDispatchToProps(dispatch);
 
       onSearch()
 
-      expect(getResults).not.toHaveBeenCalled()
-      expect(dispatch).not.toHaveBeenCalled()
+      expect(getMovies).not.toHaveBeenCalled()
     })
   })
 })

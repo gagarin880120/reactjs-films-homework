@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer component should render without crashing 1`] = `
+<div
+  className="wrapper"
+>
+  <div
+    className="header"
+  >
+    films
+  </div>
+  <p
+    className="text"
+  >
+    Copyright © 2020 FILMS. Andrei Mandryk
+  </p>
+</div>
+`;

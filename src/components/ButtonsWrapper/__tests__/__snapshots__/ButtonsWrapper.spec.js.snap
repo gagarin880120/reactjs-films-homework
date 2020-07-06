@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonsWrapper component should render without crashing 1`] = `
+<div
+  className="wrapper"
+>
+  <div
+    className="overview"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  >
+    <p>
+      
+    </p>
+  </div>
+  <div
+    className="buttonsContainer"
+  >
+    <TrailerButtonRect
+      id={0}
+      onTrailerButtonClick={null}
+    />
+    <InfoButton
+      onInfoButtonClick={[Function]}
+    />
+  </div>
+</div>
+`;
