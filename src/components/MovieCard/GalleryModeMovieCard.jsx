@@ -54,7 +54,7 @@ export default function GalleryModeMovieCard({
                 hoverEl.current.className = styles.hoverTrailer;
               }}
             >
-              X
+              <i className="fas fa-times" />
             </button>
           ) : null
         }
