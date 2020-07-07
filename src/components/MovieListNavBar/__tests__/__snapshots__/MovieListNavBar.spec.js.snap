@@ -1,43 +1,259 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`MovieListNavBar component should render with another styles depends on props 1`] = `
+<div
+  className="wrapper"
+>
+  <div
+    className="actionButtonsContainer"
+  >
+    <button
+      className="button"
+      id="trending"
+      onClick={[Function]}
+      style={null}
+      type="button"
+    >
+      Trending
+    </button>
+    <button
+      className="button"
+      id="topRated"
+      onClick={[Function]}
+      style={null}
+      type="button"
+    >
+      Top rated
+    </button>
+    <button
+      className="button"
+      id="upComing"
+      onClick={[Function]}
+      style={
+        Object {
+          "fontWeight": "bold",
+          "textDecoration": "underline",
+        }
+      }
+      type="button"
+    >
+      Coming soon
+    </button>
+    <select
+      className="button"
+      name="genres"
+      onChange={[Function]}
+      style={null}
+      value=""
+    >
+      <option
+        value=""
+      >
+        Genre
+      </option>
+    </select>
+  </div>
+  <div
+    className="viewSwitchersContainer"
+  >
+    <button
+      className="button"
+      id="galleryView"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fas fa-th"
+        style={null}
+      />
+    </button>
+    <button
+      className="button"
+      id="listView"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fas fa-th-list"
+        style={
+          Object {
+            "color": "#D6D7D7",
+          }
+        }
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`MovieListNavBar component should render with another styles depends on props 2`] = `
+<div
+  className="wrapper"
+>
+  <div
+    className="actionButtonsContainer"
+  >
+    <button
+      className="button"
+      id="trending"
+      onClick={[Function]}
+      style={null}
+      type="button"
+    >
+      Trending
+    </button>
+    <button
+      className="button"
+      id="topRated"
+      onClick={[Function]}
+      style={null}
+      type="button"
+    >
+      Top rated
+    </button>
+    <button
+      className="button"
+      id="upComing"
+      onClick={[Function]}
+      style={null}
+      type="button"
+    >
+      Coming soon
+    </button>
+    <select
+      className="button"
+      name="genres"
+      onChange={[Function]}
+      style={
+        Object {
+          "fontWeight": "bold",
+          "textDecoration": "underline",
+        }
+      }
+      value=""
+    >
+      <option
+        value=""
+      >
+        Genre
+      </option>
+    </select>
+  </div>
+  <div
+    className="viewSwitchersContainer"
+  >
+    <button
+      className="button"
+      id="galleryView"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fas fa-th"
+        style={null}
+      />
+    </button>
+    <button
+      className="button"
+      id="listView"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fas fa-th-list"
+        style={
+          Object {
+            "color": "#D6D7D7",
+          }
+        }
+      />
+    </button>
+  </div>
+</div>
+`;
+
 exports[`MovieListNavBar component should render without crashing 1`] = `
 <div
   className="wrapper"
 >
-  <button
-    className="button"
-    id="trending"
-    onClick={[Function]}
-    type="button"
+  <div
+    className="actionButtonsContainer"
   >
-    Trending
-  </button>
-  <button
-    className="button"
-    id="topRated"
-    onClick={[Function]}
-    type="button"
-  >
-    Top rated
-  </button>
-  <button
-    className="button"
-    id="upComing"
-    onClick={[Function]}
-    type="button"
-  >
-    Coming soon
-  </button>
-  <select
-    name="genres"
-    onChange={[Function]}
-    value=""
-  >
-    <option
+    <button
+      className="button"
+      id="trending"
+      onClick={[Function]}
+      style={
+        Object {
+          "fontWeight": "bold",
+          "textDecoration": "underline",
+        }
+      }
+      type="button"
+    >
+      Trending
+    </button>
+    <button
+      className="button"
+      id="topRated"
+      onClick={[Function]}
+      style={null}
+      type="button"
+    >
+      Top rated
+    </button>
+    <button
+      className="button"
+      id="upComing"
+      onClick={[Function]}
+      style={null}
+      type="button"
+    >
+      Coming soon
+    </button>
+    <select
+      className="button"
+      name="genres"
+      onChange={[Function]}
+      style={null}
       value=""
     >
-      Genre
-    </option>
-  </select>
+      <option
+        value=""
+      >
+        Genre
+      </option>
+    </select>
+  </div>
+  <div
+    className="viewSwitchersContainer"
+  >
+    <button
+      className="button"
+      id="galleryView"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fas fa-th"
+        style={
+          Object {
+            "color": "#D6D7D7",
+          }
+        }
+      />
+    </button>
+    <button
+      className="button"
+      id="listView"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fas fa-th-list"
+        style={null}
+      />
+    </button>
+  </div>
 </div>
 `;

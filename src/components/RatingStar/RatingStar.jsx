@@ -15,8 +15,8 @@ export default function RatingStar({ type }) {
 
 RatingStar.propTypes = {
   type: PropTypes.string,
-}
+};
 
 RatingStar.defaultProps = {
   type: '',
-}
+};

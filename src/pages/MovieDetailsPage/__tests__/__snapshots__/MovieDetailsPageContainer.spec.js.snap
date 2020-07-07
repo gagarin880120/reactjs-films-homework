@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MovieDetailsPageContainer component should render spinner if movie is not loaded 1`] = `
-<div
-  className="pageLoading"
->
-  <Spinner />
-</div>
-`;
-
-exports[`MovieDetailsPageContainer component should render without crashing 1`] = `
 <MovieDetailsPage
   areMoviesLoaded={false}
   movie={Object {}}
   results={Array []}
 />
+`;
+
+exports[`MovieDetailsPageContainer component should render without crashing 1`] = `
+<div
+  className="pageLoading"
+>
+  <Spinner />
+</div>
 `;

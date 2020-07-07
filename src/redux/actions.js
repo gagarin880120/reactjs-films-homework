@@ -171,11 +171,11 @@ function getMovieDetails(id) {
         dispatch(setIsMovieLoaded(true));
       })
       .catch((e) => console.log(e));
-  }
+  };
 }
 
 export {
   setResults, setQuery, setGenres, setModal, setTrailerURL, setIsTrailerLoaded,
   setMovieDetails, setCurrentPage, setTotalPages, setAreMoviesLoaded, setCurrentURL,
-  setCurrentGenre, getMovies, getGenres, getTrailer, getMovieDetails, setViewMode,
+  setCurrentGenre, getMovies, getGenres, getTrailer, getMovieDetails, setViewMode, setIsMovieLoaded,
 };

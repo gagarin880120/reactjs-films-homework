@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MovieCard component should render without crashing 1`] = `
+exports[`GalleryModeMovieCard component should render without crashing 1`] = `
 <div
-  className="wrapper"
+  className="galleryWrapper"
   style={
     Object {
       "backgroundImage": null,

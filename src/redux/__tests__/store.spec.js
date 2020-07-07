@@ -1,6 +1,8 @@
 import { reducer } from '../store';
 import { setResults, setQuery, setGenres, setModal, setTrailerURL, setIsTrailerLoaded,
-  setMovieDetails, setCurrentPage, setTotalPages, setAreMoviesLoaded, setCurrentURL, setCurrentGenre, } from '../actions';
+  setMovieDetails, setCurrentPage, setTotalPages, setAreMoviesLoaded, setCurrentURL,
+  setCurrentGenre, setViewMode, setIsMovieLoaded
+} from '../actions';
 
 const state = {
   results: [],
@@ -15,6 +17,8 @@ const state = {
   areMoviesLoaded: false,
   currentURL: '',
   currentGenre: '',
+  viewMode: 'gallery',
+  isMovieLoaded: false,
 };
 
 describe('Reducer should return store with changes according to action type', () => {
@@ -33,6 +37,8 @@ describe('Reducer should return store with changes according to action type', ()
         areMoviesLoaded: false,
         currentURL: '',
         currentGenre: '',
+        viewMode: 'gallery',
+        isMovieLoaded: false,
       }
     )
   });
@@ -52,6 +58,8 @@ describe('Reducer should return store with changes according to action type', ()
         areMoviesLoaded: false,
         currentURL: '',
         currentGenre: '',
+        viewMode: 'gallery',
+        isMovieLoaded: false,
       }
     )
   });
@@ -71,6 +79,8 @@ describe('Reducer should return store with changes according to action type', ()
         areMoviesLoaded: false,
         currentURL: '',
         currentGenre: '',
+        viewMode: 'gallery',
+        isMovieLoaded: false,
       }
     )
   });
@@ -90,6 +100,8 @@ describe('Reducer should return store with changes according to action type', ()
         areMoviesLoaded: false,
         currentURL: '',
         currentGenre: '',
+        viewMode: 'gallery',
+        isMovieLoaded: false,
       }
     )
   });
@@ -109,6 +121,8 @@ describe('Reducer should return store with changes according to action type', ()
         areMoviesLoaded: false,
         currentURL: '',
         currentGenre: '',
+        viewMode: 'gallery',
+        isMovieLoaded: false,
       }
     )
   });
@@ -128,6 +142,8 @@ describe('Reducer should return store with changes according to action type', ()
         areMoviesLoaded: false,
         currentURL: '',
         currentGenre: '',
+        viewMode: 'gallery',
+        isMovieLoaded: false,
       }
     )
   });
@@ -147,6 +163,8 @@ describe('Reducer should return store with changes according to action type', ()
         areMoviesLoaded: false,
         currentURL: '',
         currentGenre: '',
+        viewMode: 'gallery',
+        isMovieLoaded: false,
       }
     )
   });
@@ -166,6 +184,8 @@ describe('Reducer should return store with changes according to action type', ()
         areMoviesLoaded: false,
         currentURL: '',
         currentGenre: '',
+        viewMode: 'gallery',
+        isMovieLoaded: false,
       }
     )
   });
@@ -185,6 +205,8 @@ describe('Reducer should return store with changes according to action type', ()
         areMoviesLoaded: false,
         currentURL: '',
         currentGenre: '',
+        viewMode: 'gallery',
+        isMovieLoaded: false,
       }
     )
   });
@@ -204,6 +226,8 @@ describe('Reducer should return store with changes according to action type', ()
         areMoviesLoaded: true,
         currentURL: '',
         currentGenre: '',
+        viewMode: 'gallery',
+        isMovieLoaded: false,
       }
     )
   });
@@ -223,6 +247,8 @@ describe('Reducer should return store with changes according to action type', ()
         areMoviesLoaded: false,
         currentURL: 'url',
         currentGenre: '',
+        viewMode: 'gallery',
+        isMovieLoaded: false,
       }
     )
   });
@@ -242,6 +268,50 @@ describe('Reducer should return store with changes according to action type', ()
         areMoviesLoaded: false,
         currentURL: '',
         currentGenre: 'Action',
+        viewMode: 'gallery',
+        isMovieLoaded: false,
+      }
+    )
+  });
+
+  test('VIEW_MODE', () => {
+    expect(reducer(state, setViewMode('list'))).toStrictEqual(
+      {
+        results: [],
+        query: '',
+        genres: null,
+        isModalOpen: false,
+        trailerURL: '',
+        isTrailerLoaded: false,
+        movieDetails: null,
+        currentPage: 1,
+        totalPages: 0,
+        areMoviesLoaded: false,
+        currentURL: '',
+        currentGenre: '',
+        viewMode: 'list',
+        isMovieLoaded: false,
+      }
+    )
+  });
+
+  test('IS_MOVIE_LOADED', () => {
+    expect(reducer(state, setIsMovieLoaded(true))).toStrictEqual(
+      {
+        results: [],
+        query: '',
+        genres: null,
+        isModalOpen: false,
+        trailerURL: '',
+        isTrailerLoaded: false,
+        movieDetails: null,
+        currentPage: 1,
+        totalPages: 0,
+        areMoviesLoaded: false,
+        currentURL: '',
+        currentGenre: '',
+        viewMode: 'gallery',
+        isMovieLoaded: true,
       }
     )
   });

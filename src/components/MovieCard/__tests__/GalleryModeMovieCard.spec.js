@@ -1,10 +1,10 @@
 import ShallowRenderer from 'react-test-renderer/shallow';
 import TestRenderer, { act } from 'react-test-renderer';
 import React from 'react';
-import MovieCard from '../MovieCard';
+import GalleryModeMovieCard from '../GalleryModeMovieCard';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-describe('MovieCard component', () => {
+describe('GalleryModeMovieCard component', () => {
   const movie = {
     title: 'Star Wars',
     genre_ids: [28],
@@ -22,7 +22,7 @@ describe('MovieCard component', () => {
 
   test('should render without crashing', () => {
     const renderer = new ShallowRenderer();
-    renderer.render(<MovieCard movie={movie} genres={genres} />);
+    renderer.render(<GalleryModeMovieCard movie={movie} genres={genres} />);
     const result = renderer.getRenderOutput();
     expect(result).toMatchSnapshot();
   });
@@ -30,7 +30,7 @@ describe('MovieCard component', () => {
   describe('with mocked refs', () => {
     const testRenderer = TestRenderer.create(
       <Router>
-        <MovieCard movie={movieWithPoster} genres={genres} />
+        <GalleryModeMovieCard movie={movieWithPoster} genres={genres} />
       </Router>,
       {
         createNodeMock: (element) => {
@@ -66,7 +66,7 @@ describe('MovieCard component', () => {
     const onLinkClick = jest.fn();
     const testRenderer = TestRenderer.create(
       <Router>
-        <MovieCard onLinkClick={onLinkClick} />
+        <GalleryModeMovieCard onLinkClick={onLinkClick} />
       </Router>
     );
     const link = testRenderer.root.findByProps({ to: '/movieDetailsPage' });

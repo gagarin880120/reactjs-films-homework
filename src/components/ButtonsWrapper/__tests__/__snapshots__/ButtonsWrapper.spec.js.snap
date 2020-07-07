@@ -16,16 +16,12 @@ exports[`ButtonsWrapper component should render without crashing 1`] = `
       
     </p>
   </div>
-  <div
-    className="buttonsContainer"
-  >
-    <TrailerButtonRect
-      id={0}
-      onTrailerButtonClick={null}
-    />
-    <InfoButton
-      onInfoButtonClick={[Function]}
-    />
-  </div>
+  <TrailerButtonRect
+    id={0}
+    onTrailerButtonClick={null}
+  />
+  <InfoButton
+    onInfoButtonClick={[Function]}
+  />
 </div>
 `;

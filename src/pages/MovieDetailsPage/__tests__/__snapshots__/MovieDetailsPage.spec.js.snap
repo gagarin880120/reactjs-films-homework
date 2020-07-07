@@ -3,23 +3,27 @@
 exports[`MovieDetailsPage component should render with other elements, depends on props 1`] = `
 <div
   className="wrapper"
-  style={
-    Object {
-      "backgroundImage": "url(https://image.tmdb.org/t/p/w1280url)",
-    }
-  }
 >
-  <Header />
-  <main
-    className="main"
+  <div
+    className="details"
+    style={
+      Object {
+        "backgroundImage": "url(https://image.tmdb.org/t/p/w1280url)",
+      }
+    }
   >
-    <Memo(Connect(MovieInfoContainer)) />
-    <div
-      className="buttons"
+    <Header />
+    <main
+      className="main"
     >
-      <Memo(Connect(ButtonsWrapperContainer)) />
-    </div>
-  </main>
+      <Memo(Connect(MovieInfoContainer)) />
+      <div
+        className="buttons"
+      >
+        <Memo(Connect(ButtonsWrapperContainer)) />
+      </div>
+    </main>
+  </div>
   <Memo(Connect(MovieListContainer)) />
   <div
     className="loading"
@@ -33,23 +37,27 @@ exports[`MovieDetailsPage component should render with other elements, depends o
 exports[`MovieDetailsPage component should render without crashing 1`] = `
 <div
   className="wrapper"
-  style={
-    Object {
-      "backgroundImage": null,
-    }
-  }
 >
-  <Header />
-  <main
-    className="main"
+  <div
+    className="details"
+    style={
+      Object {
+        "backgroundImage": null,
+      }
+    }
   >
-    <Memo(Connect(MovieInfoContainer)) />
-    <div
-      className="buttons"
+    <Header />
+    <main
+      className="main"
     >
-      <Memo(Connect(ButtonsWrapperContainer)) />
-    </div>
-  </main>
+      <Memo(Connect(MovieInfoContainer)) />
+      <div
+        className="buttons"
+      >
+        <Memo(Connect(ButtonsWrapperContainer)) />
+      </div>
+    </main>
+  </div>
   <Memo(Connect(MovieListContainer)) />
   <div
     className="loading"

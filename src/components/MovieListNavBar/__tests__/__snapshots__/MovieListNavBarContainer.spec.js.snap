@@ -3,10 +3,13 @@
 exports[`MovieListNavBarContainer component should render without crashing 1`] = `
 <MovieListNavBar
   currentGenre=""
+  currentURL=""
   genres={Array []}
   onGenreChange={null}
   onTopRated={null}
   onTrending={null}
   onUpcoming={null}
+  switchViewMode={null}
+  viewMode=""
 />
 `;

@@ -19,7 +19,7 @@ describe('MovieDetailsPageContainer', () => {
 
     test('should render spinner if movie is not loaded', () => {
       const renderer = new ShallowRenderer();
-      renderer.render(<MovieDetailsPageContainer movie={null} />);
+      renderer.render(<MovieDetailsPageContainer isMovieLoaded={true} />);
       const result = renderer.getRenderOutput();
       expect(result).toMatchSnapshot();
     });

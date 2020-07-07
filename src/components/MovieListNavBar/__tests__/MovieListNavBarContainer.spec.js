@@ -1,20 +1,23 @@
 import ShallowRenderer from 'react-test-renderer/shallow';
 import React from 'react';
 import { MovieListNavBarContainer, mapStateToProps, mapDispatchToProps } from '../MovieListNavBarContainer';
-import { getMovies, setCurrentGenre } from '../../../redux/actions';
+import { getMovies, setCurrentGenre, setViewMode } from '../../../redux/actions';
 
 jest.mock('../../../redux/actions',() => ({
   getMovies: jest.fn().mockReturnValue('getMoviesAction'),
   setCurrentGenre: jest.fn().mockReturnValue('Adventure'),
+  setViewMode: jest.fn().mockReturnValue('list')
 }))
 
-describe('MovieListNavBarContainer component', () => {
-  test('should render without crashing', () => {
-    const renderer = new ShallowRenderer();
-    renderer.render(<MovieListNavBarContainer />);
-    const result = renderer.getRenderOutput();
-    expect(result).toMatchSnapshot();
-  });
+describe('MovieListNavBarContainer', () => {
+  describe('component', () => {
+    test('should render without crashing', () => {
+      const renderer = new ShallowRenderer();
+      renderer.render(<MovieListNavBarContainer />);
+      const result = renderer.getRenderOutput();
+      expect(result).toMatchSnapshot();
+    });
+  })
 
   describe('mapStateToProps', () => {
     test('should return the right value', () => {
@@ -72,6 +75,15 @@ describe('MovieListNavBarContainer component', () => {
 
       expect(getMovies).toHaveBeenCalled();
       expect(setCurrentGenre).toHaveBeenCalled();
+    });
+
+    test('switchViewMode should dispatch setViewMode actions', () => {
+      const dispatch = jest.fn();
+      const {switchViewMode} = mapDispatchToProps(dispatch);
+
+      switchViewMode();
+
+      expect(setViewMode).toHaveBeenCalled();
     });
   });
 });

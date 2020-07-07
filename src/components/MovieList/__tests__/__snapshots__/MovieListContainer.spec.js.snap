@@ -4,5 +4,6 @@ exports[`MovieListContainer component should render without crashing 1`] = `
 <MovieList
   isModalOpen={false}
   results={Array []}
+  viewMode=""
 />
 `;

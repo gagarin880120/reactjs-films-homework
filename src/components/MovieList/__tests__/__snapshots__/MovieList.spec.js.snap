@@ -6,7 +6,7 @@ exports[`MovieList component should render TrailerModalContainer if isModalOpen 
 >
   <Memo(Connect(MovieListNavBarContainer)) />
   <div
-    className="container"
+    className="gallery"
   >
     <Memo(Connect(MovieCardContainer))
       movie={
@@ -50,7 +50,7 @@ exports[`MovieList component should render without crashing 1`] = `
 >
   <Memo(Connect(MovieListNavBarContainer)) />
   <div
-    className="container"
+    className="gallery"
   >
     <Memo(Connect(MovieCardContainer))
       movie={

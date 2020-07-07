@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListModeMovieCard component should render without crashing 1`] = `
+<div
+  className="listWrapper"
+>
+  <div
+    className="listImage"
+    style={
+      Object {
+        "backgroundImage": null,
+      }
+    }
+  />
+  <div
+    className="listMovieInfo"
+  >
+    <Link
+      onClick={[Function]}
+      to="/movieDetailsPage"
+    >
+      <p
+        className="movieTitle"
+      >
+        Star Wars
+      </p>
+    </Link>
+    <span
+      className="movieRating"
+    />
+    <p
+      className="movieGenre"
+    />
+    <div
+      className="overview"
+    />
+    <TrailerButtonRect
+      id={11}
+      onTrailerButtonClick={null}
+    />
+  </div>
+</div>
+`;

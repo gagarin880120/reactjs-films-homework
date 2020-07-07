@@ -166,7 +166,9 @@ describe('Async action', () => {
       fetch.mockResponse(JSON.stringify({ title: 'Matrix', genre: 'Action' }));
 
       const expectedActions = [
-        { type: 'MOVIE_DETAILS', detailsObj: {title: 'Matrix', genre: 'Action'} }
+        { type: 'IS_MOVIE_LOADED', isLoaded: false },
+        { type: 'MOVIE_DETAILS', detailsObj: {title: 'Matrix', genre: 'Action'} },
+        { type: 'IS_MOVIE_LOADED', isLoaded: true },
       ];
 
       const store = mockStore({})
@@ -180,11 +182,15 @@ describe('Async action', () => {
     test('should catch error if is rejected', () => {
       fetch.mockReject(new Error('fake error message'));
 
+      const expectedActions = [
+        { type: 'IS_MOVIE_LOADED', isLoaded: false }
+      ];
+
       const store = mockStore({});
 
       return store.dispatch(getMovieDetails())
         .then(() => {
-          expect(store.getActions().length).toEqual(0)
+          expect(store.getActions()).toEqual(expectedActions)
         });
     });
   });

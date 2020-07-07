@@ -2,7 +2,7 @@
 
 exports[`TrailerButtonRect component should render without crashing 1`] = `
 <button
-  className="watchButton"
+  className="trailerButton"
   onClick={[Function]}
   type="button"
 >
