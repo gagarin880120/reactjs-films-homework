@@ -1,6 +1,6 @@
 .header {
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
-  padding: 1% 2%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+  padding: 1% 2% 2%;
   display: flex;
   justify-content: space-between;
   color: #fff;
@@ -14,4 +14,10 @@
 .title {
   font-size: 30px;
   text-transform: uppercase;
+}
+
+@media screen and (max-width: 500px) {
+  .header {
+    flex-direction: column;
+  }
 }

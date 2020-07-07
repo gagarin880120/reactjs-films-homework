@@ -1,4 +1,4 @@
-.buttonsContainer {
+.wrapper {
   position: relative;
   top: 80px;
   right: 0;
@@ -10,20 +10,63 @@
 .overview {
   padding: 1%;
   position: absolute;
-  width: 20%;
-  top: 80px;
-  right: 2%;
+  width: 140%;
+  max-height: 320px;
+  bottom: 55px;
+  right: 0;
   background: rgba(0, 0, 0, 0.6);
-  border-radius: 5px;
-  border: 1px solid white;
 
   p {
-    padding-left: 1%
+    padding-left: 1%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .overview {
+    max-height: 240px;
+    width: 100%;
+    overflow-y: scroll;
+  }
+
+  .overview::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .overview::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
+  }
+
+  .overview::-webkit-scrollbar-thumb {
+    background: #47c3f0;
+    border-radius: 6px;
+  }
+
+  .overview::-webkit-scrollbar-thumb:hover {
+    background: #02729b;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .buttonsContainer {
-    width: 150px;
+  .wrapper {
+    top: 20px;
+    flex-direction: column;
+    height: 100px;
+    margin-top: 5%;
+    width: 100%;
+  }
+
+  .overview {
+    max-height: 120px;
+    width: 79%;
+    overflow-y: scroll;
+    left: 80px;
+    bottom: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .overview {
+    width: 70%;
   }
 }

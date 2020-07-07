@@ -1,4 +1,4 @@
-.watchButton {
+.trailerButton {
   color: #fff;
   font-size: 16px;
   outline: 0;
@@ -10,12 +10,13 @@
   cursor: pointer;
 }
 
-.watchButton:active {
+.trailerButton:active {
   transform: translateY(2px);
 }
 
 @media screen and (max-width: 600px) {
-  .watchButton {
+  .trailerButton {
     width: 70px;
+    height: 45px;
   }
 }

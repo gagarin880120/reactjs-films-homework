@@ -10,8 +10,8 @@
   background-color: #47c3f0;
   border-radius: 100%;
   display: inline-block;
-  -webkit-animation: sk-bouncedelay 1.0s infinite ease-in-out both;
-  animation: sk-bouncedelay 1.0s infinite ease-in-out both;
+  -webkit-animation: sk-bouncedelay 1s infinite ease-in-out both;
+  animation: sk-bouncedelay 1s infinite ease-in-out both;
 }
 
 .spinner .bounce1 {
@@ -29,20 +29,26 @@
   text-align: center;
   font-size: 18px;
   padding: 1%;
-  color: #A7AAAB;
+  color: #a7aaab;
 }
 
 @-webkit-keyframes sk-bouncedelay {
-  0%, 80%, 100% { -webkit-transform: scale(0) }
-  40% { -webkit-transform: scale(1.0) }
+  0%,
+  80%,
+  100% { -webkit-transform: scale(0); }
+  40% { -webkit-transform: scale(1); }
 }
 
 @keyframes sk-bouncedelay {
-  0%, 80%, 100% {
+  0%,
+  80%,
+  100% {
     -webkit-transform: scale(0);
     transform: scale(0);
-  } 40% {
-    -webkit-transform: scale(1.0);
-    transform: scale(1.0);
+  }
+
+  40% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
   }
 }

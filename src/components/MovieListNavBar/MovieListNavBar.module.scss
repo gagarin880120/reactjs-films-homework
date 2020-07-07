@@ -2,3 +2,16 @@
   display: flex;
   justify-content: space-between;
 }
+
+.button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  outline: 0;
+  color: #3bb3df;
+  font-size: 18px;
+
+  i {
+    font-size: 21px;
+  }
+}

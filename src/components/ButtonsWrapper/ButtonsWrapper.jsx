@@ -14,21 +14,19 @@ export default function ButtonsWrapper({ movie, onTrailerButtonClick }) {
       >
         <p>{movie.overview}</p>
       </div>
-      <div className={styles.buttonsContainer}>
-        <TrailerButtonRect
-          onTrailerButtonClick={onTrailerButtonClick}
-          id={movie.id}
-        />
-        <InfoButton
-          onInfoButtonClick={() => {
-            if (isInfoViewed) {
-              setIsInfoViewed(false);
-            } else {
-              setIsInfoViewed(true);
-            }
-          }}
-        />
-      </div>
+      <TrailerButtonRect
+        onTrailerButtonClick={onTrailerButtonClick}
+        id={movie.id}
+      />
+      <InfoButton
+        onInfoButtonClick={() => {
+          if (isInfoViewed) {
+            setIsInfoViewed(false);
+          } else {
+            setIsInfoViewed(true);
+          }
+        }}
+      />
     </div>
   );
 }

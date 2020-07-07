@@ -16,14 +16,16 @@ export default function MovieDetailsPage({ movie, areMoviesLoaded, results }) {
   };
 
   return (
-    <div className={styles.wrapper} style={style}>
-      <Header />
-      <main className={styles.main}>
-        <MovieInfoContainer />
-        <div className={styles.buttons}>
-          <ButtonsWrapperContainer />
-        </div>
-      </main>
+    <div className={styles.wrapper}>
+      <div className={styles.details} style={style}>
+        <Header />
+        <main className={styles.main}>
+          <MovieInfoContainer />
+          <div className={styles.buttons}>
+            <ButtonsWrapperContainer />
+          </div>
+        </main>
+      </div>
       <MovieListContainer />
       <div className={styles.loading}>
         {

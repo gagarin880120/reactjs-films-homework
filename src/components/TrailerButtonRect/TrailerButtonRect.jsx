@@ -5,7 +5,7 @@ import styles from './TrailerButtonRect.module.scss';
 export default function TrailerButtonRect({ onTrailerButtonClick, id }) {
   return (
     <button
-      className={styles.watchButton}
+      className={styles.trailerButton}
       type="button"
       onClick={() => {
         onTrailerButtonClick(id);

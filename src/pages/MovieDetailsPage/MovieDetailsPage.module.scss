@@ -1,7 +1,10 @@
 .wrapper {
   color: #fff;
+}
+
+.details {
   background-image: url('../../assets/images/no_backdrop.jpg');
-  background-size: 100%;
+  background-size: cover;
 }
 
 .main {
@@ -19,4 +22,11 @@
 
 .pageLoading {
   margin-top: 20%;
+}
+
+@media screen and (max-width: 600px) {
+  .main {
+    flex-direction: column;
+    margin-top: 2%;
+  }
 }

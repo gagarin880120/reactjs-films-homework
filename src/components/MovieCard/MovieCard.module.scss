@@ -79,6 +79,10 @@
   .movieTitle {
     color: #fff;
   }
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .infoIsViewed::-webkit-scrollbar {
@@ -100,14 +104,18 @@
 }
 
 .closeInfo {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   padding: 0;
   outline: 0;
   background-color: transparent;
   border: none;
   cursor: pointer;
   color: white;
-  font-size: 22px;
+  font-size: 28px;
+
+  i {
+    margin: 0;
+  }
 }
 
 .overview {
@@ -135,8 +143,8 @@
 
   .movieTitle {
     font-size: 22px;
-    width: 100%;
-    text-overflow: initial;
+    width: 90%;
+    text-overflow: ellipsis;
   }
 
   a {
@@ -149,5 +157,26 @@
 
   .movieRating {
     margin-right: 1%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .listWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .listImage {
+    width: 100%;
+    height: 500px;
+  }
+
+  .listMovieInfo {
+    width: 100%;
+
+    button {
+      width: 180px;
+      margin-bottom: 1%;
+    }
   }
 }

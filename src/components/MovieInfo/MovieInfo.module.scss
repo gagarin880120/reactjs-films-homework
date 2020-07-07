@@ -46,3 +46,9 @@
   padding: 4px 8px;
   background: #020201;
 }
+
+@media screen and (max-width: 600px) {
+  .wrapper {
+    width: 100%;
+  }
+}

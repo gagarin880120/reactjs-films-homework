@@ -9,7 +9,7 @@ export default function SearchField({ onSearch }) {
     <input
       className={styles.searchInput}
       type="search"
-      placeholder="🔍"
+      placeholder="&#61442;"
       onChange={(e) => setQuery(e.target.value)}
       value={query}
       onKeyDown={(e) => {

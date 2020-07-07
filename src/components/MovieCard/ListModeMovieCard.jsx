@@ -15,7 +15,7 @@ export default function ListModeMovieCard({
         className={styles.listImage}
         style={{
           backgroundImage: movie.poster_path
-            ? `url(https://image.tmdb.org/t/p/w185/${movie.poster_path})`
+            ? `url(https://image.tmdb.org/t/p/w300/${movie.poster_path})`
             : null,
         }}
       />
