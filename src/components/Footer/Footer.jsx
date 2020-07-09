@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Footer.module.scss';
 
 export default function Footer({
-  results, onIntersect, currentPage, query, areMoviesLoaded, url, totalPages,
+  results, onIntersect, currentPage, areMoviesLoaded, currentAPIRequest, totalPages,
 }) {
   const footer = useRef();
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function Footer({
       entries.forEach((entry) => {
         const { isIntersecting } = entry;
         if (isIntersecting) {
-          onIntersect(url, currentPage + 1, query, results);
+          onIntersect(currentAPIRequest, currentPage + 1, results);
           observer = observer.disconnect();
         }
       });
@@ -39,18 +39,16 @@ Footer.propTypes = {
   results: PropTypes.instanceOf(Array),
   currentPage: PropTypes.number,
   onIntersect: PropTypes.func,
-  query: PropTypes.string,
   areMoviesLoaded: PropTypes.bool,
-  url: PropTypes.string,
   totalPages: PropTypes.number,
+  currentAPIRequest: PropTypes.string,
 };
 
 Footer.defaultProps = {
   results: [],
   currentPage: 1,
   onIntersect: null,
-  query: '',
   areMoviesLoaded: false,
-  url: '',
   totalPages: 0,
+  currentAPIRequest: '',
 };

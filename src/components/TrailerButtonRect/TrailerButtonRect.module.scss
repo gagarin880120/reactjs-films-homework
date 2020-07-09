@@ -13,10 +13,3 @@
 .trailerButton:active {
   transform: translateY(2px);
 }
-
-@media screen and (max-width: 600px) {
-  .trailerButton {
-    width: 70px;
-    height: 45px;
-  }
-}

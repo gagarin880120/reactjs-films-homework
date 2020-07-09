@@ -18,7 +18,7 @@ export default function GalleryModeMovieCard({
       className={styles.galleryWrapper}
       style={{
         backgroundImage: movie.poster_path
-          ? `url(https://image.tmdb.org/t/p/w185/${movie.poster_path})`
+          ? `url(https://image.tmdb.org/t/p/w300/${movie.poster_path})`
           : null,
       }}
     >
@@ -59,7 +59,7 @@ export default function GalleryModeMovieCard({
           ) : null
         }
         <Link
-          to="/movieDetailsPage"
+          to={`/movie/${movie.id}`}
           onClick={() => {
             onLinkClick(movie.id);
           }}

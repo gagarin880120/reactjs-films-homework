@@ -1,22 +1,15 @@
+import { getUnique } from '../helpers/helpers';
+
 const API_KEY = '306b98213f954f1d07d1d09517898f10';
 
 function setResults(results) {
-  localStorage.setItem('results', JSON.stringify(results));
   return {
     type: 'RESULTS',
-    results,
-  };
-}
-
-function setQuery(query) {
-  return {
-    type: 'QUERY',
-    query,
+    results: getUnique(results),
   };
 }
 
 function setGenres(genres) {
-  localStorage.setItem('genres', JSON.stringify(genres));
   return {
     type: 'GENRES',
     genres,
@@ -45,7 +38,6 @@ function setIsTrailerLoaded(isTrailerLoaded) {
 }
 
 function setMovieDetails(detailsObj) {
-  localStorage.setItem('movieDetails', JSON.stringify(detailsObj));
   return {
     type: 'MOVIE_DETAILS',
     detailsObj,
@@ -53,7 +45,6 @@ function setMovieDetails(detailsObj) {
 }
 
 function setCurrentPage(page) {
-  localStorage.setItem('currentPage', page);
   return {
     type: 'CURRENT_PAGE',
     page,
@@ -68,31 +59,13 @@ function setTotalPages(numberOfPages) {
 }
 
 function setAreMoviesLoaded(areMoviesLoaded) {
-  localStorage.setItem('areMoviesLoaded', areMoviesLoaded);
   return {
     type: 'ARE_MOVIES_LOADED',
     areMoviesLoaded,
   };
 }
 
-function setCurrentURL(currentURL) {
-  localStorage.setItem('currentURL', currentURL);
-  return {
-    type: 'CURRENT_URL',
-    currentURL,
-  };
-}
-
-function setCurrentGenre(currentGenre) {
-  localStorage.setItem('currentGenre', currentGenre);
-  return {
-    type: 'CURRENT_GENRE',
-    currentGenre,
-  };
-}
-
 function setViewMode(viewMode) {
-  localStorage.setItem('viewMode', viewMode);
   return {
     type: 'VIEW_MODE',
     viewMode,
@@ -100,34 +73,16 @@ function setViewMode(viewMode) {
 }
 
 function setIsMovieLoaded(isLoaded) {
-  localStorage.setItem('isMovieLoaded', isLoaded);
   return {
     type: 'IS_MOVIE_LOADED',
     isLoaded,
   };
 }
 
-function getMovies(currUrl, page, query, genre, results) {
-  let url = currUrl;
-  if (url.includes('search') && page === 1) {
-    url += query;
-  } else if (url.includes('discover') && page === 1) {
-    url += genre;
-  }
-  return (dispatch) => {
-    dispatch(setResults(results || []));
-    dispatch(setAreMoviesLoaded(false));
-    dispatch(setCurrentURL(url));
-    dispatch(setQuery(query));
-    dispatch(setCurrentPage(page));
-    return fetch(`${url}&page=${page}`)
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch(setResults(page > 1 ? [...results, ...data.results] : data.results));
-        dispatch(setTotalPages(data.total_pages));
-        dispatch(setAreMoviesLoaded(true));
-      })
-      .catch((e) => console.log(e));
+function setCurrentAPIRequest(currentAPIRequest) {
+  return {
+    type: 'SET_CURRENT_API_REQUEST',
+    currentAPIRequest,
   };
 }
 
@@ -139,6 +94,92 @@ function getGenres() {
     .then((res) => res.json())
     .then((data) => dispatch(setGenres(data.genres)))
     .catch((e) => console.log(e));
+}
+
+function getMovieDetails(id) {
+  return (dispatch) => {
+    dispatch(setIsMovieLoaded(false));
+    return fetch(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`,
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch(setMovieDetails(data));
+        dispatch(setIsMovieLoaded(true));
+      })
+      .catch((e) => console.log(e));
+  };
+}
+
+function getMoviesByGenre(request, page, results, withDetails) {
+  return (dispatch) => {
+    if (withDetails) {
+      dispatch(setIsMovieLoaded(false));
+    }
+    dispatch(setResults(results || []));
+    dispatch(setAreMoviesLoaded(false));
+    dispatch(setCurrentPage(page));
+    const genre = request.slice(request.indexOf('=') + 1);
+    return fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`
+    + '&language=en-US&sort_by=popularity.desc&include_adult=false'
+    + `&include_video=false&with_genres=${genre}&page=${page}`)
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch(setResults(page > 1 ? [...results, ...data.results] : data.results));
+        if (withDetails) {
+          dispatch(getMovieDetails(page > 1 ? results[0].id : data.results[0].id));
+        }
+        dispatch(setTotalPages(data.total_pages));
+        dispatch(setAreMoviesLoaded(true));
+      })
+      .catch((e) => console.log(e));
+  };
+}
+
+function getMoviesBySearch(request, page, results, withDetails) {
+  return (dispatch) => {
+    if (withDetails) {
+      dispatch(setIsMovieLoaded(false));
+    }
+    dispatch(setResults(results || []));
+    dispatch(setAreMoviesLoaded(false));
+    dispatch(setCurrentPage(page));
+    const query = request.slice(request.indexOf('=') + 1);
+    return fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}`
+    + `&language=en-US&include_adult=false&video=true&query=${query}&page=${page}`)
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch(setResults(page > 1 ? [...results, ...data.results] : data.results));
+        if (withDetails) {
+          dispatch(getMovieDetails(page > 1 ? results[0].id : data.results[0].id));
+        }
+        dispatch(setTotalPages(data.total_pages));
+        dispatch(setAreMoviesLoaded(true));
+      })
+      .catch((e) => console.log(e));
+  };
+}
+
+function getMovies(request, page, results, withDetails) {
+  return (dispatch) => {
+    if (withDetails) {
+      dispatch(setIsMovieLoaded(false));
+    }
+    dispatch(setResults(results || []));
+    dispatch(setAreMoviesLoaded(false));
+    dispatch(setCurrentPage(page));
+    return fetch(`https://api.themoviedb.org/3/movie/${request}?api_key=${API_KEY}&language=en-US&page=${page}`)
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch(setResults(page > 1 ? [...results, ...data.results] : data.results));
+        if (withDetails) {
+          dispatch(getMovieDetails(page > 1 ? results[0].id : data.results[0].id));
+        }
+        dispatch(setTotalPages(data.total_pages));
+        dispatch(setAreMoviesLoaded(true));
+      })
+      .catch((e) => console.log(e));
+  };
 }
 
 function getTrailer(id) {
@@ -159,23 +200,9 @@ function getTrailer(id) {
   };
 }
 
-function getMovieDetails(id) {
-  return (dispatch) => {
-    dispatch(setIsMovieLoaded(false));
-    return fetch(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`,
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch(setMovieDetails(data));
-        dispatch(setIsMovieLoaded(true));
-      })
-      .catch((e) => console.log(e));
-  };
-}
-
 export {
-  setResults, setQuery, setGenres, setModal, setTrailerURL, setIsTrailerLoaded,
-  setMovieDetails, setCurrentPage, setTotalPages, setAreMoviesLoaded, setCurrentURL,
-  setCurrentGenre, getMovies, getGenres, getTrailer, getMovieDetails, setViewMode, setIsMovieLoaded,
+  setResults, setGenres, setModal, setTrailerURL, setIsTrailerLoaded,
+  setMovieDetails, setCurrentPage, setTotalPages, setAreMoviesLoaded,
+  getMovies, getGenres, getTrailer, getMovieDetails, setViewMode, setIsMovieLoaded,
+  setCurrentAPIRequest, getMoviesByGenre, getMoviesBySearch,
 };

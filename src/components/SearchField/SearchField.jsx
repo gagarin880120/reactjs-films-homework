@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './SearchField.module.scss';
 
 export default function SearchField({ onSearch }) {
   const [query, setQuery] = useState('');
-
+  const history = useHistory();
   return (
     <input
       className={styles.searchInput}
@@ -14,6 +15,8 @@ export default function SearchField({ onSearch }) {
       value={query}
       onKeyDown={(e) => {
         if (e.key === 'Enter') {
+          history.location.pathname = '/';
+          history.push(`search=${query}`);
           onSearch(query);
         }
       }}

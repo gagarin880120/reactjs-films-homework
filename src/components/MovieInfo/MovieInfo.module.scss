@@ -1,5 +1,21 @@
 .wrapper {
+  width: 100%;
+  background-image: url('https://i.ibb.co/7Wh7Jwz/no-backdrop.jpg');
+  background-size: cover;
+}
+
+.mainContent {
+  padding: 0 2% 40px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+  margin-top: 0%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.movieDetails {
   width: 40%;
+  margin-top: 35%;
 }
 
 .movieTitle {
@@ -47,8 +63,14 @@
   background: #020201;
 }
 
-@media screen and (max-width: 600px) {
-  .wrapper {
+
+@media screen and (max-width: 750px) {
+  .mainContent {
+    flex-direction: column;
+    padding: 2% 0 160px;
+  }
+
+  .movieDetails {
     width: 100%;
   }
 }

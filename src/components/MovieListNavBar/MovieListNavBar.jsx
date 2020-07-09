@@ -1,59 +1,64 @@
 import React from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './MovieListNavBar.module.scss';
 
 export default function MovieListNavBar({
   onTrending, onTopRated, onUpcoming, genres, onGenreChange,
-  currentGenre, switchViewMode, viewMode, currentURL,
+  switchViewMode, viewMode, currentAPIRequest,
 }) {
   const activeButtonStyle = {
     fontWeight: 'bold',
     textDecoration: 'underline',
   };
+
+  const history = useHistory();
   return (
     <div className={styles.wrapper}>
       <div className={styles.actionButtonsContainer}>
-        <button
-          type="button"
-          id="trending"
+        <Link
+          to="/popular"
+          id="popular"
           className={styles.button}
-          style={currentURL.includes('/popular') ? activeButtonStyle : null}
+          style={currentAPIRequest.includes('popular') ? activeButtonStyle : null}
           onClick={() => {
             onTrending();
           }}
         >
           Trending
-        </button>
-        <button
-          type="button"
+        </Link>
+        <Link
+          to="/top_rated"
           id="topRated"
-          style={currentURL.includes('top_rated') ? activeButtonStyle : null}
+          style={currentAPIRequest.includes('top_rated') ? activeButtonStyle : null}
           className={styles.button}
           onClick={() => {
             onTopRated();
           }}
         >
           Top rated
-        </button>
-        <button
-          type="button"
-          id="upComing"
+        </Link>
+        <Link
+          to="/upcoming"
+          id="topRated"
+          style={currentAPIRequest.includes('upcoming') ? activeButtonStyle : null}
           className={styles.button}
-          style={currentURL.includes('upcoming') ? activeButtonStyle : null}
           onClick={() => {
             onUpcoming();
           }}
         >
           Coming soon
-        </button>
+        </Link>
         <select
           className={styles.button}
           name="genres"
-          style={currentURL.includes('discover') ? activeButtonStyle : null}
+          style={currentAPIRequest.includes('genre') ? activeButtonStyle : null}
           onChange={(e) => {
             onGenreChange(e.target.value);
+            history.location.pathname = '/';
+            history.push(`genre=${e.target.value}`);
           }}
-          value={currentGenre}
+          value={currentAPIRequest.includes('genre') ? currentAPIRequest.slice(currentAPIRequest.indexOf('=') + 1) : ''}
         >
           <option value="">Genre</option>
           {
@@ -95,10 +100,9 @@ MovieListNavBar.propTypes = {
   onUpcoming: PropTypes.func,
   onGenreChange: PropTypes.func,
   genres: PropTypes.instanceOf(Array),
-  currentGenre: PropTypes.string,
   switchViewMode: PropTypes.func,
   viewMode: PropTypes.string,
-  currentURL: PropTypes.string,
+  currentAPIRequest: PropTypes.string,
 };
 
 MovieListNavBar.defaultProps = {
@@ -107,8 +111,7 @@ MovieListNavBar.defaultProps = {
   onUpcoming: null,
   onGenreChange: null,
   genres: [],
-  currentGenre: '',
   switchViewMode: null,
   viewMode: '',
-  currentURL: '',
+  currentAPIRequest: '',
 };

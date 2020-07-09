@@ -1,7 +1,7 @@
 .wrapper {
-  position: relative;
-  top: 80px;
-  right: 0;
+  position: absolute;
+  bottom: 40px;
+  right: 2%;
   width: 250px;
   display: flex;
   justify-content: space-between;
@@ -11,56 +11,61 @@
   padding: 1%;
   position: absolute;
   width: 140%;
-  max-height: 320px;
+  max-height: 280px;
   bottom: 55px;
   right: 0;
   background: rgba(0, 0, 0, 0.6);
+  overflow-y: scroll;
 
   p {
     padding-left: 1%;
   }
 }
 
+.overview::-webkit-scrollbar {
+  width: 8px;
+}
+
+.overview::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+}
+
+.overview::-webkit-scrollbar-thumb {
+  background: #47c3f0;
+  border-radius: 6px;
+}
+
+.overview::-webkit-scrollbar-thumb:hover {
+  background: #02729b;
+}
+
 @media screen and (max-width: 900px) {
   .overview {
-    max-height: 240px;
     width: 100%;
-    overflow-y: scroll;
-  }
-
-  .overview::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  .overview::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 6px;
-  }
-
-  .overview::-webkit-scrollbar-thumb {
-    background: #47c3f0;
-    border-radius: 6px;
-  }
-
-  .overview::-webkit-scrollbar-thumb:hover {
-    background: #02729b;
+    max-height: 240px;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 750px) {
   .wrapper {
-    top: 20px;
+    bottom: 20px;
+    left: 2%;
     flex-direction: column;
     height: 100px;
-    margin-top: 5%;
     width: 100%;
+
+    button {
+      width: 80px;
+      height: 40px;
+    }
   }
 
   .overview {
-    max-height: 120px;
+    max-height: 100px;
     width: 79%;
     overflow-y: scroll;
-    left: 80px;
+    left: 90px;
     bottom: 0;
   }
 }

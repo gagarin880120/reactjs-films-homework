@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getMovies } from '../../redux/actions';
+import { setCurrentAPIRequest } from '../../redux/actions';
 import SearchField from './SearchField';
-import getURL from '../../utils/utils';
 
 export function SearchFieldContainer({ onSearch }) {
   return (
@@ -16,7 +15,7 @@ export function SearchFieldContainer({ onSearch }) {
 export const mapDispatchToProps = (dispatch) => ({
   onSearch(query) {
     if (query) {
-      dispatch(getMovies(getURL('search'), 1, query));
+      dispatch(setCurrentAPIRequest(`search=${query}`));
     }
   },
 });

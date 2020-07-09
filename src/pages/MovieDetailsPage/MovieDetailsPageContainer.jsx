@@ -4,20 +4,21 @@ import { connect } from 'react-redux';
 import MovieDetailsPage from './MovieDetailsPage';
 import Spinner from '../../components/Spinner/Spinner';
 import {
-  movieDetailsSelector, areMoviesLoadedSelector, resultsSelector, isMovieLoadedSelector,
+  areMoviesLoadedSelector, resultsSelector, isMovieLoadedSelector,
 } from '../../redux/selectors';
+import { getMovies, setCurrentAPIRequest } from '../../redux/actions';
 import styles from './MovieDetailsPage.module.scss';
 
 export function MovieDetailsPageContainer({
-  movie, areMoviesLoaded, results, isMovieLoaded,
+  areMoviesLoaded, results, isMovieLoaded, onPageLoad,
 }) {
   return (
     isMovieLoaded
       ? (
         <MovieDetailsPage
-          movie={movie}
           areMoviesLoaded={areMoviesLoaded}
           results={results}
+          onPageLoad={onPageLoad}
         />
       ) : (
         <div className={styles.pageLoading}>
@@ -28,24 +29,30 @@ export function MovieDetailsPageContainer({
 }
 
 export const mapStateToProps = (state) => ({
-  movie: movieDetailsSelector(state),
   areMoviesLoaded: areMoviesLoadedSelector(state),
   results: resultsSelector(state),
   isMovieLoaded: isMovieLoadedSelector(state),
 });
 
+export const mapDispatchToProps = (dispatch) => ({
+  onPageLoad() {
+    dispatch(setCurrentAPIRequest('popular'));
+    dispatch(getMovies('popular'));
+  },
+});
+
 MovieDetailsPageContainer.propTypes = {
-  movie: PropTypes.instanceOf(Object),
   areMoviesLoaded: PropTypes.bool,
   results: PropTypes.instanceOf(Array),
   isMovieLoaded: PropTypes.bool,
+  onPageLoad: PropTypes.func,
 };
 
 MovieDetailsPageContainer.defaultProps = {
-  movie: {},
   areMoviesLoaded: false,
   results: [],
   isMovieLoaded: false,
+  onPageLoad: null,
 };
 
-export default connect(mapStateToProps)(MovieDetailsPageContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieDetailsPageContainer);

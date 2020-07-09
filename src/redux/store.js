@@ -2,28 +2,24 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 const initialState = {
-  results: JSON.parse(localStorage.getItem('results')) || [],
-  query: '',
-  genres: null || JSON.parse(localStorage.getItem('genres')),
+  results: [],
+  genres: null,
   isModalOpen: false,
   trailerURL: '',
   isTrailerLoaded: false,
-  movieDetails: null || JSON.parse(localStorage.getItem('movieDetails')),
-  currentPage: +localStorage.getItem('currentPage') || 1,
+  movieDetails: null,
+  currentPage: 1,
   totalPages: 0,
-  areMoviesLoaded: false || JSON.parse(localStorage.getItem('areMoviesLoaded')),
-  currentURL: '' || localStorage.getItem('currentURL'),
-  currentGenre: localStorage.getItem('currentGenre') || '',
-  viewMode: localStorage.getItem('viewMode') || 'gallery',
-  isMovieLoaded: false || JSON.parse(localStorage.getItem('isMovieLoaded')),
+  areMoviesLoaded: false,
+  viewMode: 'gallery',
+  isMovieLoaded: false,
+  currentAPIRequest: 'popular',
 };
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
     case 'RESULTS':
       return { ...state, results: action.results };
-    case 'QUERY':
-      return { ...state, query: action.query };
     case 'GENRES':
       return { ...state, genres: action.genres };
     case 'MODAL':
@@ -40,14 +36,12 @@ export function reducer(state = initialState, action) {
       return { ...state, totalPages: action.numberOfPages };
     case 'ARE_MOVIES_LOADED':
       return { ...state, areMoviesLoaded: action.areMoviesLoaded };
-    case 'CURRENT_URL':
-      return { ...state, currentURL: action.currentURL };
-    case 'CURRENT_GENRE':
-      return { ...state, currentGenre: action.currentGenre };
     case 'VIEW_MODE':
       return { ...state, viewMode: action.viewMode };
     case 'IS_MOVIE_LOADED':
       return { ...state, isMovieLoaded: action.isLoaded };
+    case 'SET_CURRENT_API_REQUEST':
+      return { ...state, currentAPIRequest: action.currentAPIRequest };
     default:
       return state;
   }

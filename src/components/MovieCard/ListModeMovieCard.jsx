@@ -21,7 +21,7 @@ export default function ListModeMovieCard({
       />
       <div className={styles.listMovieInfo}>
         <Link
-          to="/movieDetailsPage"
+          to={`/movie/${movie.id}`}
           onClick={() => {
             onLinkClick(movie.id);
           }}

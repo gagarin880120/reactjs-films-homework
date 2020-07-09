@@ -2,15 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MovieListNavBar from './MovieListNavBar';
-import { getMovies, setCurrentGenre, setViewMode } from '../../redux/actions';
+import { setViewMode, setCurrentAPIRequest } from '../../redux/actions';
 import {
-  genresSelector, currentGenreSelector, viewModeSelector, currentURLSelector,
+  genresSelector, viewModeSelector, currentAPIRequestSelector,
 } from '../../redux/selectors';
-import getURL from '../../utils/utils';
 
 export function MovieListNavBarContainer({
   onTrending, onTopRated, onUpcoming, genres, onGenreChange,
-  currentGenre, switchViewMode, viewMode, currentURL,
+  switchViewMode, viewMode, currentAPIRequest,
 }) {
   return (
     <MovieListNavBar
@@ -19,37 +18,31 @@ export function MovieListNavBarContainer({
       onUpcoming={onUpcoming}
       onGenreChange={onGenreChange}
       genres={genres}
-      currentGenre={currentGenre}
       switchViewMode={switchViewMode}
       viewMode={viewMode}
-      currentURL={currentURL}
+      currentAPIRequest={currentAPIRequest}
     />
   );
 }
 
 export const mapStateToProps = (state) => ({
   genres: genresSelector(state),
-  currentGenre: currentGenreSelector(state),
   viewMode: viewModeSelector(state),
-  currentURL: currentURLSelector(state),
+  currentAPIRequest: currentAPIRequestSelector(state),
 });
 
 export const mapDispatchToProps = (dispatch) => ({
   onTrending() {
-    dispatch(getMovies(getURL('trending'), 1));
-    dispatch(setCurrentGenre(''));
+    dispatch(setCurrentAPIRequest('popular'));
   },
   onTopRated() {
-    dispatch(getMovies(getURL('topRated'), 1));
-    dispatch(setCurrentGenre(''));
+    dispatch(setCurrentAPIRequest('top_rated'));
   },
   onUpcoming() {
-    dispatch(getMovies(getURL('upComing'), 1));
-    dispatch(setCurrentGenre(''));
+    dispatch(setCurrentAPIRequest('upcoming'));
   },
   onGenreChange(genreId) {
-    dispatch(setCurrentGenre(genreId));
-    dispatch(getMovies(getURL('byGenre'), 1, '', genreId));
+    dispatch(setCurrentAPIRequest(`genre=${genreId}`));
   },
   switchViewMode(mode) {
     dispatch(setViewMode(mode));
@@ -62,10 +55,9 @@ MovieListNavBarContainer.propTypes = {
   onUpcoming: PropTypes.func,
   onGenreChange: PropTypes.func,
   genres: PropTypes.instanceOf(Array),
-  currentGenre: PropTypes.string,
   switchViewMode: PropTypes.func,
   viewMode: PropTypes.string,
-  currentURL: PropTypes.string,
+  currentAPIRequest: PropTypes.string,
 };
 
 MovieListNavBarContainer.defaultProps = {
@@ -74,10 +66,9 @@ MovieListNavBarContainer.defaultProps = {
   onUpcoming: null,
   onGenreChange: null,
   genres: [],
-  currentGenre: '',
   switchViewMode: null,
   viewMode: '',
-  currentURL: '',
+  currentAPIRequest: '',
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieListNavBarContainer);

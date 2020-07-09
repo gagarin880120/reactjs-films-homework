@@ -2,26 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Footer from './Footer';
-import { getMovies } from '../../redux/actions';
+import { getMovies, getMoviesBySearch, getMoviesByGenre } from '../../redux/actions';
 import {
-  resultsSelector, currentPageSelector, querySelector,
-  areMoviesLoadedSelector, currentURLSelector, totalPagesSelector,
+  resultsSelector, currentPageSelector, currentAPIRequestSelector,
+  areMoviesLoadedSelector, totalPagesSelector,
 } from '../../redux/selectors';
 
 export function FooterContainer({
-  results, onIntersect, currentAction, currentPage,
-  query, areMoviesLoaded, url, totalPages,
+  results, onIntersect, currentPage,
+  areMoviesLoaded, totalPages, currentAPIRequest,
 }) {
   return (
     <Footer
       results={results}
       currentPage={currentPage}
       onIntersect={onIntersect}
-      query={query}
-      currentAction={currentAction}
       areMoviesLoaded={areMoviesLoaded}
-      url={url}
       totalPages={totalPages}
+      currentAPIRequest={currentAPIRequest}
     />
   );
 }
@@ -29,38 +27,39 @@ export function FooterContainer({
 export const mapStateToProps = (state) => ({
   results: resultsSelector(state),
   currentPage: currentPageSelector(state),
-  query: querySelector(state),
   areMoviesLoaded: areMoviesLoadedSelector(state),
-  url: currentURLSelector(state),
   totalPages: totalPagesSelector(state),
+  currentAPIRequest: currentAPIRequestSelector(state),
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  onIntersect(url, page, query, results) {
-    dispatch(getMovies(url, page, query, '', results));
+  onIntersect(currentAPIRequest, page, results) {
+    if (currentAPIRequest.includes('search')) {
+      dispatch(getMoviesBySearch(currentAPIRequest, page, results));
+    } else if (currentAPIRequest.includes('genre')) {
+      dispatch(getMoviesByGenre(currentAPIRequest, page, results));
+    } else {
+      dispatch(getMovies(currentAPIRequest, page, results));
+    }
   },
 });
 
 FooterContainer.propTypes = {
   results: PropTypes.instanceOf(Array),
   currentPage: PropTypes.number,
-  currentAction: PropTypes.string,
   onIntersect: PropTypes.func,
-  query: PropTypes.string,
   areMoviesLoaded: PropTypes.bool,
-  url: PropTypes.string,
   totalPages: PropTypes.number,
+  currentAPIRequest: PropTypes.string,
 };
 
 FooterContainer.defaultProps = {
   results: [],
   currentPage: 1,
-  currentAction: '',
   onIntersect: null,
-  query: '',
   areMoviesLoaded: false,
-  url: '',
   totalPages: 0,
+  currentAPIRequest: '',
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FooterContainer);
