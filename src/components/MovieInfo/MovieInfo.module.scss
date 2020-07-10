@@ -63,11 +63,10 @@
   background: #020201;
 }
 
-
 @media screen and (max-width: 750px) {
   .mainContent {
     flex-direction: column;
-    padding: 2% 0 160px;
+    padding: 2% 2% 160px;
   }
 
   .movieDetails {

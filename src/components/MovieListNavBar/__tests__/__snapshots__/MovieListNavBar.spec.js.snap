@@ -5,10 +5,10 @@ exports[`MovieListNavBar component should render with another styles depends on 
   className="wrapper"
 >
   <div
-    className="actionButtonsContainer"
+    className="linksContainer"
   >
     <Link
-      className="button"
+      className="link"
       id="popular"
       onClick={[Function]}
       style={null}
@@ -17,7 +17,7 @@ exports[`MovieListNavBar component should render with another styles depends on 
       Trending
     </Link>
     <Link
-      className="button"
+      className="link"
       id="topRated"
       onClick={[Function]}
       style={null}
@@ -26,7 +26,7 @@ exports[`MovieListNavBar component should render with another styles depends on 
       Top rated
     </Link>
     <Link
-      className="button"
+      className="link"
       id="upComing"
       onClick={[Function]}
       style={
@@ -40,7 +40,7 @@ exports[`MovieListNavBar component should render with another styles depends on 
       Coming soon
     </Link>
     <select
-      className="button"
+      className="link"
       name="genres"
       onChange={[Function]}
       style={null}
@@ -57,7 +57,7 @@ exports[`MovieListNavBar component should render with another styles depends on 
     className="viewSwitchersContainer"
   >
     <button
-      className="button"
+      className="link"
       id="galleryView"
       onClick={[Function]}
       type="button"
@@ -68,7 +68,7 @@ exports[`MovieListNavBar component should render with another styles depends on 
       />
     </button>
     <button
-      className="button"
+      className="link"
       id="listView"
       onClick={[Function]}
       type="button"
@@ -91,10 +91,10 @@ exports[`MovieListNavBar component should render with another styles depends on 
   className="wrapper"
 >
   <div
-    className="actionButtonsContainer"
+    className="linksContainer"
   >
     <Link
-      className="button"
+      className="link"
       id="popular"
       onClick={[Function]}
       style={null}
@@ -103,7 +103,7 @@ exports[`MovieListNavBar component should render with another styles depends on 
       Trending
     </Link>
     <Link
-      className="button"
+      className="link"
       id="topRated"
       onClick={[Function]}
       style={null}
@@ -112,7 +112,7 @@ exports[`MovieListNavBar component should render with another styles depends on 
       Top rated
     </Link>
     <Link
-      className="button"
+      className="link"
       id="upComing"
       onClick={[Function]}
       style={null}
@@ -121,7 +121,7 @@ exports[`MovieListNavBar component should render with another styles depends on 
       Coming soon
     </Link>
     <select
-      className="button"
+      className="link"
       name="genres"
       onChange={[Function]}
       style={null}
@@ -138,7 +138,7 @@ exports[`MovieListNavBar component should render with another styles depends on 
     className="viewSwitchersContainer"
   >
     <button
-      className="button"
+      className="link"
       id="galleryView"
       onClick={[Function]}
       type="button"
@@ -149,7 +149,7 @@ exports[`MovieListNavBar component should render with another styles depends on 
       />
     </button>
     <button
-      className="button"
+      className="link"
       id="listView"
       onClick={[Function]}
       type="button"
@@ -172,10 +172,10 @@ exports[`MovieListNavBar component should render with another styles depends on 
   className="wrapper"
 >
   <div
-    className="actionButtonsContainer"
+    className="linksContainer"
   >
     <Link
-      className="button"
+      className="link"
       id="popular"
       onClick={[Function]}
       style={null}
@@ -184,7 +184,7 @@ exports[`MovieListNavBar component should render with another styles depends on 
       Trending
     </Link>
     <Link
-      className="button"
+      className="link"
       id="topRated"
       onClick={[Function]}
       style={
@@ -198,7 +198,7 @@ exports[`MovieListNavBar component should render with another styles depends on 
       Top rated
     </Link>
     <Link
-      className="button"
+      className="link"
       id="upComing"
       onClick={[Function]}
       style={null}
@@ -207,7 +207,7 @@ exports[`MovieListNavBar component should render with another styles depends on 
       Coming soon
     </Link>
     <select
-      className="button"
+      className="link"
       name="genres"
       onChange={[Function]}
       style={null}
@@ -224,7 +224,7 @@ exports[`MovieListNavBar component should render with another styles depends on 
     className="viewSwitchersContainer"
   >
     <button
-      className="button"
+      className="link"
       id="galleryView"
       onClick={[Function]}
       type="button"
@@ -235,7 +235,7 @@ exports[`MovieListNavBar component should render with another styles depends on 
       />
     </button>
     <button
-      className="button"
+      className="link"
       id="listView"
       onClick={[Function]}
       type="button"
@@ -258,10 +258,10 @@ exports[`MovieListNavBar component should render without crashing 1`] = `
   className="wrapper"
 >
   <div
-    className="actionButtonsContainer"
+    className="linksContainer"
   >
     <Link
-      className="button"
+      className="link"
       id="popular"
       onClick={[Function]}
       style={
@@ -275,7 +275,7 @@ exports[`MovieListNavBar component should render without crashing 1`] = `
       Trending
     </Link>
     <Link
-      className="button"
+      className="link"
       id="topRated"
       onClick={[Function]}
       style={null}
@@ -284,7 +284,7 @@ exports[`MovieListNavBar component should render without crashing 1`] = `
       Top rated
     </Link>
     <Link
-      className="button"
+      className="link"
       id="upComing"
       onClick={[Function]}
       style={null}
@@ -293,7 +293,7 @@ exports[`MovieListNavBar component should render without crashing 1`] = `
       Coming soon
     </Link>
     <select
-      className="button"
+      className="link"
       name="genres"
       onChange={[Function]}
       style={null}
@@ -315,7 +315,7 @@ exports[`MovieListNavBar component should render without crashing 1`] = `
     className="viewSwitchersContainer"
   >
     <button
-      className="button"
+      className="link"
       id="galleryView"
       onClick={[Function]}
       type="button"
@@ -330,7 +330,7 @@ exports[`MovieListNavBar component should render without crashing 1`] = `
       />
     </button>
     <button
-      className="button"
+      className="link"
       id="listView"
       onClick={[Function]}
       type="button"

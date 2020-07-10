@@ -15,11 +15,11 @@ export default function MovieListNavBar({
   const history = useHistory();
   return (
     <div className={styles.wrapper}>
-      <div className={styles.actionButtonsContainer}>
+      <div className={styles.linksContainer}>
         <Link
           to="/popular"
           id="popular"
-          className={styles.button}
+          className={styles.link}
           style={currentAPIRequest.includes('popular') ? activeStyle : null}
           onClick={() => {
             onTrending();
@@ -31,7 +31,7 @@ export default function MovieListNavBar({
           to="/top_rated"
           id="topRated"
           style={currentAPIRequest.includes('top_rated') ? activeStyle : null}
-          className={styles.button}
+          className={styles.link}
           onClick={() => {
             onTopRated();
           }}
@@ -42,7 +42,7 @@ export default function MovieListNavBar({
           to="/upcoming"
           id="upComing"
           style={currentAPIRequest.includes('upcoming') ? activeStyle : null}
-          className={styles.button}
+          className={styles.link}
           onClick={() => {
             onUpcoming();
           }}
@@ -50,7 +50,7 @@ export default function MovieListNavBar({
           Coming soon
         </Link>
         <select
-          className={styles.button}
+          className={styles.link}
           name="genres"
           style={currentAPIRequest.includes('genre') ? activeStyle : null}
           onChange={(e) => {
@@ -71,7 +71,7 @@ export default function MovieListNavBar({
         <button
           type="button"
           id="galleryView"
-          className={styles.button}
+          className={styles.link}
           onClick={() => {
             switchViewMode('gallery');
           }}
@@ -81,7 +81,7 @@ export default function MovieListNavBar({
         <button
           type="button"
           id="listView"
-          className={styles.button}
+          className={styles.link}
           onClick={() => {
             switchViewMode('list');
           }}

@@ -14,7 +14,7 @@ export default function SearchResultsPage({
     onCurrentAPIRequestUpdate(currentAPIRequest);
   }, [currentAPIRequest]);
   return (
-    <div className={styles.wrapper}>
+    <>
       {
         isMovieLoaded ? (
           <>
@@ -32,7 +32,7 @@ export default function SearchResultsPage({
       {
         results.length ? <FooterContainer /> : null
       }
-    </div>
+    </>
   );
 }
 

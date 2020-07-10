@@ -1,17 +1,51 @@
 .wrapper {
   display: flex;
   justify-content: space-between;
+
+  select {
+    margin-top: -5px;
+  }
 }
 
-.button {
+.link {
   border: none;
   background: transparent;
   cursor: pointer;
   outline: 0;
   color: #3bb3df;
   font-size: 18px;
+  text-decoration: none;
 
   i {
     font-size: 21px;
+  }
+}
+
+.linksContainer {
+  width: 450px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.viewSwitchersContainer {
+  display: flex;
+}
+
+@media screen and (max-width: 600px) {
+  .linksContainer {
+    width: 80%;
+    display: block;
+
+    .link {
+      margin: 1%;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .linksContainer {
+    .link {
+      display: block;
+    }
   }
 }

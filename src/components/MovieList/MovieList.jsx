@@ -4,7 +4,6 @@ import styles from './MovieList.module.scss';
 import MovieCardContainer from '../MovieCard';
 import TrailerModalContainer from '../TrailerModal';
 import MovieListNavBarContainer from '../MovieListNavBar';
-import { getUnique } from '../../helpers/helpers';
 
 export default function MovieList({ results, isModalOpen, viewMode }) {
   return (
