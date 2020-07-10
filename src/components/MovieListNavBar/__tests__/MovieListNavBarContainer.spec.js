@@ -1,11 +1,10 @@
 import ShallowRenderer from 'react-test-renderer/shallow';
 import React from 'react';
 import { MovieListNavBarContainer, mapStateToProps, mapDispatchToProps } from '../MovieListNavBarContainer';
-import { getMovies, setCurrentGenre, setViewMode } from '../../../redux/actions';
+import { setCurrentAPIRequest, setViewMode } from '../../../redux/actions';
 
 jest.mock('../../../redux/actions',() => ({
-  getMovies: jest.fn().mockReturnValue('getMoviesAction'),
-  setCurrentGenre: jest.fn().mockReturnValue('Adventure'),
+  setCurrentAPIRequest: jest.fn().mockReturnValue('popular'),
   setViewMode: jest.fn().mockReturnValue('list')
 }))
 
@@ -24,11 +23,13 @@ describe('MovieListNavBarContainer', () => {
 
       const initialState = {
         genres: [{id: 28, name: 'Action'}],
-        currentGenre: '28',
+        viewMode: 'list',
+        currentAPIRequest: 'popular',
       };
 
       expect(mapStateToProps(initialState).genres).toEqual([{id: 28, name: 'Action'}]);
-      expect(mapStateToProps(initialState).currentGenre).toEqual('28');
+      expect(mapStateToProps(initialState).viewMode).toEqual('list');
+      expect(mapStateToProps(initialState).currentAPIRequest).toEqual('popular');
     });
   });
 
@@ -37,44 +38,40 @@ describe('MovieListNavBarContainer', () => {
       jest.clearAllMocks();
     })
 
-    test('onTrending should dispatch getMovies and setCurrentGenre actions', () => {
+    test('onTrending should dispatch setCurrentAPIRequest actions', () => {
       const dispatch = jest.fn();
       const {onTrending} = mapDispatchToProps(dispatch);
 
       onTrending();
 
-      expect(getMovies).toHaveBeenCalled();
-      expect(setCurrentGenre).toHaveBeenCalled();
+      expect(setCurrentAPIRequest).toHaveBeenCalled();
     });
 
-    test('onTopRated should dispatch getMovies and setCurrentGenre actions', () => {
+    test('onTopRated should dispatch setCurrentAPIRequest actions', () => {
       const dispatch = jest.fn();
       const {onTopRated} = mapDispatchToProps(dispatch);
 
       onTopRated();
 
-      expect(getMovies).toHaveBeenCalled();
-      expect(setCurrentGenre).toHaveBeenCalled();
+      expect(setCurrentAPIRequest).toHaveBeenCalled();
     });
 
-    test('onUpcoming should dispatch getMovies and setCurrentGenre actions', () => {
+    test('onUpcoming should dispatch setCurrentAPIRequest actions', () => {
       const dispatch = jest.fn();
       const {onUpcoming} = mapDispatchToProps(dispatch);
 
       onUpcoming();
 
-      expect(getMovies).toHaveBeenCalled();
-      expect(setCurrentGenre).toHaveBeenCalled();
+      expect(setCurrentAPIRequest).toHaveBeenCalled();
     });
 
-    test('onGenreChange should dispatch getMovies and setCurrentGenre actions', () => {
+    test('onGenreChange should dispatch setCurrentAPIRequest actions', () => {
       const dispatch = jest.fn();
       const {onGenreChange} = mapDispatchToProps(dispatch);
 
       onGenreChange();
 
-      expect(getMovies).toHaveBeenCalled();
-      expect(setCurrentGenre).toHaveBeenCalled();
+      expect(setCurrentAPIRequest).toHaveBeenCalled();
     });
 
     test('switchViewMode should dispatch setViewMode actions', () => {

@@ -3,6 +3,7 @@
 exports[`FooterContainer component should render without crashing 1`] = `
 <Footer
   areMoviesLoaded={false}
+  currentAPIRequest=""
   currentPage={1}
   onIntersect={null}
   results={Array []}

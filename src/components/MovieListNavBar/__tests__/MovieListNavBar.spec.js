@@ -2,25 +2,33 @@ import ShallowRenderer from 'react-test-renderer/shallow';
 import React from 'react';
 import MovieListNavBar from '../MovieListNavBar';
 import TestRenderer, { act } from 'react-test-renderer';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 describe('MovieListNavBar component', () => {
   test('should render without crashing', () => {
     const renderer = new ShallowRenderer();
-    renderer.render(<MovieListNavBar currentURL="url/popular" viewMode="list" />);
+    renderer.render(<MovieListNavBar currentAPIRequest="/popular" viewMode="list" genres={[{id: 28, name: 'Action'}]}/>);
     const result = renderer.getRenderOutput();
     expect(result).toMatchSnapshot();
   });
 
   test('should render with another styles depends on props', () => {
     const renderer = new ShallowRenderer();
-    renderer.render(<MovieListNavBar currentURL="url/upcoming" viewMode="gallery" />);
+    renderer.render(<MovieListNavBar currentAPIRequest="/upcoming" viewMode="gallery" />);
     const result = renderer.getRenderOutput();
     expect(result).toMatchSnapshot();
   });
 
   test('should render with another styles depends on props', () => {
     const renderer = new ShallowRenderer();
-    renderer.render(<MovieListNavBar currentURL="url/discover" viewMode="gallery" />);
+    renderer.render(<MovieListNavBar currentAPIRequest="/discover" viewMode="gallery" />);
+    const result = renderer.getRenderOutput();
+    expect(result).toMatchSnapshot();
+  });
+
+  test('should render with another styles depends on props', () => {
+    const renderer = new ShallowRenderer();
+    renderer.render(<MovieListNavBar currentAPIRequest="/top_rated" viewMode="gallery" />);
     const result = renderer.getRenderOutput();
     expect(result).toMatchSnapshot();
   });
@@ -33,46 +41,48 @@ describe('MovieListNavBar component', () => {
     const switchViewMode = jest.fn();
 
     const testRenderer = TestRenderer.create(
-      <MovieListNavBar
-        onTrending={onTrending}
-        onTopRated={onTopRated}
-        onUpcoming={onUpcoming}
-        onGenreChange={onGenreChange}
-        switchViewMode={switchViewMode}
-        currentURL="url/top_rated"
-      />
+      <Router>
+        <MovieListNavBar
+          onTrending={onTrending}
+          onTopRated={onTopRated}
+          onUpcoming={onUpcoming}
+          onGenreChange={onGenreChange}
+          switchViewMode={switchViewMode}
+          currentAPIRequest="genre=35"
+        />
+      </Router>
     );
 
-    describe('trending button', () => {
+    describe('trending link', () => {
       test('when is clicked should call onTrending function', () => {
-        const button = testRenderer.root.findByProps({id: 'trending'});
+        const link = testRenderer.root.findByProps({id: 'popular'});
 
         act(() => {
-          button.props.onClick();
+          link.props.onClick();
         })
 
         expect(onTrending).toHaveBeenCalled();
       });
     });
 
-    describe('topRated button', () => {
+    describe('topRated link', () => {
       test('when is clicked should call onTopRated function', () => {
-        const button = testRenderer.root.findByProps({id: 'topRated'});
+        const link = testRenderer.root.findByProps({id: 'topRated'});
 
         act(() => {
-          button.props.onClick();
+          link.props.onClick();
         })
 
         expect(onTopRated).toHaveBeenCalled();
       });
     });
 
-    describe('upcoming button', () => {
+    describe('upcoming link', () => {
       test('when is clicked should call onUpcoming function', () => {
-        const button = testRenderer.root.findByProps({id: 'upComing'});
+        const link = testRenderer.root.findByProps({id: 'upComing'});
 
         act(() => {
-          button.props.onClick();
+          link.props.onClick();
         })
 
         expect(onUpcoming).toHaveBeenCalled();

@@ -17,7 +17,7 @@ exports[`ListModeMovieCard component should render without crashing 1`] = `
   >
     <Link
       onClick={[Function]}
-      to="/movieDetailsPage"
+      to="/movie/11"
     >
       <p
         className="movieTitle"

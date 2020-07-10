@@ -1,12 +1,11 @@
 import { reducer } from '../store';
-import { setResults, setQuery, setGenres, setModal, setTrailerURL, setIsTrailerLoaded,
-  setMovieDetails, setCurrentPage, setTotalPages, setAreMoviesLoaded, setCurrentURL,
-  setCurrentGenre, setViewMode, setIsMovieLoaded
+import { setResults, setGenres, setModal, setTrailerURL, setIsTrailerLoaded,
+  setMovieDetails, setCurrentPage, setTotalPages, setAreMoviesLoaded, setViewMode,
+  setIsMovieLoaded, setCurrentAPIRequest,
 } from '../actions';
 
 const state = {
   results: [],
-  query: '',
   genres: null,
   isModalOpen: false,
   trailerURL: '',
@@ -15,10 +14,9 @@ const state = {
   currentPage: 1,
   totalPages: 0,
   areMoviesLoaded: false,
-  currentURL: '',
-  currentGenre: '',
   viewMode: 'gallery',
   isMovieLoaded: false,
+  currentAPIRequest: '',
 };
 
 describe('Reducer should return store with changes according to action type', () => {
@@ -26,7 +24,6 @@ describe('Reducer should return store with changes according to action type', ()
     expect(reducer(state, setResults([1, 2, 3]))).toStrictEqual(
       {
         results: [1, 2, 3],
-        query: '',
         genres: null,
         isModalOpen: false,
         trailerURL: '',
@@ -35,40 +32,17 @@ describe('Reducer should return store with changes according to action type', ()
         currentPage: 1,
         totalPages: 0,
         areMoviesLoaded: false,
-        currentURL: '',
-        currentGenre: '',
         viewMode: 'gallery',
         isMovieLoaded: false,
+        currentAPIRequest: '',
       }
     )
   });
 
-  test('QUERY', () => {
-    expect(reducer(state, setQuery('request'))).toStrictEqual(
-      {
-        results: [],
-        query: 'request',
-        genres: null,
-        isModalOpen: false,
-        trailerURL: '',
-        isTrailerLoaded: false,
-        movieDetails: null,
-        currentPage: 1,
-        totalPages: 0,
-        areMoviesLoaded: false,
-        currentURL: '',
-        currentGenre: '',
-        viewMode: 'gallery',
-        isMovieLoaded: false,
-      }
-    )
-  });
-
-    test('GENRES', () => {
+  test('GENRES', () => {
     expect(reducer(state, setGenres([1, 2, 3]))).toStrictEqual(
       {
         results: [],
-        query: '',
         genres: [1, 2, 3],
         isModalOpen: false,
         trailerURL: '',
@@ -77,10 +51,9 @@ describe('Reducer should return store with changes according to action type', ()
         currentPage: 1,
         totalPages: 0,
         areMoviesLoaded: false,
-        currentURL: '',
-        currentGenre: '',
         viewMode: 'gallery',
         isMovieLoaded: false,
+        currentAPIRequest: '',
       }
     )
   });
@@ -89,7 +62,6 @@ describe('Reducer should return store with changes according to action type', ()
     expect(reducer(state, setModal(true))).toStrictEqual(
       {
         results: [],
-        query: '',
         genres: null,
         isModalOpen: true,
         trailerURL: '',
@@ -98,10 +70,9 @@ describe('Reducer should return store with changes according to action type', ()
         currentPage: 1,
         totalPages: 0,
         areMoviesLoaded: false,
-        currentURL: '',
-        currentGenre: '',
         viewMode: 'gallery',
         isMovieLoaded: false,
+        currentAPIRequest: '',
       }
     )
   });
@@ -110,7 +81,6 @@ describe('Reducer should return store with changes according to action type', ()
     expect(reducer(state, setTrailerURL('url'))).toStrictEqual(
       {
         results: [],
-        query: '',
         genres: null,
         isModalOpen: false,
         trailerURL: 'url',
@@ -119,10 +89,9 @@ describe('Reducer should return store with changes according to action type', ()
         currentPage: 1,
         totalPages: 0,
         areMoviesLoaded: false,
-        currentURL: '',
-        currentGenre: '',
         viewMode: 'gallery',
         isMovieLoaded: false,
+        currentAPIRequest: '',
       }
     )
   });
@@ -131,7 +100,6 @@ describe('Reducer should return store with changes according to action type', ()
     expect(reducer(state, setIsTrailerLoaded(true))).toStrictEqual(
       {
         results: [],
-        query: '',
         genres: null,
         isModalOpen: false,
         trailerURL: '',
@@ -140,10 +108,9 @@ describe('Reducer should return store with changes according to action type', ()
         currentPage: 1,
         totalPages: 0,
         areMoviesLoaded: false,
-        currentURL: '',
-        currentGenre: '',
         viewMode: 'gallery',
         isMovieLoaded: false,
+        currentAPIRequest: '',
       }
     )
   });
@@ -152,7 +119,6 @@ describe('Reducer should return store with changes according to action type', ()
     expect(reducer(state, setMovieDetails({title: 'Matrix', genre: 'Action'}))).toStrictEqual(
       {
         results: [],
-        query: '',
         genres: null,
         isModalOpen: false,
         trailerURL: '',
@@ -161,10 +127,9 @@ describe('Reducer should return store with changes according to action type', ()
         currentPage: 1,
         totalPages: 0,
         areMoviesLoaded: false,
-        currentURL: '',
-        currentGenre: '',
         viewMode: 'gallery',
         isMovieLoaded: false,
+        currentAPIRequest: '',
       }
     )
   });
@@ -173,7 +138,6 @@ describe('Reducer should return store with changes according to action type', ()
     expect(reducer(state, setCurrentPage(2))).toStrictEqual(
       {
         results: [],
-        query: '',
         genres: null,
         isModalOpen: false,
         trailerURL: '',
@@ -182,10 +146,9 @@ describe('Reducer should return store with changes according to action type', ()
         currentPage: 2,
         totalPages: 0,
         areMoviesLoaded: false,
-        currentURL: '',
-        currentGenre: '',
         viewMode: 'gallery',
         isMovieLoaded: false,
+        currentAPIRequest: '',
       }
     )
   });
@@ -194,7 +157,6 @@ describe('Reducer should return store with changes according to action type', ()
     expect(reducer(state, setTotalPages(10))).toStrictEqual(
       {
         results: [],
-        query: '',
         genres: null,
         isModalOpen: false,
         trailerURL: '',
@@ -203,10 +165,9 @@ describe('Reducer should return store with changes according to action type', ()
         currentPage: 1,
         totalPages: 10,
         areMoviesLoaded: false,
-        currentURL: '',
-        currentGenre: '',
         viewMode: 'gallery',
         isMovieLoaded: false,
+        currentAPIRequest: '',
       }
     )
   });
@@ -215,7 +176,6 @@ describe('Reducer should return store with changes according to action type', ()
     expect(reducer(state, setAreMoviesLoaded(true))).toStrictEqual(
       {
         results: [],
-        query: '',
         genres: null,
         isModalOpen: false,
         trailerURL: '',
@@ -224,61 +184,18 @@ describe('Reducer should return store with changes according to action type', ()
         currentPage: 1,
         totalPages: 0,
         areMoviesLoaded: true,
-        currentURL: '',
-        currentGenre: '',
         viewMode: 'gallery',
         isMovieLoaded: false,
+        currentAPIRequest: '',
       }
     )
   });
 
-  test('CURRENT_URL', () => {
-    expect(reducer(state, setCurrentURL('url'))).toStrictEqual(
-      {
-        results: [],
-        query: '',
-        genres: null,
-        isModalOpen: false,
-        trailerURL: '',
-        isTrailerLoaded: false,
-        movieDetails: null,
-        currentPage: 1,
-        totalPages: 0,
-        areMoviesLoaded: false,
-        currentURL: 'url',
-        currentGenre: '',
-        viewMode: 'gallery',
-        isMovieLoaded: false,
-      }
-    )
-  });
-
-  test('CURRENT_GENRE', () => {
-    expect(reducer(state, setCurrentGenre('Action'))).toStrictEqual(
-      {
-        results: [],
-        query: '',
-        genres: null,
-        isModalOpen: false,
-        trailerURL: '',
-        isTrailerLoaded: false,
-        movieDetails: null,
-        currentPage: 1,
-        totalPages: 0,
-        areMoviesLoaded: false,
-        currentURL: '',
-        currentGenre: 'Action',
-        viewMode: 'gallery',
-        isMovieLoaded: false,
-      }
-    )
-  });
 
   test('VIEW_MODE', () => {
     expect(reducer(state, setViewMode('list'))).toStrictEqual(
       {
         results: [],
-        query: '',
         genres: null,
         isModalOpen: false,
         trailerURL: '',
@@ -287,10 +204,9 @@ describe('Reducer should return store with changes according to action type', ()
         currentPage: 1,
         totalPages: 0,
         areMoviesLoaded: false,
-        currentURL: '',
-        currentGenre: '',
         viewMode: 'list',
         isMovieLoaded: false,
+        currentAPIRequest: '',
       }
     )
   });
@@ -299,7 +215,6 @@ describe('Reducer should return store with changes according to action type', ()
     expect(reducer(state, setIsMovieLoaded(true))).toStrictEqual(
       {
         results: [],
-        query: '',
         genres: null,
         isModalOpen: false,
         trailerURL: '',
@@ -308,10 +223,28 @@ describe('Reducer should return store with changes according to action type', ()
         currentPage: 1,
         totalPages: 0,
         areMoviesLoaded: false,
-        currentURL: '',
-        currentGenre: '',
         viewMode: 'gallery',
         isMovieLoaded: true,
+        currentAPIRequest: '',
+      }
+    )
+  });
+
+    test('SET_CURRENT_API_REQUEST', () => {
+    expect(reducer(state, setCurrentAPIRequest('popular'))).toStrictEqual(
+      {
+        results: [],
+        genres: null,
+        isModalOpen: false,
+        trailerURL: '',
+        isTrailerLoaded: false,
+        movieDetails: null,
+        currentPage: 1,
+        totalPages: 0,
+        areMoviesLoaded: false,
+        viewMode: 'gallery',
+        isMovieLoaded: false,
+        currentAPIRequest: 'popular',
       }
     )
   });

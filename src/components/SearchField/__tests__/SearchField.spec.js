@@ -6,6 +6,9 @@ import TestRenderer, { act } from 'react-test-renderer';
 jest.mock('react-router-dom', () => ({
   useHistory: () => ({
     push: jest.fn(),
+    location: {
+      pathname: '/'
+    }
   }),
 }));
 

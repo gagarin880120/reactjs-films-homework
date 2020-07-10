@@ -7,7 +7,7 @@ export default function MovieListNavBar({
   onTrending, onTopRated, onUpcoming, genres, onGenreChange,
   switchViewMode, viewMode, currentAPIRequest,
 }) {
-  const activeButtonStyle = {
+  const activeStyle = {
     fontWeight: 'bold',
     textDecoration: 'underline',
   };
@@ -20,7 +20,7 @@ export default function MovieListNavBar({
           to="/popular"
           id="popular"
           className={styles.button}
-          style={currentAPIRequest.includes('popular') ? activeButtonStyle : null}
+          style={currentAPIRequest.includes('popular') ? activeStyle : null}
           onClick={() => {
             onTrending();
           }}
@@ -30,7 +30,7 @@ export default function MovieListNavBar({
         <Link
           to="/top_rated"
           id="topRated"
-          style={currentAPIRequest.includes('top_rated') ? activeButtonStyle : null}
+          style={currentAPIRequest.includes('top_rated') ? activeStyle : null}
           className={styles.button}
           onClick={() => {
             onTopRated();
@@ -40,8 +40,8 @@ export default function MovieListNavBar({
         </Link>
         <Link
           to="/upcoming"
-          id="topRated"
-          style={currentAPIRequest.includes('upcoming') ? activeButtonStyle : null}
+          id="upComing"
+          style={currentAPIRequest.includes('upcoming') ? activeStyle : null}
           className={styles.button}
           onClick={() => {
             onUpcoming();
@@ -52,7 +52,7 @@ export default function MovieListNavBar({
         <select
           className={styles.button}
           name="genres"
-          style={currentAPIRequest.includes('genre') ? activeButtonStyle : null}
+          style={currentAPIRequest.includes('genre') ? activeStyle : null}
           onChange={(e) => {
             onGenreChange(e.target.value);
             history.location.pathname = '/';

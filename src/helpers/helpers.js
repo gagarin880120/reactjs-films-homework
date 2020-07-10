@@ -24,11 +24,6 @@ function getUnique(arr) {
   return arr.filter((el) => {
     const val = map.get(el.title);
     if (val) {
-      if (el.id < val) {
-        map.delete(el.title);
-        map.set(el.title, el.id);
-        return true;
-      }
       return false;
     }
     map.set(el.title, el.id);

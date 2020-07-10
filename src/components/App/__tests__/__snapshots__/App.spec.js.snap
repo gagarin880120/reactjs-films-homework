@@ -4,35 +4,41 @@ exports[`App component should render without crashing 1`] = `
 <div
   className="wrapper"
 >
-  <BrowserRouter>
-    <Switch>
-      <Route
-        component={
-          Object {
-            "$$typeof": Symbol(react.memo),
-            "WrappedComponent": [Function],
-            "compare": null,
-            "displayName": "Connect(SearchResultsPageContainer)",
-            "type": [Function],
-          }
-        }
-        exact={true}
-        path="/"
+  <Switch>
+    <Route
+      exact={true}
+      path="/"
+    >
+      <mockConstructor
+        to="/"
       />
-      <Route
-        component={
-          Object {
-            "$$typeof": Symbol(react.memo),
-            "WrappedComponent": [Function],
-            "compare": null,
-            "displayName": "Connect(MovieDetailsPageContainer)",
-            "type": [Function],
-          }
+    </Route>
+    <Route
+      component={
+        Object {
+          "$$typeof": Symbol(react.memo),
+          "WrappedComponent": [Function],
+          "compare": null,
+          "displayName": "Connect(SearchResultsPageContainer)",
+          "type": [Function],
         }
-        exact={true}
-        path="/movieDetailsPage"
-      />
-    </Switch>
-  </BrowserRouter>
+      }
+      exact={true}
+      path="/"
+    />
+    <Route
+      component={
+        Object {
+          "$$typeof": Symbol(react.memo),
+          "WrappedComponent": [Function],
+          "compare": null,
+          "displayName": "Connect(MovieDetailsPageContainer)",
+          "type": [Function],
+        }
+      }
+      exact={true}
+      path="/movie/:id"
+    />
+  </Switch>
 </div>
 `;

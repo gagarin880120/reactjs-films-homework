@@ -3,6 +3,9 @@
 exports[`SearchResultsPageContainer component should render without crashing 1`] = `
 <SearchResultsPage
   areMoviesLoaded={false}
+  currentAPIRequest=""
+  isMovieLoaded={false}
+  onCurrentAPIRequestUpdate={null}
   results={Array []}
 />
 `;

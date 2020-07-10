@@ -1,6 +1,6 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { getMovies, getGenres, getTrailer, getMovieDetails } from '../actions';
+import { getMovies, getGenres, getTrailer, getMovieDetails, getMoviesByGenre, getMoviesBySearch } from '../actions';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -11,14 +11,12 @@ describe('Async action', () => {
   });
 
   describe('getMovies', () => {
-    test('should dispatch results, areMoviesLoaded, url, query (if it is), page, and total pages on successful fetch request', () => {
+    test('should dispatch results, areMoviesLoaded, page, and total pages on successful fetch request', () => {
       fetch.mockResponse(JSON.stringify({ results: [{title: 'Matrix'}], total_pages: 5 }));
 
       const expectedActions = [
         { type: 'RESULTS', results: [] },
         { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: false },
-        { type: 'CURRENT_URL', currentURL: 'url/search/matrix' },
-        { type: 'QUERY', query: 'matrix' },
         { type: 'CURRENT_PAGE', page: 1 },
         { type: 'RESULTS', results: [{title: 'Matrix'}] },
         { type: 'TOTAL_PAGES', numberOfPages: 5 },
@@ -27,42 +25,62 @@ describe('Async action', () => {
 
       const store = mockStore({});
 
-      return store.dispatch(getMovies('url/search/', 1, 'matrix'))
+      return store.dispatch(getMovies('popular', 1))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
         })
     });
 
-    test('should dispatch results, areMoviesLoaded, url (+ genre if url includes "discover"), page, and total pages on successful fetch request', () => {
+    test('should dispatch results, areMoviesLoaded, page, movieDetails (if with details) and total pages on successful fetch request', () => {
       fetch.mockResponse(JSON.stringify({ results: [{title: 'Matrix'}], total_pages: 5 }));
 
       const expectedActions = [
+        { type: 'IS_MOVIE_LOADED', isLoaded: false },
         { type: 'RESULTS', results: [] },
         { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: false },
-        { type: 'CURRENT_URL', currentURL: 'url/discover/comedy' },
-        { type: 'QUERY', query: '' },
         { type: 'CURRENT_PAGE', page: 1 },
         { type: 'RESULTS', results: [{title: 'Matrix'}] },
+        { type: 'IS_MOVIE_LOADED', isLoaded: false },
         { type: 'TOTAL_PAGES', numberOfPages: 5 },
         { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: true },
       ];
 
       const store = mockStore({});
 
-      return store.dispatch(getMovies('url/discover/', 1, '', 'comedy'))
+      return store.dispatch(getMovies('popular', 1, [], true))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
         })
     });
 
-    test('should dispatch results (+ current results if are), areMoviesLoaded, url, page, and total pages on successful fetch request', () => {
+    test('should dispatch results, areMoviesLoaded, page, movieDetails (if with details) and total pages on successful fetch request', () => {
+      fetch.mockResponse(JSON.stringify({ results: [{title: 'Matrix'}], total_pages: 5 }));
+
+      const expectedActions = [
+        { type: 'IS_MOVIE_LOADED', isLoaded: false },
+        { type: 'RESULTS', results: [{title: 'Star Wars'}] },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: false },
+        { type: 'CURRENT_PAGE', page: 2 },
+        { type: 'RESULTS', results: [{title: 'Star Wars'}, {title: 'Matrix'}] },
+        { type: 'IS_MOVIE_LOADED', isLoaded: false },
+        { type: 'TOTAL_PAGES', numberOfPages: 5 },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: true },
+      ];
+
+      const store = mockStore({});
+
+      return store.dispatch(getMovies('popular', 2, [{title: 'Star Wars'}], true))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        })
+    });
+
+    test('should dispatch results (+ current results if are), areMoviesLoaded, page, and total pages on successful fetch request', () => {
       fetch.mockResponse(JSON.stringify({ results: [{title: 'Matrix'}], total_pages: 5 }));
 
       const expectedActions = [
         { type: 'RESULTS', results: [{title: 'Star Wars'}] },
         { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: false },
-        { type: 'CURRENT_URL', currentURL: 'url' },
-        { type: 'QUERY', query: '' },
         { type: 'CURRENT_PAGE', page: 2 },
         { type: 'RESULTS', results: [{title: 'Star Wars'}, {title: 'Matrix'}] },
         { type: 'TOTAL_PAGES', numberOfPages: 5 },
@@ -71,7 +89,7 @@ describe('Async action', () => {
 
       const store = mockStore({});
 
-      return store.dispatch(getMovies('url', 2, '', '', [{title: 'Star Wars'}]))
+      return store.dispatch(getMovies('popular', 2, [{title: 'Star Wars'}]))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
         })
@@ -83,14 +101,218 @@ describe('Async action', () => {
       const expectedActions = [
         { type: 'RESULTS', results: [] },
         { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: false },
-        { type: 'CURRENT_URL', currentURL: 'url' },
-        { type: 'QUERY', query: undefined },
         { type: 'CURRENT_PAGE', page: 1 },
       ];
 
       const store = mockStore({});
 
-      return store.dispatch(getMovies('url', 1))
+      return store.dispatch(getMovies('popular', 1))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        })
+    });
+  });
+
+  describe('getMoviesByGenre', () => {
+    test('should dispatch results, areMoviesLoaded, page, and total pages on successful fetch request', () => {
+      fetch.mockResponse(JSON.stringify({ results: [{title: 'Matrix'}], total_pages: 5 }));
+
+      const expectedActions = [
+        { type: 'RESULTS', results: [] },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: false },
+        { type: 'CURRENT_PAGE', page: 1 },
+        { type: 'RESULTS', results: [{title: 'Matrix'}] },
+        { type: 'TOTAL_PAGES', numberOfPages: 5 },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: true },
+      ];
+
+      const store = mockStore({});
+
+      return store.dispatch(getMoviesByGenre('genre=35', 1))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        })
+    });
+
+    test('should dispatch results, areMoviesLoaded, page, movieDetails (if with details) and total pages on successful fetch request', () => {
+      fetch.mockResponse(JSON.stringify({ results: [{title: 'Matrix'}], total_pages: 5 }));
+
+      const expectedActions = [
+        { type: 'IS_MOVIE_LOADED', isLoaded: false },
+        { type: 'RESULTS', results: [] },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: false },
+        { type: 'CURRENT_PAGE', page: 1 },
+        { type: 'RESULTS', results: [{title: 'Matrix'}] },
+        { type: 'IS_MOVIE_LOADED', isLoaded: false },
+        { type: 'TOTAL_PAGES', numberOfPages: 5 },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: true },
+      ];
+
+      const store = mockStore({});
+
+      return store.dispatch(getMoviesByGenre('genre=35', 1, [], true))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        })
+    });
+
+    test('should dispatch results, areMoviesLoaded, page, movieDetails (if with details) and total pages on successful fetch request', () => {
+      fetch.mockResponse(JSON.stringify({ results: [{title: 'Matrix'}], total_pages: 5 }));
+
+      const expectedActions = [
+        { type: 'IS_MOVIE_LOADED', isLoaded: false },
+        { type: 'RESULTS', results: [{title: 'Star Wars'}] },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: false },
+        { type: 'CURRENT_PAGE', page: 2 },
+        { type: 'RESULTS', results: [{title: 'Star Wars'}, {title: 'Matrix'}] },
+        { type: 'IS_MOVIE_LOADED', isLoaded: false },
+        { type: 'TOTAL_PAGES', numberOfPages: 5 },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: true },
+      ];
+
+      const store = mockStore({});
+
+      return store.dispatch(getMoviesByGenre('genre=35', 2, [{title: 'Star Wars'}], true))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        })
+    });
+
+    test('should dispatch results (+ current results if are), areMoviesLoaded, page, and total pages on successful fetch request', () => {
+      fetch.mockResponse(JSON.stringify({ results: [{title: 'Matrix'}], total_pages: 5 }));
+
+      const expectedActions = [
+        { type: 'RESULTS', results: [{title: 'Star Wars'}] },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: false },
+        { type: 'CURRENT_PAGE', page: 2 },
+        { type: 'RESULTS', results: [{title: 'Star Wars'}, {title: 'Matrix'}] },
+        { type: 'TOTAL_PAGES', numberOfPages: 5 },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: true },
+      ];
+
+      const store = mockStore({});
+
+      return store.dispatch(getMoviesByGenre('genre=35', 2, [{title: 'Star Wars'}]))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        })
+    });
+
+    test('should catch error if is rejected', () => {
+      fetch.mockReject(new Error('fake error message'));
+
+      const expectedActions = [
+        { type: 'RESULTS', results: [] },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: false },
+        { type: 'CURRENT_PAGE', page: 1 },
+      ];
+
+      const store = mockStore({});
+
+      return store.dispatch(getMoviesByGenre('genre=35', 1))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        })
+    });
+  });
+
+  describe('getMoviesBySearch', () => {
+    test('should dispatch results, areMoviesLoaded, page, and total pages on successful fetch request', () => {
+      fetch.mockResponse(JSON.stringify({ results: [{title: 'Matrix'}], total_pages: 5 }));
+
+      const expectedActions = [
+        { type: 'RESULTS', results: [] },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: false },
+        { type: 'CURRENT_PAGE', page: 1 },
+        { type: 'RESULTS', results: [{title: 'Matrix'}] },
+        { type: 'TOTAL_PAGES', numberOfPages: 5 },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: true },
+      ];
+
+      const store = mockStore({});
+
+      return store.dispatch(getMoviesBySearch('search=matrix', 1))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        })
+    });
+
+    test('should dispatch results, areMoviesLoaded, page, movieDetails (if with details) and total pages on successful fetch request', () => {
+      fetch.mockResponse(JSON.stringify({ results: [{title: 'Matrix'}], total_pages: 5 }));
+
+      const expectedActions = [
+        { type: 'IS_MOVIE_LOADED', isLoaded: false },
+        { type: 'RESULTS', results: [] },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: false },
+        { type: 'CURRENT_PAGE', page: 1 },
+        { type: 'RESULTS', results: [{title: 'Matrix'}] },
+        { type: 'IS_MOVIE_LOADED', isLoaded: false },
+        { type: 'TOTAL_PAGES', numberOfPages: 5 },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: true },
+      ];
+
+      const store = mockStore({});
+
+      return store.dispatch(getMoviesBySearch('search=matrix', 1, [], true))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        })
+    });
+
+    test('should dispatch results, areMoviesLoaded, page, movieDetails (if with details) and total pages on successful fetch request', () => {
+      fetch.mockResponse(JSON.stringify({ results: [{title: 'Matrix'}], total_pages: 5 }));
+
+      const expectedActions = [
+        { type: 'IS_MOVIE_LOADED', isLoaded: false },
+        { type: 'RESULTS', results: [{title: 'Star Wars'}] },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: false },
+        { type: 'CURRENT_PAGE', page: 2 },
+        { type: 'RESULTS', results: [{title: 'Star Wars'}, {title: 'Matrix'}] },
+        { type: 'IS_MOVIE_LOADED', isLoaded: false },
+        { type: 'TOTAL_PAGES', numberOfPages: 5 },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: true },
+      ];
+
+      const store = mockStore({});
+
+      return store.dispatch(getMoviesBySearch('search=matrix', 2, [{title: 'Star Wars'}], true))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        })
+    });
+
+    test('should dispatch results (+ current results if are), areMoviesLoaded, page, and total pages on successful fetch request', () => {
+      fetch.mockResponse(JSON.stringify({ results: [{title: 'Matrix'}], total_pages: 5 }));
+
+      const expectedActions = [
+        { type: 'RESULTS', results: [{title: 'Star Wars'}] },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: false },
+        { type: 'CURRENT_PAGE', page: 2 },
+        { type: 'RESULTS', results: [{title: 'Star Wars'}, {title: 'Matrix'}] },
+        { type: 'TOTAL_PAGES', numberOfPages: 5 },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: true },
+      ];
+
+      const store = mockStore({});
+
+      return store.dispatch(getMoviesBySearch('search=matrix', 2, [{title: 'Star Wars'}]))
+        .then(() => {
+          expect(store.getActions()).toEqual(expectedActions);
+        })
+    });
+
+    test('should catch error if is rejected', () => {
+      fetch.mockReject(new Error('fake error message'));
+
+      const expectedActions = [
+        { type: 'RESULTS', results: [] },
+        { type: 'ARE_MOVIES_LOADED', areMoviesLoaded: false },
+        { type: 'CURRENT_PAGE', page: 1 },
+      ];
+
+      const store = mockStore({});
+
+      return store.dispatch(getMoviesBySearch('search=matrix', 1))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
         })

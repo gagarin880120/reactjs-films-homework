@@ -66,10 +66,10 @@ describe('GalleryModeMovieCard component', () => {
     const onLinkClick = jest.fn();
     const testRenderer = TestRenderer.create(
       <Router>
-        <GalleryModeMovieCard onLinkClick={onLinkClick} />
+        <GalleryModeMovieCard onLinkClick={onLinkClick} movie={movie} />
       </Router>
     );
-    const link = testRenderer.root.findByProps({ to: '/movieDetailsPage' });
+    const link = testRenderer.root.findByProps({ to: '/movie/11' });
 
     act(() => {
       link.props.onClick();

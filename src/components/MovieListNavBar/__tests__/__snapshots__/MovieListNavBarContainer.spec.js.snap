@@ -2,7 +2,7 @@
 
 exports[`MovieListNavBarContainer component should render without crashing 1`] = `
 <MovieListNavBar
-  action=""
+  currentAPIRequest=""
   genres={Array []}
   onGenreChange={null}
   onTopRated={null}

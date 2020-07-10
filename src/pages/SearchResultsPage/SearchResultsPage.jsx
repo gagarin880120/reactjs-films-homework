@@ -13,7 +13,6 @@ export default function SearchResultsPage({
   useEffect(() => {
     onCurrentAPIRequestUpdate(currentAPIRequest);
   }, [currentAPIRequest]);
-
   return (
     <div className={styles.wrapper}>
       {

@@ -1,7 +1,7 @@
 import {
   resultsSelector, modalSelector, movieDetailsSelector, trailerSelector, isTrailerLoadedSelector,
-  genresSelector, currentPageSelector, totalPagesSelector, querySelector, areMoviesLoadedSelector,
-  currentURLSelector, currentGenreSelector,
+  genresSelector, currentPageSelector, totalPagesSelector, areMoviesLoadedSelector,
+  currentAPIRequestSelector,
 } from '../selectors';
 
 const state = {
@@ -23,7 +23,6 @@ const state = {
       "overview":"Six months after the events depicted in The Matrix, Neo has proved...",
     }
   ],
-  query: 'request',
   genres: [
     {id: 28, name: 'Adventure'},
     {id: 878, name: 'Science Fiction'},
@@ -54,8 +53,7 @@ const state = {
   currentPage: 1,
   totalPages: 0,
   areMoviesLoaded: false,
-  currentURL: 'url',
-  currentGenre: 'Action',
+  currentAPIRequest: 'popular',
 };
 
 describe('Selector', () => {
@@ -82,10 +80,6 @@ describe('Selector', () => {
         }
       ]
     )
-  });
-
-  test('querySelector should return query', () => {
-    expect(querySelector(state)).toStrictEqual(state.query)
   });
 
   test('genresSelector should return genres', () => {
@@ -148,12 +142,8 @@ describe('Selector', () => {
     expect(areMoviesLoadedSelector(state)).toStrictEqual(state.areMoviesLoaded)
   });
 
-  test('currentURLSelector should return currentURL', () => {
-    expect(currentURLSelector(state)).toStrictEqual(state.currentURL)
-  });
-
-  test('currentGenreSelector should return currentGenre', () => {
-    expect(currentGenreSelector(state)).toStrictEqual(state.currentGenre)
+  test('currentAPIRequestSelector should return currentAPIRequest', () => {
+    expect(currentAPIRequestSelector(state)).toStrictEqual(state.currentAPIRequest)
   });
 });
 

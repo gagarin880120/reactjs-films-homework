@@ -1,10 +1,12 @@
-import ShallowRenderer from 'react-test-renderer/shallow';
 import React from 'react';
+import ShallowRenderer from 'react-test-renderer/shallow';
 import { FooterContainer, mapStateToProps, mapDispatchToProps } from '../FooterContainer';
-import { getMovies } from '../../../redux/actions';
+import { getMovies, getMoviesBySearch, getMoviesByGenre } from '../../../redux/actions';
 
 jest.mock('../../../redux/actions',() => ({
-  getMovies: jest.fn().mockReturnValue('getMoviesAction'),
+  getMovies: jest.fn().mockReturnValue([{title: 'Matrix'}]),
+  getMoviesBySearch: jest.fn().mockReturnValue([{title: 'Matrix'}]),
+  getMoviesByGenre: jest.fn().mockReturnValue([{title: 'Matrix'}]),
 }))
 
 describe('FooterContainer component', () => {
@@ -21,18 +23,16 @@ describe('FooterContainer component', () => {
       const initialState = {
         results: [{title: 'Matrix', genre_ids: [28]}],
         currentPage: 1,
-        query: 'query',
         areMoviesLoaded: false,
-        currentURL: 'url',
         totalPages: 10,
+        currentAPIRequest: 'popular',
         genres: [{id: 28, name: 'Action'}],
       };
 
       expect(mapStateToProps(initialState).results).toEqual([{title: 'Matrix', genre_ids: [28], genres: 'Action'}]);
       expect(mapStateToProps(initialState).currentPage).toEqual(1);
-      expect(mapStateToProps(initialState).query).toEqual('query');
+      expect(mapStateToProps(initialState).currentAPIRequest).toEqual('popular');
       expect(mapStateToProps(initialState).areMoviesLoaded).toEqual(false);
-      expect(mapStateToProps(initialState).url).toEqual('url');
       expect(mapStateToProps(initialState).totalPages).toEqual(10);
     });
   });
@@ -40,15 +40,26 @@ describe('FooterContainer component', () => {
   describe('mapDispatchToProps', () => {
     afterEach(() => {
       jest.clearAllMocks();
-    })
+    });
 
-    test('onIntersect should dispatch getMovies action', () => {
-      const dispatch = jest.fn();
-      const {onIntersect} = mapDispatchToProps(dispatch);
+    const dispatch = jest.fn();
+    const {onIntersect} = mapDispatchToProps(dispatch);
 
-      onIntersect();
+    describe('onIntersect', () => {
+      test('should dispatch getMovies action if is call with "popular" API request', () => {
+        onIntersect('popular');
+        expect(getMovies).toHaveBeenCalled();
+      });
 
-      expect(getMovies).toHaveBeenCalled();
+      test('should dispatch getMoviesBySearch action if is call with "search=matrix" API request', () => {
+        onIntersect('search=matrix');
+        expect(getMoviesBySearch).toHaveBeenCalled();
+      });
+
+      test('should dispatch getMoviesByGenre action if is call with "genre=28" API request', () => {
+        onIntersect('genre=28');
+        expect(getMoviesByGenre).toHaveBeenCalled();
+      });
     });
   });
 });

@@ -34,7 +34,7 @@ describe('ListModeMovieCard component', () => {
         <ListModeMovieCard movie={movieWithPoster} onLinkClick={onLinkClick} />
       </Router>
     );
-    const link = testRenderer.root.findByProps({ to: '/movieDetailsPage' });
+    const link = testRenderer.root.findByProps({ to: '/movie/11' });
 
     act(() => {
       link.props.onClick();

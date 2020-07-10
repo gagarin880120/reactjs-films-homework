@@ -10,7 +10,8 @@ describe('Footer component', () => {
     const result = renderer.getRenderOutput();
     expect(result).toMatchSnapshot();
   });
-  describe('testRenderer', () => {
+
+  describe('mount with testRenderer', () => {
     const testRenderer = TestRenderer.create(
     <Footer
       areMoviesLoaded={false}

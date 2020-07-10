@@ -1,10 +1,10 @@
 import ShallowRenderer from 'react-test-renderer/shallow';
 import React from 'react';
 import { SearchFieldContainer, mapDispatchToProps } from '../SearchFieldContainer';
-import { getMovies } from '../../../redux/actions';
+import { setCurrentAPIRequest } from '../../../redux/actions';
 
 jest.mock('../../../redux/actions',() => ({
-  getMovies: jest.fn().mockReturnValue('getMoviesAction'),
+  setCurrentAPIRequest: jest.fn().mockReturnValue('popular'),
 }))
 
 const renderComponent = (props = {}) => {
@@ -31,22 +31,22 @@ describe('SearchFieldContainer', () => {
       jest.clearAllMocks();
     })
 
-    test('onSearch should dispatch getMovies actions', () => {
+    test('onSearch should dispatch setCurrentAPIRequest actions', () => {
       const dispatch = jest.fn();
       const {onSearch} = mapDispatchToProps(dispatch);
 
       onSearch('abc');
 
-      expect(getMovies).toHaveBeenCalled();
+      expect(setCurrentAPIRequest).toHaveBeenCalled();
     })
 
-    test('onSearch should not dispatch getMovies action if no query', () => {
+    test('onSearch should not dispatch setCurrentAPIRequest action if no query', () => {
       const dispatch = jest.fn();
       const {onSearch} = mapDispatchToProps(dispatch);
 
       onSearch()
 
-      expect(getMovies).not.toHaveBeenCalled()
+      expect(setCurrentAPIRequest).not.toHaveBeenCalled()
     })
   })
 })

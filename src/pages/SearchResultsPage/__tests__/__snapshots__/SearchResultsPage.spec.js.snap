@@ -4,7 +4,6 @@ exports[`SearchResultsPage component should render with other elements, depends 
 <div
   className="wrapper"
 >
-  <Header />
   <Memo(Connect(MovieListContainer)) />
   <div
     className="loading"
@@ -19,7 +18,10 @@ exports[`SearchResultsPage component should render without crashing 1`] = `
 <div
   className="wrapper"
 >
-  <Header />
+  <React.Fragment>
+    <Header />
+    <Memo(Connect(MovieInfoContainer)) />
+  </React.Fragment>
   <Memo(Connect(MovieListContainer)) />
   <div
     className="loading"

@@ -1,11 +1,11 @@
 import React from 'react';
-import { MovieDetailsPageContainer, mapStateToProps } from '../MovieDetailsPageContainer';
+import { MovieDetailsPageContainer, mapStateToProps, mapDispatchToProps } from '../MovieDetailsPageContainer';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import { setModal, getTrailer } from '../../../redux/actions';
+import { setCurrentAPIRequest, getMovies } from '../../../redux/actions';
 
 jest.mock('../../../redux/actions',() => ({
-  setModal: jest.fn().mockReturnValue(false),
-  getTrailer: jest.fn().mockReturnValue('trailer'),
+  setCurrentAPIRequest: jest.fn().mockReturnValue('popular'),
+  getMovies: jest.fn().mockReturnValue([{title: 'Matrix'}]),
 }));
 
 describe('MovieDetailsPageContainer', () => {
@@ -33,38 +33,29 @@ describe('MovieDetailsPageContainer', () => {
         areMoviesLoaded: true,
         results: [{title:"Star Wars", id:15, genre_ids:[28]}],
         genres: [{id: 28, name: 'Action'}],
-        movieDetails: {title: 'Matrix', runtime: 120, vote_average: 8.6, genres: [{name: 'Adventure'}]},
+        isMovieLoaded: false,
       };
       expect(mapStateToProps(initialState).results).toEqual([
         {title:"Star Wars", id:15, genre_ids:[28], genres: 'Action'}
       ]);
-      expect(mapStateToProps(initialState).movie).toEqual({
-        genres: 'Adventure',
-        runtime: '2h',
-        stars: [
-          {
-            id: 0,
-            type: 'full',
-          },
-          {
-            id: 1,
-            type: 'full',
-          },
-          {
-            id: 2,
-            type: 'full',
-          },
-          {
-            id: 3,
-            type: 'full',
-          },
-          {
-            id: 4,
-            type: 'half',
-          },
-        ],
-        title: 'Matrix',
-        vote_average: 8.6,
+      expect(mapStateToProps(initialState).isMovieLoaded).toEqual(false);
+    });
+  });
+
+  describe('mapDispatchToProps', () => {
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    describe('onPageLoad', () => {
+      test('should dispatch setCurrentAPIRequest and getMovies actions', () => {
+        const dispatch = jest.fn();
+        const {onPageLoad} = mapDispatchToProps(dispatch);
+
+        onPageLoad();
+
+        expect(setCurrentAPIRequest).toHaveBeenCalled();
+        expect(getMovies).toHaveBeenCalled();
       });
     });
   });
