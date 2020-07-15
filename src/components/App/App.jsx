@@ -23,7 +23,7 @@ function App({
     if (location.pathname.length > 1) {
       onReload(location.pathname);
     }
-  }, []);
+  }, [location]);
 
   return (
     genres
