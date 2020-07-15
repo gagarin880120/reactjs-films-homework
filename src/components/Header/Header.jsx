@@ -11,6 +11,4 @@ export default function Header() {
       <SearchFieldContainer />
     </header>
   );
-    </header>
-  )
 }
