@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'development') {
     log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000,
   }));
 
-  app.use('*', (req, res, next) => {
+  app.use((req, res, next) => {
     const filename = path.resolve(compiler.outputPath, 'index.html');
     compiler.outputFileSystem.readFile(filename, (err, result) => {
       if (err) {

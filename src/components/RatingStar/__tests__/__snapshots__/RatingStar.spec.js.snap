@@ -1,17 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RatingStar component should render full star icon when type is "full" 1`] = `
-<React.Fragment>
-  <i
-    className="fas fa-star"
-  />
-</React.Fragment>
+<i
+  className="fas fa-star"
+/>
 `;
 
 exports[`RatingStar component should render half star icon when type is "half" 1`] = `
-<React.Fragment>
-  <i
-    className="fas fa-star-half"
-  />
-</React.Fragment>
+<i
+  className="fas fa-star-half"
+/>
 `;

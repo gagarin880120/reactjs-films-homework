@@ -20,11 +20,7 @@ export default function ButtonsWrapper({ movie, onTrailerButtonClick }) {
       />
       <InfoButton
         onInfoButtonClick={() => {
-          if (isInfoViewed) {
-            setIsInfoViewed(false);
-          } else {
-            setIsInfoViewed(true);
-          }
+          setIsInfoViewed(!isInfoViewed);
         }}
       />
     </div>

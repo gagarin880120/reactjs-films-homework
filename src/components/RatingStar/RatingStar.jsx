@@ -3,13 +3,9 @@ import PropTypes from 'prop-types';
 
 export default function RatingStar({ type }) {
   return (
-    <>
-      {
-        type === 'full'
-          ? <i className="fas fa-star" />
-          : <i className="fas fa-star-half" />
-      }
-    </>
+    type === 'full'
+      ? <i className="fas fa-star" />
+      : <i className="fas fa-star-half" />
   );
 }
 

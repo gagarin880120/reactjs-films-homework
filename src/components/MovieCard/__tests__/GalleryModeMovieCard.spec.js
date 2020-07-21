@@ -31,12 +31,7 @@ describe('GalleryModeMovieCard component', () => {
     const testRenderer = TestRenderer.create(
       <Router>
         <GalleryModeMovieCard movie={movieWithPoster} genres={genres} />
-      </Router>,
-      {
-        createNodeMock: (element) => {
-          return element;
-        }
-      }
+      </Router>
     );
 
     test('when infoButton is clicked should render overview element', () => {
@@ -52,13 +47,13 @@ describe('GalleryModeMovieCard component', () => {
 
     test('when closeInfo is clicked should change hoverEl className to hoverTrailer', () => {
       const closeInfo = testRenderer.root.findByProps({className: 'closeInfo'});
-      const hoverEl = testRenderer.root.findByProps({className: 'hoverTrailer'});
 
       act(() => {
         closeInfo.props.onClick();
       });
 
-      expect(hoverEl.props.className).toBe('hoverTrailer');
+      const hoverEl = testRenderer.root.findByProps({className: 'hoverTrailer'});
+      expect(hoverEl).not.toBeNull();
     });
   });
 

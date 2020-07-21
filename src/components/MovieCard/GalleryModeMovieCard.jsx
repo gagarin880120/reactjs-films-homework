@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './MovieCard.module.scss';
@@ -10,8 +10,7 @@ export default function GalleryModeMovieCard({
   movie, onTrailerButtonClick, onLinkClick,
 }) {
   const [isInfoViewed, setIsInfoViewed] = useState(false);
-  const hoverEl = useRef();
-  const infoEl = useRef();
+  const [isHovered, setHoveredState] = useState(false);
 
   return (
     <div
@@ -22,10 +21,7 @@ export default function GalleryModeMovieCard({
           : null,
       }}
     >
-      <div
-        ref={hoverEl}
-        className={styles.hoverTrailer}
-      >
+      <div className={isHovered ? styles.hoverElDisplayNone : styles.hoverTrailer}>
         <TrailerButtonRound
           onTrailerButtonClick={onTrailerButtonClick}
           id={movie.id}
@@ -33,15 +29,13 @@ export default function GalleryModeMovieCard({
         <span className={styles.hoverTrailerText}>Watch Now</span>
         <InfoButton
           onInfoButtonClick={() => {
-            hoverEl.current.className = styles.hoverElDisplayNone;
+            setHoveredState(true);
             setIsInfoViewed(true);
-            infoEl.current.className = styles.infoIsViewed;
           }}
         />
       </div>
       <div
-        className={styles.movieInfo}
-        ref={infoEl}
+        className={isInfoViewed ? styles.infoIsViewed : styles.movieInfo}
       >
         {
           isInfoViewed ? (
@@ -50,8 +44,7 @@ export default function GalleryModeMovieCard({
               type="button"
               onClick={() => {
                 setIsInfoViewed(false);
-                infoEl.current.className = styles.movieInfo;
-                hoverEl.current.className = styles.hoverTrailer;
+                setHoveredState(false);
               }}
             >
               <i className="fas fa-times" />
