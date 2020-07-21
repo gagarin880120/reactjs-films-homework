@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonsWrapperContainer component should render without crashing 1`] = `
+<ButtonsWrapper
+  movie={Object {}}
+  onTrailerButtonClick={null}
+/>
+`;

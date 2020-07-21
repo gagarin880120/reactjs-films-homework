@@ -7,22 +7,26 @@ describe('TrailerModal component', () => {
 
   test('should render without crashing', () => {
     const renderer = new ShallowRenderer();
-    renderer.render(<TrailerModal modalIsOpen={true} isTrailerLoaded={false} />);
+    renderer.render(<TrailerModal modalIsOpen={true} isTrailerLoaded={true} />);
+
     const result = renderer.getRenderOutput();
+
     expect(result).toMatchSnapshot();
   });
 
   test('should render span with text "Trailer is not available" if trailerURL === null', () => {
     const renderer = new ShallowRenderer();
-    renderer.render(<TrailerModal modalIsOpen={true} trailerURL={null} isTrailerLoaded={true} />);
+    renderer.render(<TrailerModal modalIsOpen={true} isTrailerLoaded={true} trailerURL={null} />);
+
     const result = renderer.getRenderOutput();
+
     expect(result).toMatchSnapshot();
   });
 
   test('should call closeModal on click', () => {
     const closeModal = jest.fn();
     const testRenderer = TestRenderer.create(
-    <TrailerModal closeModal={closeModal} isTrailerLoaded={true} trailerURL="url" />
+      <TrailerModal isTrailerLoaded={true} closeModal={closeModal} trailerURL="url" />
     );
     const modal = testRenderer.root.findByProps({className: 'modal'});
 

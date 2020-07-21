@@ -1,0 +1,345 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieListNavBar component should render with another styles depends on props 1`] = `
+<div
+  className="wrapper"
+>
+  <div
+    className="linksContainer"
+  >
+    <Link
+      className="link"
+      id="popular"
+      onClick={[Function]}
+      style={null}
+      to="/popular"
+    >
+      Trending
+    </Link>
+    <Link
+      className="link"
+      id="topRated"
+      onClick={[Function]}
+      style={null}
+      to="/top_rated"
+    >
+      Top rated
+    </Link>
+    <Link
+      className="link"
+      id="upComing"
+      onClick={[Function]}
+      style={
+        Object {
+          "fontWeight": "bold",
+          "textDecoration": "underline",
+        }
+      }
+      to="/upcoming"
+    >
+      Coming soon
+    </Link>
+    <select
+      className="link"
+      name="genres"
+      onChange={[Function]}
+      style={null}
+      value=""
+    >
+      <option
+        value=""
+      >
+        Genre
+      </option>
+    </select>
+  </div>
+  <div
+    className="viewSwitchersContainer"
+  >
+    <button
+      className="link"
+      id="galleryView"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fas fa-th"
+        style={null}
+      />
+    </button>
+    <button
+      className="link"
+      id="listView"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fas fa-th-list"
+        style={
+          Object {
+            "color": "#D6D7D7",
+          }
+        }
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`MovieListNavBar component should render with another styles depends on props 2`] = `
+<div
+  className="wrapper"
+>
+  <div
+    className="linksContainer"
+  >
+    <Link
+      className="link"
+      id="popular"
+      onClick={[Function]}
+      style={null}
+      to="/popular"
+    >
+      Trending
+    </Link>
+    <Link
+      className="link"
+      id="topRated"
+      onClick={[Function]}
+      style={null}
+      to="/top_rated"
+    >
+      Top rated
+    </Link>
+    <Link
+      className="link"
+      id="upComing"
+      onClick={[Function]}
+      style={null}
+      to="/upcoming"
+    >
+      Coming soon
+    </Link>
+    <select
+      className="link"
+      name="genres"
+      onChange={[Function]}
+      style={null}
+      value=""
+    >
+      <option
+        value=""
+      >
+        Genre
+      </option>
+    </select>
+  </div>
+  <div
+    className="viewSwitchersContainer"
+  >
+    <button
+      className="link"
+      id="galleryView"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fas fa-th"
+        style={null}
+      />
+    </button>
+    <button
+      className="link"
+      id="listView"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fas fa-th-list"
+        style={
+          Object {
+            "color": "#D6D7D7",
+          }
+        }
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`MovieListNavBar component should render with another styles depends on props 3`] = `
+<div
+  className="wrapper"
+>
+  <div
+    className="linksContainer"
+  >
+    <Link
+      className="link"
+      id="popular"
+      onClick={[Function]}
+      style={null}
+      to="/popular"
+    >
+      Trending
+    </Link>
+    <Link
+      className="link"
+      id="topRated"
+      onClick={[Function]}
+      style={
+        Object {
+          "fontWeight": "bold",
+          "textDecoration": "underline",
+        }
+      }
+      to="/top_rated"
+    >
+      Top rated
+    </Link>
+    <Link
+      className="link"
+      id="upComing"
+      onClick={[Function]}
+      style={null}
+      to="/upcoming"
+    >
+      Coming soon
+    </Link>
+    <select
+      className="link"
+      name="genres"
+      onChange={[Function]}
+      style={null}
+      value=""
+    >
+      <option
+        value=""
+      >
+        Genre
+      </option>
+    </select>
+  </div>
+  <div
+    className="viewSwitchersContainer"
+  >
+    <button
+      className="link"
+      id="galleryView"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fas fa-th"
+        style={null}
+      />
+    </button>
+    <button
+      className="link"
+      id="listView"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fas fa-th-list"
+        style={
+          Object {
+            "color": "#D6D7D7",
+          }
+        }
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`MovieListNavBar component should render without crashing 1`] = `
+<div
+  className="wrapper"
+>
+  <div
+    className="linksContainer"
+  >
+    <Link
+      className="link"
+      id="popular"
+      onClick={[Function]}
+      style={
+        Object {
+          "fontWeight": "bold",
+          "textDecoration": "underline",
+        }
+      }
+      to="/popular"
+    >
+      Trending
+    </Link>
+    <Link
+      className="link"
+      id="topRated"
+      onClick={[Function]}
+      style={null}
+      to="/top_rated"
+    >
+      Top rated
+    </Link>
+    <Link
+      className="link"
+      id="upComing"
+      onClick={[Function]}
+      style={null}
+      to="/upcoming"
+    >
+      Coming soon
+    </Link>
+    <select
+      className="link"
+      name="genres"
+      onChange={[Function]}
+      style={null}
+      value=""
+    >
+      <option
+        value=""
+      >
+        Genre
+      </option>
+      <option
+        value={28}
+      >
+        Action
+      </option>
+    </select>
+  </div>
+  <div
+    className="viewSwitchersContainer"
+  >
+    <button
+      className="link"
+      id="galleryView"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fas fa-th"
+        style={
+          Object {
+            "color": "#D6D7D7",
+          }
+        }
+      />
+    </button>
+    <button
+      className="link"
+      id="listView"
+      onClick={[Function]}
+      type="button"
+    >
+      <i
+        className="fas fa-th-list"
+        style={null}
+      />
+    </button>
+  </div>
+</div>
+`;

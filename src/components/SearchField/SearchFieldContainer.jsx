@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getResults } from '../../redux/actions';
+import { setCurrentAPIRequest } from '../../redux/actions';
 import SearchField from './SearchField';
 
 export function SearchFieldContainer({ onSearch }) {
@@ -15,7 +15,7 @@ export function SearchFieldContainer({ onSearch }) {
 export const mapDispatchToProps = (dispatch) => ({
   onSearch(query) {
     if (query) {
-      dispatch(getResults(query));
+      dispatch(setCurrentAPIRequest(`search=${query}`));
     }
   },
 });

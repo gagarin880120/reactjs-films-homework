@@ -1,30 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MovieDetailsPage component should render without crashing 1`] = `
-<div
-  className="wrapper"
->
-  <div
-    className="infoContainer"
-  >
-    <Header />
-    <main
-      className="main"
-    >
-      <MovieInfo />
-      <div
-        className="buttonsContainer"
-      >
-        <TrailerButtonRect
-          id={0}
-          onTrailerButtonClick={null}
-        />
-        <InfoButton
-          onInfoButtonClick={null}
-        />
-      </div>
-    </main>
-  </div>
+exports[`MovieDetailsPage component should render with other elements, depends on props 1`] = `
+<React.Fragment>
+  <Header />
+  <Memo(Connect(MovieInfoContainer)) />
   <Memo(Connect(MovieListContainer)) />
-</div>
+  <div
+    className="loading"
+  >
+    <Spinner />
+  </div>
+  <Memo(Connect(FooterContainer)) />
+</React.Fragment>
+`;
+
+exports[`MovieDetailsPage component should render without crashing 1`] = `
+<React.Fragment>
+  <Header />
+  <Memo(Connect(MovieInfoContainer)) />
+  <Memo(Connect(MovieListContainer)) />
+  <div
+    className="loading"
+  />
+</React.Fragment>
 `;

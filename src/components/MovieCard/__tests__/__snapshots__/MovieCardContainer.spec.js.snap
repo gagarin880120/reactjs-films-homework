@@ -1,8 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MovieCardContainer component should render without crashing 1`] = `
-<MovieCard
+exports[`MovieCardContainer component should render other elements, depends on props 1`] = `
+<GalleryModeMovieCard
   movie={Object {}}
+  onLinkClick={null}
   onTrailerButtonClick={null}
+  viewMode="gallery"
+/>
+`;
+
+exports[`MovieCardContainer component should render without crashing 1`] = `
+<ListModeMovieCard
+  movie={Object {}}
+  onLinkClick={null}
+  onTrailerButtonClick={null}
+  viewMode=""
 />
 `;

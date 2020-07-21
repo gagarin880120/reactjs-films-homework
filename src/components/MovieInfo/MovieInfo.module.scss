@@ -1,5 +1,21 @@
 .wrapper {
-  width: 30%;
+  width: 100%;
+  background-image: url('https://i.ibb.co/7Wh7Jwz/no-backdrop.jpg');
+  background-size: cover;
+}
+
+.mainContent {
+  padding: 0 2% 40px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+  margin-top: 0%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.movieDetails {
+  width: 40%;
+  margin-top: 35%;
 }
 
 .movieTitle {
@@ -39,9 +55,21 @@
 }
 
 .ratingText {
-  font-size: 14px;
+  margin-left: 15px;
+  font-size: 18px;
   border: 1px solid #0ab9f3;
   border-radius: 3px;
-  padding: 3px 8px;
+  padding: 4px 8px;
   background: #020201;
+}
+
+@media screen and (max-width: 750px) {
+  .mainContent {
+    flex-direction: column;
+    padding: 2% 2% 160px;
+  }
+
+  .movieDetails {
+    width: 100%;
+  }
 }

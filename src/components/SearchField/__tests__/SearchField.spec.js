@@ -1,7 +1,16 @@
 import ShallowRenderer from 'react-test-renderer/shallow';
 import React from 'react';
 import SearchField from '../SearchField';
-import TestRenderer, {act} from 'react-test-renderer';
+import TestRenderer, { act } from 'react-test-renderer';
+
+jest.mock('react-router-dom', () => ({
+  useHistory: () => ({
+    push: jest.fn(),
+    location: {
+      pathname: '/'
+    }
+  }),
+}));
 
 describe('SearchField component', () => {
   test('should render without crashing', () => {

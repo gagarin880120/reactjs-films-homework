@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieListNavBarContainer component should render without crashing 1`] = `
+<MovieListNavBar
+  currentAPIRequest=""
+  genres={Array []}
+  onGenreChange={null}
+  onTopRated={null}
+  onTrending={null}
+  onUpcoming={null}
+  switchViewMode={null}
+  viewMode=""
+/>
+`;

@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppContainer component should render without crashing 1`] = `
+<BrowserRouter>
+  <App
+    currentAPIRequest=""
+    genres={Array []}
+    onAppLoad={null}
+    onReload={null}
+  />
+</BrowserRouter>
+`;

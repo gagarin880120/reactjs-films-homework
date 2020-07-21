@@ -3,39 +3,47 @@
 exports[`MovieInfo component should render without crashing 1`] = `
 <div
   className="wrapper"
+  style={
+    Object {
+      "backgroundImage": null,
+    }
+  }
 >
-  <h2
-    className="movieTitle"
-  >
-    The Jungle Book
-  </h2>
   <div
-    className="genreDurationContainer"
+    className="mainContent"
   >
-    <span
-      className="genre"
+    <div
+      className="movieDetails"
     >
-      Adventure Drama Family Fantasy
-    </span>
-    <span
-      className="duration"
-    >
-      1h 46m
-    </span>
-  </div>
-  <div
-    className="rating"
-  >
-    <span
-      className="ratingStars"
-    >
-      ★★★★★
-    </span>
-    <span
-      className="ratingText"
-    >
-      4.8
-    </span>
+      <h2
+        className="movieTitle"
+      />
+      <div
+        className="genreDurationContainer"
+      >
+        <span
+          className="genre"
+        />
+        <span
+          className="duration"
+        />
+      </div>
+      <div
+        className="rating"
+      >
+        <span
+          className="ratingStars"
+        >
+          <RatingStar
+            type="full"
+          />
+        </span>
+        <span
+          className="ratingText"
+        />
+      </div>
+    </div>
+    <Memo(Connect(ButtonsWrapperContainer)) />
   </div>
 </div>
 `;

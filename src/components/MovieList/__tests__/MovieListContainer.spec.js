@@ -23,31 +23,15 @@ describe('MovieListContainer', () => {
       expect(result).toMatchSnapshot();
     });
 
-  describe('mapStateToProps', () => {
-    test('should return the right value', () => {
-      const initialState = {
-        searchResults: [{title:"Star Wars", id:15, genre_ids:[28]}],
-        genres: [{id: 28, name: 'Action'}]
-      };
-      expect(mapStateToProps(initialState).results).toEqual([{title:"Star Wars", id:15, genre_ids:[28], genres: 'Action'}]);
+    describe('mapStateToProps', () => {
+      test('should return the right value', () => {
+        const initialState = {
+          results: [{title:"Star Wars", id:15, genre_ids:[28]}],
+          genres: [{id: 28, name: 'Action'}]
+        };
+        expect(mapStateToProps(initialState).results).toEqual([{title:"Star Wars", id:15, genre_ids:[28], genres: 'Action'}]);
+      });
     });
-  });
-})
-
-  describe('mapDispatchToProps', () => {
-    afterEach(() => {
-      jest.clearAllMocks();
-    })
-
-    test('onGetGenres should dispatch getGenres actions', () => {
-      const dispatch = jest.fn();
-      const {onGetGenres} = mapDispatchToProps(dispatch);
-
-      onGetGenres();
-
-      expect(getGenres).toHaveBeenCalled();
-      expect(dispatch).toHaveBeenCalledWith('getGenresAction');
-    })
   })
 })
 

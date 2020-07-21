@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GalleryModeMovieCard component should render without crashing 1`] = `
+<div
+  className="galleryWrapper"
+  style={
+    Object {
+      "backgroundImage": null,
+    }
+  }
+>
+  <div
+    className="hoverTrailer"
+  >
+    <TrailerButtonRound
+      id={11}
+      onTrailerButtonClick={null}
+    />
+    <span
+      className="hoverTrailerText"
+    >
+      Watch Now
+    </span>
+    <InfoButton
+      onInfoButtonClick={[Function]}
+    />
+  </div>
+  <div
+    className="movieInfo"
+  >
+    <Link
+      onClick={[Function]}
+      to="/movie/11"
+    >
+      <p
+        className="movieTitle"
+      >
+        Star Wars
+      </p>
+    </Link>
+    <span
+      className="movieRating"
+    />
+    <p
+      className="movieGenre"
+    />
+  </div>
+</div>
+`;

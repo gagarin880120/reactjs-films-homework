@@ -24,7 +24,6 @@ export default function TrailerModal({ closeModal, trailerURL, isTrailerLoaded }
               && (
                 <iframe
                   title="video"
-                  testId="video"
                   width="800"
                   height="450"
                   src={`https://www.youtube.com/embed/${trailerURL}`}
@@ -36,7 +35,7 @@ export default function TrailerModal({ closeModal, trailerURL, isTrailerLoaded }
             }
               {
               !trailerURL && (
-              <span testId="noTrailer" className={styles.noTrailer}>
+              <span className={styles.noTrailer}>
                 Trailer is not available
               </span>
               )

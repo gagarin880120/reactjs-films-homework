@@ -2,40 +2,34 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MovieList from './MovieList';
-import { searchResultsSelector, modalSelector } from '../../redux/selectors';
-import { getGenres } from '../../redux/actions';
+import { resultsSelector, modalSelector, viewModeSelector } from '../../redux/selectors';
 
-export function MovieListContainer({ results, isModalOpen, onGetGenres }) {
+export function MovieListContainer({ results, isModalOpen, viewMode }) {
   return (
     <MovieList
       results={results}
       isModalOpen={isModalOpen}
-      onGetGenres={onGetGenres}
+      viewMode={viewMode}
     />
   );
 }
 
 export const mapStateToProps = (state) => ({
-  results: searchResultsSelector(state),
+  results: resultsSelector(state),
   isModalOpen: modalSelector(state),
-});
-
-export const mapDispatchToProps = (dispatch) => ({
-  onGetGenres() {
-    dispatch(getGenres());
-  },
+  viewMode: viewModeSelector(state),
 });
 
 MovieListContainer.propTypes = {
   results: PropTypes.instanceOf(Array),
   isModalOpen: PropTypes.bool,
-  onGetGenres: PropTypes.func,
+  viewMode: PropTypes.string,
 };
 
 MovieListContainer.defaultProps = {
   results: [],
   isModalOpen: false,
-  onGetGenres: null,
+  viewMode: '',
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieListContainer);
+export default connect(mapStateToProps)(MovieListContainer);

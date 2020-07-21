@@ -1,25 +1,41 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Header from '../../components/Header/Header';
-import MovieInfo from '../../components/MovieInfo/MovieInfo';
-import InfoButton from '../../components/InfoButton/InfoButton';
-import TrailerButtonRect from '../../components/TrailerButtonRect/TrailerButtonRect';
+import MovieInfoContainer from '../../components/MovieInfo';
 import MovieListContainer from '../../components/MovieList';
+import FooterContainer from '../../components/Footer';
+import Spinner from '../../components/Spinner/Spinner';
 import styles from './MovieDetailsPage.module.scss';
 
-export default function MovieDetailsPage() {
+export default function MovieDetailsPage({ areMoviesLoaded, results, onPageLoad }) {
+  useEffect(() => {
+    onPageLoad();
+  }, []);
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.infoContainer}>
-        <Header />
-        <main className={styles.main}>
-          <MovieInfo />
-          <div className={styles.buttonsContainer}>
-            <TrailerButtonRect />
-            <InfoButton />
-          </div>
-        </main>
-      </div>
+    <>
+      <Header />
+      <MovieInfoContainer />
       <MovieListContainer />
-    </div>
+      <div className={styles.loading}>
+        {
+          !areMoviesLoaded ? <Spinner /> : null
+        }
+      </div>
+      {
+        results.length ? <FooterContainer /> : null
+      }
+    </>
   );
 }
+
+MovieDetailsPage.propTypes = {
+  areMoviesLoaded: PropTypes.bool,
+  results: PropTypes.instanceOf(Array),
+  onPageLoad: PropTypes.func,
+};
+
+MovieDetailsPage.defaultProps = {
+  areMoviesLoaded: false,
+  results: [],
+  onPageLoad: null,
+};
