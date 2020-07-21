@@ -27,7 +27,7 @@ exports[`TrailerModal component should render without crashing 1`] = `
   tabIndex={0}
 >
   <React.Fragment>
-
+    
     <span
       className="noTrailer"
     >
