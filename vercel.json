@@ -1,6 +1,6 @@
 {
-  "redirects": [
-    { "source": "/popular", "destination": "/" },
+  "rewrites": [
+    { "source": "/popular", "destination": "/popular" },
     { "source": "/top_rated", "destination": "/top_rated" },
     { "source": "/upcoming", "destination": "/upcoming" }
   ]
