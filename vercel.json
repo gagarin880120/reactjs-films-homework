@@ -1,7 +1,7 @@
 {
-  "rewrites": [
-    { "source": "/popular", "destination": "/popular", "permanent": false },
-    { "source": "/top_rated", "destination": "/top_rated" },
-    { "source": "/upcoming", "destination": "/upcoming" }
+  "routes": [
+    { "src": "/popular", "dest": "/popular" },
+    { "src": "/top_rated", "dest": "/top_rated" },
+    { "src": "/upcoming", "dest": "/upcoming" }
   ]
 }
