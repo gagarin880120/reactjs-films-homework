@@ -1,5 +1,10 @@
 {
   "routes": [
-    { "src": "/(.+)", "dest": "/index.html" }
+    { "src": "/popular", "dest": "/index.html" },
+    { "src": "/upcoming", "dest": "/index.html" },
+    { "src": "/top_rated", "dest": "/index.html" },
+    { "src": "/movie/(.+)", "dest": "/index.html" },
+    { "src": "/genre=(.+)", "dest": "/index.html" },
+    { "src": "/search=(.+)", "dest": "/index.html" }
   ]
 }
