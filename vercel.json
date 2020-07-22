@@ -1,7 +1,7 @@
 {
   "redirects": [
-    { "source": "/popular", "destination": "/index.html" },
-    { "source": "/top_rated", "destination": "/index.html" },
-    { "source": "/upcoming", "destination": "/index.html" }
+    { "source": "/popular", "destination": "/popular" },
+    { "source": "/top_rated", "destination": "/top_rated" },
+    { "source": "/upcoming", "destination": "/upcoming" }
   ]
 }
