@@ -1,7 +1,5 @@
 {
   "routes": [
-    { "src": "/popular", "dest": "/index.html" },
-    { "src": "/top_rated", "dest": "/index.html" },
-    { "src": "/upcoming", "dest": "/index.html" }
+    { "src": "/^\\w+$/", "dest": "/index.html" }
   ]
 }
