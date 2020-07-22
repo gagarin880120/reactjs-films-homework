@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/popular", "destination": "/popular" },
+    { "source": "/popular", "destination": "/popular", "permanent": false },
     { "source": "/top_rated", "destination": "/top_rated" },
     { "source": "/upcoming", "destination": "/upcoming" }
   ]
