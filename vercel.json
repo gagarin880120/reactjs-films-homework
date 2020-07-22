@@ -1,6 +1,6 @@
 {
   "routes": [
-    { "src": "/popular", "dest": "/popular" },
+    { "src": "/popular", "dest": "/index.html" },
     { "src": "/top_rated", "dest": "/top_rated" },
     { "src": "/upcoming", "dest": "/upcoming" }
   ]
